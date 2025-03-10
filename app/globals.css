@@ -60,19 +60,12 @@
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+/* Apply default focus and other styles */
+@layer base {
+  * {
+    @apply border-border;
   }
-  50% {
-    transform: translateY(-10px);
+  body {
+    @apply bg-background text-foreground;
   }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
 }
