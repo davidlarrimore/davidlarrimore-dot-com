@@ -30,7 +30,7 @@ export default function Footer() {
                   <span className="hover:underline cursor-not-allowed">Projects</span>
                 </li>
                 <li className="mb-2">
-                  <Link href="/resume" className="hover:underline cursor-not-allowed">Resume</Link>
+                  <Link href="/resume" className="hover:underline">Resume</Link>
                 </li>
                 <li>
                 <span className="hover:underline cursor-not-allowed">Blog</span>

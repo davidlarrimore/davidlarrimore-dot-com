@@ -1,15 +1,15 @@
 export default function SkillsSection() {
     const skills = [
-      { name: "JavaScript", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "React", level: 90 },
-      { name: "Next.js", level: 85 },
-      { name: "Node.js", level: 80 },
-      { name: "HTML5/CSS3", level: 90 },
-      { name: "Tailwind CSS", level: 85 },
-      { name: "Git", level: 85 },
-      { name: "REST APIs", level: 80 },
-      { name: "SQL", level: 75 },
+      { name: "Project/Program Management", level: 95 },
+      { name: "Devops Automation", level: 85 },
+      { name: "System and Data Architecture", level: 85 },
+      { name: "Large Language Models (LLMs) & GenAI", level: 90 },
+      { name: "Machine Learning", level: 60 },
+      { name: "Modern Software Development", level: 90 },
+      { name: "Practical Technical Skills", level: 75 },
+      { name: "Cloud Architecture", level: 75 },
+      { name: "Problem Solving", level: 95 },
+      { name: "Product Development", level: 85 },
     ];
   
     return (
@@ -45,10 +45,10 @@ export default function SkillsSection() {
   
           <div className="mt-12 text-center">
             <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-              Other Technologies & Tools
+              Other Technical Experience
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Docker", "AWS", "GraphQL", "MongoDB", "Redux", "Jest", "GitHub Actions", "Figma", "Sass", "Webpack"].map((tech, index) => (
+              {["Python", "AWS/Azure", "Docker/Kubernetes", "Oracle", "PostGres", "Linux", "GIT", "SCRUM", "Javacript", "Node.js", "API", "Data Visualization"].map((tech, index) => (
                 <span key={index} className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 text-sm font-medium">
                   {tech}
                 </span>
