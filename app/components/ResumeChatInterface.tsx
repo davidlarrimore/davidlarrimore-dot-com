@@ -74,7 +74,7 @@ export default function ResumeChatInterface() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col h-[600px]">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col h-[400px]">
       {/* Chat messages area */}
       <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message, index) => (
