@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // This is the extended resume content that Claude will use to answer questions
-const RESUME_CONTEXT = "";
 
-const RESUME_CONTEXT_NEW = `
+const RESUME_CONTEXT = `
 # David Larrimore - Professional Resume
 
 ## Contact Information
