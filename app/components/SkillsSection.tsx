@@ -48,7 +48,7 @@ export default function SkillsSection() {
               Other Technical Experience
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Python", "AWS/Azure", "Docker/Kubernetes", "Oracle", "PostGres", "Linux", "GIT", "SCRUM", "Javacript", "Node.js", "API", "Data Visualization"].map((tech, index) => (
+              {["Python", "AWS/Azure", "Docker/Kubernetes", "Oracle", "PostGres", "MySQL", "Linux", "SFDX/Apex", "SCRUM/SAFe", "Javacript", "Node.js", "REST API", "Data Visualization"].map((tech, index) => (
                 <span key={index} className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 text-sm font-medium">
                   {tech}
                 </span>

@@ -7,6 +7,7 @@
     "generate-favicons": "npx sharp -i public/icon.svg -o public/favicon.ico --resize 32 && npx sharp -i public/icon.svg -o public/apple-touch-icon.png --resize 180 && npx sharp -i public/icon.svg -o public/android-chrome-192x192.png --resize 192 && npx sharp -i public/icon.svg -o public/android-chrome-512x512.png --resize 512"
   },
   "dependencies": {
+    "@next/env": "^15.2.2",
     "@tailwindcss/postcss": "^4.0.12",
     "@tailwindcss/vite": "^4.0.12",
     "class-variance-authority": "^0.7.1",
