@@ -1,8 +1,8 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import ChatInterface from "../components/ResumeChatInterface";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import ChatInterface from "../../components/ResumeChatInterface";
 import { Metadata } from "next";
-import ResumeChatInterface from "../components/ResumeChatInterface";
+import ResumeChatInterface from "../../components/ResumeChatInterface";
 
 export const metadata: Metadata = {
   title: "David Larrimore | Resume Chatbot",
@@ -20,7 +20,7 @@ export default function ChatPage() {
               Resume <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Chatbot</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Ask any questions about my professional experience, skills, or background. Powered by Claude AI.
+              Ask any questions about my professional experience, skills, or background.
             </p>
           </div>
           

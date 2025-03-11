@@ -56,7 +56,7 @@ export default function ResumePage() {
             </span>
             <span className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center">
               <Link
-                href="/resumeChat"
+                href="/projects/resumeChat"
                 className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-black rounded-lg bg-gray-300 hover:bg-gray-500 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-700 no-print"
               >
                 Chat with my Resume (NEW!)

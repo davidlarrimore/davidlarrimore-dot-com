@@ -39,7 +39,7 @@ export default function ResumeChatInterface() {
 
     try {
       // Send message to API
-      const response = await fetch("/api/resumeChat", {
+      const response = await fetch("/api/projects/resumeChat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

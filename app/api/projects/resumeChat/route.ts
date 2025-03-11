@@ -1,3 +1,4 @@
+// app/api/projects/resumeChat/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
 // This is the extended resume content that Claude will use to answer questions
