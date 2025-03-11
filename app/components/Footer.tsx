@@ -27,13 +27,10 @@ export default function Footer() {
                   <Link href="/" className="hover:underline">Home</Link>
                 </li>
                 <li className="mb-2">
-                  <span className="hover:underline cursor-not-allowed">Projects</span>
+                  <span className="hover:underline cursor-not-allowed">Projects (Coming Soon!)</span>
                 </li>
                 <li className="mb-2">
                   <Link href="/resume" className="hover:underline">Resume</Link>
-                </li>
-                <li>
-                <span className="hover:underline cursor-not-allowed">Blog</span>
                 </li>
               </ul>
             </div>
@@ -54,7 +51,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                    Twitter
+                    X
                   </a>
                 </li>
               </ul>
@@ -76,7 +73,7 @@ export default function Footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © {currentYear} <Link href="/" className="hover:underline">David Larrimore</Link>. All Rights Reserved.
+            © {currentYear} <Link href="/" className="hover:underline">David Larrimore</Link>. All Rights Reserved. Built with Next.js, Tailwind CSS, and TypeScript on Railway with the assistance of Claude 3.7 Sonnet
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
             <a href="https://github.com/davidlarrimore" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">

@@ -6,9 +6,10 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[85vh] relative overflow-hidden">
-      {/* Tech background image */}
+      {/* Tech background image with darker overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
+        {/* Increased opacity of the black overlay from 0.4 to 0.65 */}
+        <div className="absolute inset-0 bg-black opacity-65"></div>
         <Image
           src="/images/hero-background.webp" 
           alt="Cloud and AI technology background"
@@ -16,8 +17,8 @@ export default function HeroSection() {
           className="object-cover"
           priority
         />
-        {/* Additional overlay gradient to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+        {/* Made the gradient overlay darker for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60"></div>
       </div>
 
       <div className="px-4 mx-auto max-w-screen-xl text-center z-10">
@@ -43,7 +44,7 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        <p className="mb-8 text-lg font-normal text-gray-100 md:text-xl lg:text-2xl max-w-3xl mx-auto drop-shadow">
+        <p className="mb-8 text-lg font-normal text-gray-100 md:text-xl lg:text-2xl max-w-3xl mx-auto drop-shadow-lg">
           Technologist / Senior Executive / Leader
         </p>
 
@@ -64,11 +65,10 @@ export default function HeroSection() {
             </svg>
           </span>
           <a
-            href="/api/download-resume"
+            href="/resume"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-gray-300 hover:bg-white/10 focus:ring-4 focus:ring-gray-400"
-            download="2025_DavidLarrimore_Resume.pdf"
           >
-            Download Resume
+            View Resume
           </a>
         </div>
 

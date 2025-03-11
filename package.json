@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "generate-favicons": "npx sharp -i public/icon.svg -o public/favicon.ico --resize 32 && npx sharp -i public/icon.svg -o public/apple-touch-icon.png --resize 180 && npx sharp -i public/icon.svg -o public/android-chrome-192x192.png --resize 192 && npx sharp -i public/icon.svg -o public/android-chrome-512x512.png --resize 512"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.12",
@@ -20,6 +21,7 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"

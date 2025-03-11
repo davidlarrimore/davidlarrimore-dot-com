@@ -72,7 +72,7 @@ export default function Navbar() {
               <span
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent dark:border-gray-700 cursor-not-allowed"
               >
-                Projects
+                Projects (Coming Soon)
               </span>
             </li>
             <li>
@@ -82,13 +82,6 @@ export default function Navbar() {
               >
                 Resume
               </Link>
-            </li>
-            <li>
-              <span
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent dark:border-gray-700 cursor-not-allowed"
-              >
-                Blog
-              </span>
             </li>
           </ul>
         </div>

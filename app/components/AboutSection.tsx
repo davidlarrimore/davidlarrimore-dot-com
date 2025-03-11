@@ -128,23 +128,35 @@ export default function AboutSection() {
             My Journey
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            I've been passionate about technology since I was young, starting
-            with building my first computer at age 12. This early fascination
-            evolved into a career in software development where I've had the
-            opportunity to work on a diverse range of projects from e-commerce
-            platforms to data visualization tools.
+            I am the Chief Technology Officer (CTO) and Chief AI Officer (CAIO)
+            for the Department of Homeland Security (DHS), where I lead a team
+            of ~150 employees and contractors. Together, we develop
+            department-wide products, govern critical technology investments,
+            resolve high-impact software challenges, and guide the CIO on
+            strategic technology decisions and policy. My professional
+            background spans AI/ML, Cloud Computing, DevOps/Automation,
+            Application Development, Product Management, Business Intelligence,
+            and Analytics.
           </p>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            With over 5 years of professional experience, I've developed
-            expertise in modern JavaScript frameworks, particularly React and
-            Next.js. I'm constantly learning and staying up-to-date with the
-            latest technologies and best practices in web development.
+            Over the past three years, I have focused heavily on AI/ML at DHS.
+            Initially, this was to ensure compliance with new federal
+            regulations, but it turned into spearheading department-wide AI
+            pilots, recruiting a specialized team of 50 AI experts (Data
+            Scientists, ML Engineers, Product Managers, Researchers, etc..),
+            figuring out Facial Recognition Technology and GenAI when it was
+            new, and delivering AI-powered products that advance the DHS
+            mission. Most recently, we completed development of a
+            department-wide Generative AI chatbot and an AI sandbox
           </p>
           <p className="text-gray-600 dark:text-gray-300">
-            When I'm not coding, you can find me hiking in the mountains,
-            reading science fiction, or experimenting with new cooking recipes.
-            I believe that diverse interests contribute to creative
-            problem-solving in my work.
+            Outside of work, I am a passionate and lifelong gamer that still
+            remembers playing Counterstrike on my Toshiba Infinia 7200 in the
+            90's. Whether it's replaying Final Fantasy VII for the hundredth
+            time or trying a new RPG, RTS, FPS, or MMO, I love epic narratives
+            that blend creativity, fantasy, strategy, and problem-solving. I'm
+            also a hands-on techie that does 3D printing and building IOT
+            devices for home projects like creating escape rooms.
           </p>
         </div>
       </div>

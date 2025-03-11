@@ -19,7 +19,7 @@ export default function ResumePage() {
           {/* Resume Header */}
           <div className="mb-12 text-center">
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-              Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Resume</span>
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Resume</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
               Senior Executive Technologist with 15+ years of expertise in IT modernization, AI strategy, cloud computing, and enterprise technology transformation.

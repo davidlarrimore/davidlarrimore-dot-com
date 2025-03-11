@@ -1,6 +1,6 @@
 export default function SkillsSection() {
     const skills = [
-      { name: "Project/Program Management", level: 95 },
+      { name: "Project/Program Management", level: 100 },
       { name: "Devops Automation", level: 85 },
       { name: "System and Data Architecture", level: 85 },
       { name: "Large Language Models (LLMs) & GenAI", level: 90 },
@@ -8,7 +8,7 @@ export default function SkillsSection() {
       { name: "Modern Software Development", level: 90 },
       { name: "Practical Technical Skills", level: 75 },
       { name: "Cloud Architecture", level: 75 },
-      { name: "Problem Solving", level: 95 },
+      { name: "Problem Solving", level: 100 },
       { name: "Product Development", level: 85 },
     ];
   

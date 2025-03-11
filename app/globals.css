@@ -69,3 +69,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix for Tailwind opacity utility that only goes up to 0.5 */
+.opacity-65 {
+  opacity: 0.20;
+}

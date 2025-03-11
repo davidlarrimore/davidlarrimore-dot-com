@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#2563eb" />
+  
+  <!-- Lighter blue accent -->
+  <circle cx="256" cy="256" r="170" fill="#3b82f6" />
+  
+  <!-- Initials -->
+  <g fill="#ffffff">
+    <!-- D Letter -->
+    <path d="M147 160c0-5.5 4.5-10 10-10h70c55 0 100 45 100 100s-45 100-100 100h-70c-5.5 0-10-4.5-10-10V160zm40 30v120h40c33 0 60-27 60-60s-27-60-60-60h-40v120z" />
+    
+    <!-- L Letter -->
+    <path d="M177 334.5c0-5.5 4.5-10 10-10h160c5.5 0 10 4.5 10 10v30c0 5.5-4.5 10-10 10H187c-5.5 0-10-4.5-10-10v-30z" />
+  </g>
+</svg>
