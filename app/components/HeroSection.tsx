@@ -1,13 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[85vh] bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="px-4 mx-auto max-w-screen-xl text-center">
+    <section className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[85vh] relative overflow-hidden">
+      {/* Tech background image */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <Image
+          src="/images/hero-background.webp" 
+          alt="Cloud and AI technology background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Additional overlay gradient to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+      </div>
+
+      <div className="px-4 mx-auto max-w-screen-xl text-center z-10">
         <div className="animate-float mx-auto mb-8 max-w-lg relative">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-blue-500 opacity-20 blur-3xl"></div>
-          <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-r from-primary to-blue-500 mx-auto flex items-center justify-center overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-20 blur-3xl"></div>
+          <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto flex items-center justify-center overflow-hidden border-4 border-white shadow-xl">
             {/* Profile Image */}
             <Image
               src="/images/profile.webp"
@@ -20,19 +36,19 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl drop-shadow-lg">
           Hey, I'm{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
             Dave Larrimore
           </span>
         </h1>
 
-        <p className="mb-8 text-lg font-normal text-gray-600 md:text-xl lg:text-2xl max-w-3xl mx-auto dark:text-gray-300">
+        <p className="mb-8 text-lg font-normal text-gray-100 md:text-xl lg:text-2xl max-w-3xl mx-auto drop-shadow">
           Technologist / Senior Executive / Leader
         </p>
 
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
-          <span className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary hover:bg-primary/90 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 cursor-not-allowed">
+          <span className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 cursor-not-allowed">
             View My Projects (Coming Soon!)
             <svg
               className="w-5 h-5 ml-2 -mr-1"
@@ -49,7 +65,7 @@ export default function HeroSection() {
           </span>
           <a
             href="/api/download-resume"
-            className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+            className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-gray-300 hover:bg-white/10 focus:ring-4 focus:ring-gray-400"
             download="2025_DavidLarrimore_Resume.pdf"
           >
             Download Resume
@@ -61,7 +77,7 @@ export default function HeroSection() {
             href="https://github.com/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            className="text-white hover:text-blue-300"
           >
             <svg
               className="w-7 h-7"
@@ -80,7 +96,7 @@ export default function HeroSection() {
             href="https://linkedin.com/in/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            className="text-white hover:text-blue-300"
           >
             <svg
               className="w-7 h-7"
@@ -95,7 +111,7 @@ export default function HeroSection() {
             href="https://twitter.com/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            className="text-white hover:text-blue-300"
           >
             <svg
               className="w-7 h-7"

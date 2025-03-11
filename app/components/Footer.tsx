@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-2 max-w-xs text-gray-600 dark:text-gray-400">
-              Software engineer specializing in modern web development with a focus on user experience.
+              Experienced technologist specializing in AI and modern application development with a focus on user experience.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-12 sm:grid-cols-3">
