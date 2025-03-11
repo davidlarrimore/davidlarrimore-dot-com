@@ -27,7 +27,7 @@ export default function ResumePage() {
             <a 
               href="/api/download-resume" 
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary hover:bg-primary/90 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 no-print"
-              download="DavidLarrimore-Resume.pdf"
+              download="2025_DavidLarrimore_Resume.pdf"
             >
               Download Resume PDF
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
