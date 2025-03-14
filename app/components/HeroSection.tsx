@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { FaFileAlt } from "react-icons/fa"; // Import the resume icon
 
 export default function HeroSection() {
   return (
@@ -71,7 +72,7 @@ export default function HeroSection() {
             href="/resume"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-gray-300 hover:bg-white/10 focus:ring-4 focus:ring-gray-400"
           >
-            View Resume
+            <FaFileAlt className="mr-2" /> View Resume
           </a>
         </div>
 

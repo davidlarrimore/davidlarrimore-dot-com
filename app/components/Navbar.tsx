@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-700">
@@ -62,8 +64,11 @@ export default function Navbar() {
             <li>
               <Link
                 href="/"
-                className="block py-2 px-3 text-primary rounded md:p-0"
-                aria-current="page"
+                className={`block py-2 px-3 rounded md:p-0 ${
+                  pathname === '/' 
+                    ? 'text-primary' 
+                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent'
+                }`}
               >
                 Home
               </Link>
@@ -71,7 +76,11 @@ export default function Navbar() {
             <li>
               <Link
                 href="/projects"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block py-2 px-3 rounded md:p-0 ${
+                  pathname === '/projects' || pathname.startsWith('/projects/') 
+                    ? 'text-primary' 
+                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent'
+                }`}
               >
                 Projects
               </Link>
@@ -79,9 +88,13 @@ export default function Navbar() {
             <li>
               <Link
                 href="/resume"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent dark:border-gray-700"
+                className={`block py-2 px-3 rounded md:p-0 ${
+                  pathname === '/resume' 
+                    ? 'text-primary' 
+                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary dark:text-white dark:hover:bg-gray-700 dark:hover:text-primary md:dark:hover:bg-transparent'
+                }`}
               >
-                CV
+                Resume
               </Link>
             </li>
           </ul>
