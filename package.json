@@ -4,15 +4,22 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "generate-favicons": "npx sharp -i public/icon.svg -o public/favicon.ico --resize 32 && npx sharp -i public/icon.svg -o public/apple-touch-icon.png --resize 180 && npx sharp -i public/icon.svg -o public/android-chrome-192x192.png --resize 192 && npx sharp -i public/icon.svg -o public/android-chrome-512x512.png --resize 512"
+    "generate-favicons": "npx sharp -i public/icon.svg -o public/favicon.ico --resize 32 && npx sharp -i public/icon.svg -o public/apple-touch-icon.png --resize 180 && npx sharp -i public/icon.svg -o public/android-chrome-192x192.png --resize 192 && npx sharp -i public/icon.svg -o public/android-chrome-512x512.png --resize 512",
+    "init-pinecone": "node scripts/init-pinecone.js",
+    "check-pinecone": "node scripts/check-pinecone.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
     "@next/env": "^15.2.2",
+    "@pinecone-database/pinecone": "^5.1.1",
     "@tailwindcss/postcss": "^4.0.12",
     "@tailwindcss/vite": "^4.0.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
+    "install": "^0.13.0",
     "next": "15.2.0",
+    "npm": "^11.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
