@@ -28,13 +28,10 @@ export default function Footer() {
                   <Link href="/" className="hover:underline">Home</Link>
                 </li>
                 <li className="mb-2">
-                  <span className="hover:underline cursor-not-allowed">Projects</span>
+                  <Link href="/projects" className="hover:underline">Projects</Link>
                 </li>
                 <li className="mb-2">
                   <Link href="/resume" className="hover:underline">Resume</Link>
-                </li>
-                <li>
-                <span className="hover:underline cursor-not-allowed">Blog</span>
                 </li>
               </ul>
             </div>

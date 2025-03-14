@@ -11,7 +11,7 @@ export default function HeroSection() {
         {/* Increased opacity of the black overlay from 0.4 to 0.65 */}
         <div className="absolute inset-0 bg-black opacity-65"></div>
         <Image
-          src="/images/hero-background.webp" 
+          src="/images/hero-background.webp"
           alt="Cloud and AI technology background"
           fill
           className="object-cover"
@@ -49,8 +49,11 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
-          <span className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 cursor-not-allowed">
-            View My Projects (Coming Soon!)
+          <Link
+            href="/resume"
+            className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300"
+          >
+            Projects
             <svg
               className="w-5 h-5 ml-2 -mr-1"
               fill="currentColor"
@@ -63,7 +66,7 @@ export default function HeroSection() {
                 clipRule="evenodd"
               ></path>
             </svg>
-          </span>
+          </Link>
           <a
             href="/resume"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-gray-300 hover:bg-white/10 focus:ring-4 focus:ring-gray-400"
