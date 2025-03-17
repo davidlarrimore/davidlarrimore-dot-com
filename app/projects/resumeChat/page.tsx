@@ -20,7 +20,8 @@ export default function ChatPage() {
               Resume <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Chatbot</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Ask any questions about my professional experience, skills, or background.
+              Ask any questions about my professional experience, skills, or background. 
+              Try both modes - Basic and RAG (Retrieval-Augmented Generation) - to see how different AI approaches affect responses.
             </p>
           </div>
           

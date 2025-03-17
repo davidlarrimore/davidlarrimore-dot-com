@@ -51,7 +51,7 @@ export default function HeroSection() {
 
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
           <Link
-            href="/resume"
+            href="/projects"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300"
           >
             Projects
