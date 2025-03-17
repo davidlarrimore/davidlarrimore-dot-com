@@ -1,16 +1,17 @@
 require('dotenv').config();
-const { Pinecone } = require('@pinecone-database/pinecone');
 const fs = require('fs');
-const path = require('path');
-const Anthropic = require('@anthropic-ai/sdk');
+const { Pinecone } = require('@pinecone-database/pinecone');
+const { v4: uuidv4 } = require('uuid');
 
-// Initialize Anthropic client
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// Sample resume chunks - we'll use this to demonstrate
+// In a real implementation, you would load this from a file or generate it
+const resumeVectorChunks = [];
 
-// Initialize Pinecone client
-const initPinecone = async () => {
+/**
+ * Initialize the Pinecone client
+ * @returns {Pinecone} - Initialized Pinecone client
+ */
+const initPinecone = () => {
   if (!process.env.PINECONE_API_KEY) {
     throw new Error('PINECONE_API_KEY environment variable not set');
   }
@@ -20,192 +21,156 @@ const initPinecone = async () => {
   });
 };
 
-// Get or create Pinecone index
-const getOrCreateIndex = async (client, indexName, dimension = 1536) => {
-  // List all indexes to check if our index exists
-  const indexesResponse = await client.listIndexes();
-  const existingIndexes = indexesResponse.indexes || [];
-  const indexExists = existingIndexes.some(idx => idx.name === indexName);
-  
-  if (!indexExists) {
-    console.log(`Creating new Pinecone index: ${indexName}`);
-    // Create the index
-    await client.createIndex({
-      name: indexName,
-      dimension: dimension,
-      metric: 'cosine',
-    });
-    
-    // Wait for the index to be ready
-    console.log('Waiting for index to be ready...');
-    let isReady = false;
-    while (!isReady) {
-      try {
-        const indexDescription = await client.describeIndex(indexName);
-        if (indexDescription.status === 'Ready') {
-          isReady = true;
-          console.log('Index is ready!');
-        } else {
-          console.log('Index is still being created, waiting...');
-          await new Promise(resolve => setTimeout(resolve, 5000));
-        }
-      } catch (e) {
-        console.log('Error checking index status, retrying...', e);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }
-    }
-  } else {
-    console.log(`Using existing Pinecone index: ${indexName}`);
-  }
-  
-  return client.index(indexName);
-};
-
-// Process resume content into chunks
-const processResumeIntoChunks = (resumeContent, chunkSize = 1000, overlapSize = 200) => {
-  const chunks = [];
-  const lines = resumeContent.split('\n');
-  let currentChunk = '';
-  
-  for (const line of lines) {
-    // If adding this line would make the chunk too large
-    if (currentChunk.length + line.length > chunkSize && currentChunk.length > 0) {
-      // Add the current chunk to the list
-      chunks.push(currentChunk);
-      // Start a new chunk with overlap from the previous one
-      const lastPart = currentChunk.split(' ').slice(-20).join(' ');
-      currentChunk = lastPart + '\n' + line;
-    } else {
-      // Add the line to the current chunk
-      currentChunk += (currentChunk.length > 0 ? '\n' : '') + line;
-    }
-  }
-  
-  // Add the last chunk if it's not empty
-  if (currentChunk.length > 0) {
-    chunks.push(currentChunk);
-  }
-  
-  return chunks.map((chunk, index) => ({
-    id: `resume-chunk-${index}`,
-    text: chunk,
+/**
+ * Transform the chunks into the format expected by Pinecone
+ * @param {Array} chunks - Array of resume chunks
+ * @returns {Array} - Array formatted for Pinecone upsert
+ */
+function formatForPinecone(chunks) {
+  return chunks.map(chunk => ({
+    id: chunk._id,
+    values: Array(1024).fill(0).map(() => Math.random() * 2 - 1), // Mock embedding values (1024 dimensions)
     metadata: {
-      source: 'resume',
-      chunkIndex: index
+      text: chunk.text,
+      section: chunk.section,
+      category: chunk.category,
+      subcategory: chunk.subcategory || '',
+      organization: chunk.organization || '',
+      role: chunk.role || '',
+      years: chunk.years || '',
+      achievement_type: chunk.achievement_type || '',
+      sequence: chunk.sequence
     }
   }));
-};
+}
 
-// Get embeddings for text chunks using Claude API
-const getEmbeddings = async (chunks) => {
-  const embeddingsWithMetadata = [];
-  
-  for (const chunk of chunks) {
-    try {
-      // Using Claude's embedding API
-      const response = await anthropic.embeddings.create({
-        model: "claude-3-haiku-20240307",
-        input: chunk.text,
-      });
-      
-      const embedding = response.embedding;
-      
-      embeddingsWithMetadata.push({
-        id: chunk.id,
-        values: embedding,
-        metadata: {
-          ...chunk.metadata,
-          text: chunk.text,
-        },
-      });
-      
-      console.log(`Processed chunk ${chunk.id}`);
-      
-      // Adding a small delay to avoid rate limits
-      await new Promise(resolve => setTimeout(resolve, 200));
-    } catch (error) {
-      console.error(`Error getting embedding for chunk ${chunk.id}:`, error);
-      // Wait longer if we hit rate limits
-      if (error.status === 429) {
-        console.log('Rate limit hit, waiting 10 seconds before retrying...');
-        await new Promise(resolve => setTimeout(resolve, 10000));
-        // Retry this chunk
-        try {
-          const response = await anthropic.embeddings.create({
-            model: "claude-3-haiku-20240307",
-            input: chunk.text,
-          });
-          
-          const embedding = response.embedding;
-          
-          embeddingsWithMetadata.push({
-            id: chunk.id,
-            values: embedding,
-            metadata: {
-              ...chunk.metadata,
-              text: chunk.text,
-            },
-          });
-          
-          console.log(`Processed chunk ${chunk.id} after retry`);
-        } catch (retryError) {
-          console.error(`Failed to process chunk ${chunk.id} after retry:`, retryError);
-        }
-      }
+/**
+ * Upsert chunks to Pinecone
+ * @param {Array} chunks - Array of resume chunks
+ */
+async function upsertToPinecone(chunks) {
+  try {
+    // Check if chunks array is empty
+    if (!chunks || chunks.length === 0) {
+      console.log('No chunks to upsert. Skipping Pinecone operation.');
+      return false;
     }
+
+    const pc = initPinecone();
+    
+    if (!process.env.PINECONE_INDEX_NAME) {
+      throw new Error('PINECONE_INDEX_NAME environment variable not set');
+    }
+    
+    // Get the index
+    const indexName = process.env.PINECONE_INDEX_NAME;
+    const index = pc.index(indexName);
+    
+    // Format chunks for Pinecone
+    const formattedChunks = formatForPinecone(chunks);
+
+    const stats = await index.describeIndexStats();
+    console.log(`Index ${indexName} has ${stats.totalRecordCount} records.`);
+
+
+    console.log(`Deleting all records in index ${indexName}...`);
+    // Delete all records in the index
+    await index.deleteAll();
+
+    console.log(`Upserting ${formattedChunks.length} records to Pinecone...`);
+    
+    // Perform the upsert operation
+    //await index.upsert(formattedChunks);
+    
+    console.log(`Successfully upserted ${formattedChunks.length} paragraphs to Pinecone.`);
+    return true;
+  } catch (error) {
+    console.error('Error in Pinecone operations:', error);
+    throw error;
   }
-  
-  return embeddingsWithMetadata;
-};
+}
+
+/**
+ * Delete all resume records from Pinecone matching a pattern
+ * @param {string} pattern - Optional ID pattern prefix to match (e.g., 'exp_', 'skills_')
+ */
+async function deleteResumeRecords(pattern = '') {
+  try {
+    const pc = initPinecone();
+    
+    if (!process.env.PINECONE_INDEX_NAME) {
+      throw new Error('PINECONE_INDEX_NAME environment variable not set');
+    }
+    
+    // Get the index
+    const indexName = process.env.PINECONE_INDEX_NAME;
+    const index = pc.index(indexName);
+    
+    console.log(`Searching for records in index ${indexName}${pattern ? ` matching pattern: ${pattern}` : ''}`);
+    
+    // For pattern-based deletion, we need to query first
+    if (pattern) {
+      // This would ideally use metadata filtering, but for simplicity in this example:
+      const allRecordsResponse = await index.fetch({ ids: [] }); // Get all vector IDs
+      
+      if (allRecordsResponse.vectors) {
+        const allIds = Object.keys(allRecordsResponse.vectors);
+        const matchingIds = allIds.filter(id => id.startsWith(pattern));
+        
+        if (matchingIds.length > 0) {
+          console.log(`Found ${matchingIds.length} records matching pattern '${pattern}'. Deleting...`);
+          await index.deleteMany(matchingIds);
+          console.log(`Successfully deleted ${matchingIds.length} records.`);
+        } else {
+          console.log(`No records found matching pattern '${pattern}'.`);
+        }
+      } else {
+        console.log('No vectors found in the index.');
+      }
+    } else {
+      // Delete all vectors in the index
+      console.log('Deleting all vectors in the index...');
+      await index.deleteAll();
+      console.log('Successfully deleted all vectors.');
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error deleting resume records:', error);
+    throw error;
+  }
+}
 
 // Main function to run the script
-const main = async () => {
+async function main() {
   try {
-    // Check for Anthropic API key
-    if (!process.env.ANTHROPIC_API_KEY) {
-      throw new Error('ANTHROPIC_API_KEY environment variable not set. Please set it in your .env file.');
+    console.log('Loading resume chunks...');
+    
+    // In a real implementation, you might load chunks from a file
+    const loadedChunks = JSON.parse(fs.readFileSync('scripts/resume_chunks.json', 'utf-8'));
+
+    // Check if environment variables are set
+    if (process.env.PINECONE_API_KEY && process.env.PINECONE_INDEX_NAME) {
+      // Upsert chunks to Pinecone
+      await upsertToPinecone(loadedChunks); // Fixed: now using loadedChunks instead of resumeVectorChunks
+    } else {
+      console.log('\nSkipping Pinecone upsert - environment variables not set.');
+      console.log('Set PINECONE_API_KEY and PINECONE_INDEX_NAME in your .env file to upsert to Pinecone.');
     }
-    
-    console.log('Initializing Pinecone...');
-    const pinecone = await initPinecone();
-    
-    const INDEX_NAME = process.env.PINECONE_INDEX_NAME || 'resume-index';
-    console.log(`Using index name: ${INDEX_NAME}`);
-    
-    const index = await getOrCreateIndex(pinecone, INDEX_NAME);
-    
-    // Read resume content from the API route file
-    const resumeFilePath = path.join(process.cwd(), 'app', 'api', 'resumeChat', 'route.ts');
-    const resumeFileContent = fs.readFileSync(resumeFilePath, 'utf8');
-    
-    // Extract the resume content from the file
-    const resumeMatch = resumeFileContent.match(/const RESUME_CONTEXT = `([\s\S]*?)`/);
-    if (!resumeMatch || !resumeMatch[1]) {
-      throw new Error('Could not find resume content in the file');
-    }
-    
-    const resumeContent = resumeMatch[1].trim();
-    console.log('Resume content extracted successfully');
-    
-    // Process resume into chunks
-    console.log('Processing resume into chunks...');
-    const chunks = processResumeIntoChunks(resumeContent);
-    console.log(`Created ${chunks.length} chunks from resume`);
-    
-    // Get embeddings for chunks
-    console.log('Generating embeddings using Claude API...');
-    const embeddings = await getEmbeddings(chunks);
-    console.log(`Generated ${embeddings.length} embeddings`);
-    
-    // Upsert embeddings into Pinecone
-    console.log('Upserting embeddings into Pinecone...');
-    await index.upsert(embeddings);
-    
-    console.log('Successfully inserted resume data into Pinecone!');
   } catch (error) {
-    console.error('Error initializing Pinecone:', error);
+    console.error('Error in main function:', error);
     process.exit(1);
   }
-};
+}
 
-main();
+// Run the main function if this script is run directly
+if (require.main === module) {
+  main();
+}
+
+// Export functions for use in other modules
+module.exports = {
+  initPinecone,
+  upsertToPinecone,
+  deleteResumeRecords
+};

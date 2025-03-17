@@ -1,5 +1,43 @@
 // app/api/projects/resumeChat/route.ts
 import { NextRequest, NextResponse } from 'next/server';
+import { Pinecone } from '@pinecone-database/pinecone';
+
+// Initialize Pinecone client
+const initPinecone = async () => {
+  if (!process.env.PINECONE_API_KEY) {
+    throw new Error('PINECONE_API_KEY environment variable not set');
+  }
+
+  return new Pinecone({
+    apiKey: process.env.PINECONE_API_KEY,
+  });
+};
+
+// Query Pinecone for relevant resume chunks
+const getRelevantResumeChunks = async (query: string) => {
+  console.log('Querying Pinecone for relevant resume chunks:', query);
+
+  try {
+    const pinecone = await initPinecone();
+    const namespace = pinecone.index(process.env.PINECONE_INDEX_NAME || 'davidlarrimore-resume', process.env.PINECONE_HOST).namespace("default");
+
+    const response =  await namespace.searchRecords({
+      query: {
+        topK: 2,
+        inputs: { text: query },
+      },
+      fields: ['text', 'category'],
+    });
+    console.log('Number of Hits:', response.result.hits.length);
+    let responses = response.result.hits.map(hit => (hit.fields as { text: string }).text).join("\n");
+    console.log('Responses:', responses);
+    return responses;
+
+  } catch (error) {
+    console.error('Error querying Pinecone:', error);
+    return '';
+  }
+};
 
 // This is the extended resume content that Claude will use to answer questions
 
@@ -224,7 +262,7 @@ const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages } = await request.json();
+    let { messages, version = "basic" } = await request.json();
 
     if (!ANTHROPIC_API_KEY) {
       return NextResponse.json(
@@ -236,14 +274,46 @@ export async function POST(request: NextRequest) {
     // Get only the user's most recent message
     const userMessage = messages.filter((msg: any) => msg.role === 'user').pop()?.content || '';
 
-    // Construct the prompt for Claude
-    const systemPrompt = `You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
+    // Initialize the system prompt
+    let systemPrompt = '';
+    
+    if (version === "rag") {
+      // RAG approach: query Pinecone for relevant chunks
+      try {
+        console.log("Using RAG approach with Pinecone retrieval");
+        const relevantContext = await getRelevantResumeChunks(userMessage);
+
+        console.log("Relevant context from Pinecone:", relevantContext);
+        // Use retrieved context if available, otherwise fall back to full resume
+        const contextRecords = relevantContext ? relevantContext : RESUME_CONTEXT;
+        
+        systemPrompt = `You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements.
+I have retrieved the most relevant information from David's resume based on the user's question.
+Use ONLY the information provided in the context below to answer questions. If you don't know the answer based on the provided information, say so politely.
+Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate.
+Do not answer questions that are not related to David Larrimore's Resume.
+
+Here is the relevant context from David Larrimore's resume:
+${contextRecords}`;
+      } catch (error) {
+        console.error("Error with RAG implementation:", error);
+        // Fall back to basic mode if RAG fails
+        version = "basic";
+      }
+    }
+    
+    // If not RAG or if RAG failed, use basic approach
+    if (version !== "rag" || !systemPrompt) {
+      console.log("Using basic approach with full resume context");
+      systemPrompt = `You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
 Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely.
 Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
 
 Here is David Larrimore's extended resume:
 ${RESUME_CONTEXT}`;
+    }
 
+    console.log(`Systemprompt: ${systemPrompt}`);
     // Call the Anthropic Claude API
     const response = await fetch(ANTHROPIC_API_URL, {
       method: 'POST',

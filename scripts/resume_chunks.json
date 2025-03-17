@@ -1,0 +1,268 @@
+[
+  {
+    "_id": "skills_ai_001",
+    "text": "AI & Machine Learning expertise includes AI governance, generative AI, large language models (LLMs), Responsible Use, Facial Recognition Technology (FRT), and AI automation.",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "ai_ml",
+    "sequence": 3
+  },
+  {
+    "_id": "skills_cloud_001",
+    "text": "Cloud Computing expertise includes AWS, Microsoft Azure, multi-cloud architecture, cloud security, and cloud cost optimization.",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "cloud",
+    "sequence": 4
+  },
+  {
+    "_id": "skills_dev_001",
+    "text": "Software Development & Engineering expertise includes Open Source, Python, Java, Node.js, Apex (SFDC), SQL, API development, database architecture, and full-stack development.",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "development",
+    "sequence": 5
+  },
+  {
+    "_id": "skills_devops_001",
+    "text": "Agile & DevSecOps expertise includes Scaled Agile Framework (SAFe), CI/CD pipelines, test automation, Kubernetes, Docker, and Infrastructure as Code (IaC).",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "devops",
+    "sequence": 6
+  },
+  {
+    "_id": "skills_data_001",
+    "text": "Data Architecture & Analytics expertise includes Big Data (Hadoop, Hortonworks), Business Intelligence (Tableau, MicroStrategy), Data Warehousing, SQL, and MongoDB.",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "data",
+    "sequence": 7
+  },
+  {
+    "_id": "skills_governance_001",
+    "text": "IT Governance & Enterprise Architecture expertise includes Technical reference models, IT portfolio management, Automated Governance, and IT acquisition strategy.",
+    "section": "skills",
+    "category": "technical",
+    "subcategory": "governance",
+    "sequence": 8
+  },
+  {
+    "_id": "exp_dhs_role_001",
+    "text": "2021 - Present, Chief Technology and AI Officer at DHS, Washington, DC. Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Managed a $15M budget and over 100 federal employees.",
+    "section": "experience",
+    "organization": "DHS",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021-Present",
+    "sequence": 9
+  },
+  {
+    "_id": "exp_dhs_achieve_001",
+    "text": "Created DHS Office of the Chief AI Officer organization, including a nationwide hiring initiative that hired 50 AI experts from private sector, government, and academia.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "organization_building",
+    "sequence": 10
+  },
+  {
+    "_id": "exp_dhs_achieve_002",
+    "text": "Led development and implementation of LLM powered Generative AI Chatbot used by 20,000 DHS personnel.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "ai_implementation",
+    "sequence": 11
+  },
+  {
+    "_id": "exp_dhs_achieve_003",
+    "text": "Developed and implemented department-wide policies and training programs to ensure the safe and responsible adoption of AI technologies, including facial recognition and generative AI.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "policy",
+    "sequence": 12
+  },
+  {
+    "_id": "exp_dhs_achieve_004",
+    "text": "Led negotiation and awarded Enterprise User Agreement with Login.gov that has provided over $2.5M in cost avoidance and provided enterprise mechanism to onboard all DHS external onto a unified authentication services providing a streamlined user experience.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "cost_savings",
+    "sequence": 13
+  },
+  {
+    "_id": "exp_dhs_achieve_005",
+    "text": "Led the creation of and managed multiple enterprise products, including Cloud SecDevOps toolchain, Generative AI chatbots, and Information sharing platforms.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "product_management",
+    "sequence": 14
+  },
+  {
+    "_id": "exp_dhs_achieve_006",
+    "text": "Worked directly with major programs across the department to resolve risks and issues by applying problem-solving techniques, risk management strategies, collaboration, and technical oversight.",
+    "section": "experience",
+    "organization": "DHS",
+    "achievement_type": "program_management",
+    "sequence": 15
+  },
+  {
+    "_id": "exp_salesforce_role_001",
+    "text": "2019 - 2021, Lead Solution Engineer at Salesforce, Reston, VA. As a Lead Solution Engineer in one of the fastest growing business units (Global Public Sector) in Salesforce, I provided strategic and tactical account support ranging from small civilian agencies to entire departments blending my federal experience with adaptable technical skills.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "role": "Lead Solution Engineer",
+    "years": "2019-2021",
+    "sequence": 16
+  },
+  {
+    "_id": "exp_salesforce_achieve_001",
+    "text": "Provided technical leadership on 52 different opportunities since 2019, totaling over $10 million in revenue.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "achievement_type": "revenue_generation",
+    "sequence": 17
+  },
+  {
+    "_id": "exp_salesforce_achieve_002",
+    "text": "Followed human centered design practices and SecDevOps create tailored demonstrations and shareable assets for enterprise use.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "achievement_type": "design_implementation",
+    "sequence": 18
+  },
+  {
+    "_id": "exp_salesforce_achieve_003",
+    "text": "Developed Proofs of Concept for enterprise grade implementations supporting client requirements.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "achievement_type": "client_solution",
+    "sequence": 19
+  },
+  {
+    "_id": "exp_salesforce_achieve_004",
+    "text": "Led internal Q&A sessions to help federal sales organization understand federal laws, policies, standards, and best practices.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "achievement_type": "knowledge_sharing",
+    "sequence": 20
+  },
+  {
+    "_id": "exp_salesforce_achieve_005",
+    "text": "Worked with government Solution Integrators (SI's) and other partners to ensure solutions led to customer success.",
+    "section": "experience",
+    "organization": "Salesforce",
+    "achievement_type": "partnership",
+    "sequence": 21
+  },
+  {
+    "_id": "exp_ice_role_001",
+    "text": "2016 - 2019, Chief Technology Officer (CTO) at DHS/ICE, Washington, DC. As the ICE CTO, I managed all enterprise technology functions (Enterprise Architecture, Data Architecture, Vendor Management), as well as defined and led the technology culture change of a 400-person organization and half a billion dollars in IT Spend.",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "role": "Chief Technology Officer",
+    "years": "2016-2019",
+    "sequence": 22
+  },
+  {
+    "_id": "exp_ice_achieve_001",
+    "text": "Implemented enterprise-wide multi-cloud General Support System (GSS) leveraging Amazon Web Services and Microsoft Azure.",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "cloud_implementation",
+    "sequence": 23
+  },
+  {
+    "_id": "exp_ice_achieve_002",
+    "text": "Managed the migration of 87 production systems and 133 total environments to cloud in six months providing up-to 75% cost savings on compute costs.",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "migration",
+    "sequence": 24
+  },
+  {
+    "_id": "exp_ice_achieve_003",
+    "text": "Developed strategy and led IPT to implement enterprise Application Platform as a Service capability (APaaS) to enable no-code/low-code Rapid Application Development (RAD).",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "platform_strategy",
+    "sequence": 25
+  },
+  {
+    "_id": "exp_ice_achieve_004",
+    "text": "Implemented enterprise Agile coaching and DevSecOps tools strategy that reduced lead and delivery time on provisioning of new resources by 99%, doubled deployment frequency, and doubled Agile team maturity.",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "agile_transformation",
+    "sequence": 26
+  },
+  {
+    "_id": "exp_ice_achieve_005",
+    "text": "Designed and implemented enterprise DevSecOps toolchain to enable every OCIO development team with distributed CI/CD, Test Automation, and Cloud Orchestration capabilities.",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "devops_implementation",
+    "sequence": 27
+  },
+  {
+    "_id": "exp_ice_achieve_006",
+    "text": "Worked with individual systems teams to plan cloud migration, migrate to Open Source technologies, and adopt a DevOps \"toolchain\".",
+    "section": "experience",
+    "organization": "DHS/ICE",
+    "achievement_type": "team_enablement",
+    "sequence": 28
+  },
+  {
+    "_id": "exp_usda_role_001",
+    "text": "2016, Cloud Strategist at USDA, Washington, DC. As the Cloud Strategist in the OCIO Cloud Strategy and Policy division, I was responsible for planning and executing the department-wide strategy for adopting secure commercial cloud solutions.",
+    "section": "experience",
+    "organization": "USDA",
+    "role": "Cloud Strategist",
+    "years": "2016",
+    "sequence": 29
+  },
+  {
+    "_id": "exp_usda_achieve_001",
+    "text": "Built coalitions with department level engineering, networking, and security leadership to develop a common-sense approach to incrementally adopting commercial cloud solutions.",
+    "section": "experience",
+    "organization": "USDA",
+    "achievement_type": "coalition_building",
+    "sequence": 30
+  },
+  {
+    "_id": "exp_usda_achieve_002",
+    "text": "Engaged USDA enterprise shared service providers to evaluate and certify commercial cloud ready shared services that can be leveraged by all USDA customer Agencies.",
+    "section": "experience",
+    "organization": "USDA",
+    "achievement_type": "service_evaluation",
+    "sequence": 31
+  },
+  {
+    "_id": "exp_usda_achieve_003",
+    "text": "Led working groups and integrated project teams to develop enterprise cloud policy and guidance that identified areas of trust and flexibility for USDA customer Agencies to drastically reduce the acquisition and securing of commercial cloud solutions while still ensuring security and compliance.",
+    "section": "experience",
+    "organization": "USDA",
+    "achievement_type": "policy_development",
+    "sequence": 32
+  },
+  {
+    "_id": "exp_usda_achieve_004",
+    "text": "Worked directly with USDA Customer Agencies to identify common commercial cloud service needs and provide necessary expertise.",
+    "section": "experience",
+    "organization": "USDA",
+    "achievement_type": "customer_support",
+    "sequence": 33
+  },
+  {
+    "_id": "exp_previous_001",
+    "text": "Previous Positions in Washington, DC: 2011 - 2016: Analytics Branch Chief at General Services Administration; 2009 - 2011: IT Program Analyst at Department of Homeland Security; 2008 - 2009: Software Engineer at Aspex, Inc.",
+    "section": "experience",
+    "category": "previous_roles",
+    "sequence": 34
+  },
+  {
+    "_id": "awards_001",
+    "text": "Recent Awards: Presidential Rank Award, 2025 (Nominated); GovExec The Federal 100 Award, 2025; Under Secretary's Award for Special Achievement, 2024; Washington Exec, Pinnacle Cloud Executive of the Year, 2024; Washington Exec, Top Exec to Watch, 2024.",
+    "section": "awards",
+    "category": "recognition",
+    "sequence": 35
+  }
+]

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaPaperPlane } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { RiRobot2Fill } from "react-icons/ri";
+import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 
 type Message = {
@@ -11,15 +12,18 @@ type Message = {
   content: string;
 };
 
+type ChatVersion = "basic" | "rag";
+
 export default function ResumeChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. What would you like to know?",
+      content: "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. You can switch between Basic and RAG modes using the toggle above. What would you like to know?",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [chatVersion, setChatVersion] = useState<ChatVersion>("basic");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Scroll to bottom of chat whenever messages update
@@ -38,7 +42,7 @@ export default function ResumeChatInterface() {
     setIsLoading(true);
 
     try {
-      // Send message to API
+      // Send message to API with version parameter
       const response = await fetch("/api/projects/resumeChat", {
         method: "POST",
         headers: {
@@ -46,6 +50,7 @@ export default function ResumeChatInterface() {
         },
         body: JSON.stringify({
           messages: [...messages, userMessage],
+          version: chatVersion,
         }),
       });
 
@@ -161,6 +166,27 @@ export default function ResumeChatInterface() {
 
       {/* Input area */}
       <div className="border-t border-gray-200 dark:border-gray-700 p-4">
+        <div className="flex justify-end mb-2">
+          <div 
+            className="flex items-center cursor-pointer text-sm text-gray-600 dark:text-gray-300 group relative"
+            onClick={() => setChatVersion(chatVersion === "basic" ? "rag" : "basic")}
+          >
+            <span className="mr-2">
+              {chatVersion === "basic" ? "Basic Mode" : "RAG Mode (Experimental)"}
+            </span>
+            {chatVersion === "basic" ? (
+              <FaToggleOff className="w-5 h-5 text-gray-400" />
+            ) : (
+              <FaToggleOn className="w-5 h-5 text-primary" />
+            )}
+            
+            {/* Tooltip */}
+            <div className="absolute bottom-full right-0 mb-2 w-64 bg-gray-800 text-white text-xs rounded p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              <p><strong>Basic Mode:</strong> Uses the entire resume as context for every question.</p>
+              <p className="mt-1"><strong>RAG Mode:</strong> Uses Pinecone's embedding model to retrieve only the most relevant parts of the resume based on your question, potentially giving more focused answers.</p>
+            </div>
+          </div>
+        </div>
         <form onSubmit={handleSubmit} className="flex items-center">
           <input
             type="text"

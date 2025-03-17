@@ -41,7 +41,7 @@ const main = async () => {
           console.log(`  Host: ${indexDescription.host || 'N/A'}`);
           
           // Get index stats
-          const indexInstance = pinecone.index(index.name);
+          const indexInstance = pinecone.Index(index.name);
           const stats = await indexInstance.describeIndexStats();
           
           console.log(`  Total Vector Count: ${stats.totalVectorCount || 0}`);
