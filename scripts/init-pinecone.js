@@ -58,12 +58,12 @@ async function upsertToPinecone(chunks) {
 
     const pc = initPinecone();
     
-    if (!process.env.PINECONE_INDEX_NAME) {
-      throw new Error('PINECONE_INDEX_NAME environment variable not set');
+    if (!process.env.PINECONE_RESUME_INDEX_NAME) {
+      throw new Error('PINECONE_RESUME_INDEX_NAME environment variable not set');
     }
     
     // Get the index
-    const indexName = process.env.PINECONE_INDEX_NAME;
+    const indexName = process.env.PINECONE_RESUME_INDEX_NAME;
     const index = pc.index(indexName);
     
     // Format chunks for Pinecone
@@ -98,12 +98,12 @@ async function deleteResumeRecords(pattern = '') {
   try {
     const pc = initPinecone();
     
-    if (!process.env.PINECONE_INDEX_NAME) {
-      throw new Error('PINECONE_INDEX_NAME environment variable not set');
+    if (!process.env.PINECONE_RESUME_INDEX_NAME) {
+      throw new Error('PINECONE_RESUME_INDEX_NAME environment variable not set');
     }
     
     // Get the index
-    const indexName = process.env.PINECONE_INDEX_NAME;
+    const indexName = process.env.PINECONE_RESUME_INDEX_NAME;
     const index = pc.index(indexName);
     
     console.log(`Searching for records in index ${indexName}${pattern ? ` matching pattern: ${pattern}` : ''}`);
@@ -150,12 +150,12 @@ async function main() {
     const loadedChunks = JSON.parse(fs.readFileSync('scripts/resume_chunks.json', 'utf-8'));
 
     // Check if environment variables are set
-    if (process.env.PINECONE_API_KEY && process.env.PINECONE_INDEX_NAME) {
+    if (process.env.PINECONE_API_KEY && process.env.PINECONE_RESUME_INDEX_NAME) {
       // Upsert chunks to Pinecone
       await upsertToPinecone(loadedChunks); // Fixed: now using loadedChunks instead of resumeVectorChunks
     } else {
       console.log('\nSkipping Pinecone upsert - environment variables not set.');
-      console.log('Set PINECONE_API_KEY and PINECONE_INDEX_NAME in your .env file to upsert to Pinecone.');
+      console.log('Set PINECONE_API_KEY and PINECONE_RESUME_INDEX_NAME in your .env file to upsert to Pinecone.');
     }
   } catch (error) {
     console.error('Error in main function:', error);

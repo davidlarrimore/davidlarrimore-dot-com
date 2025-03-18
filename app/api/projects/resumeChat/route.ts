@@ -19,14 +19,14 @@ const getRelevantResumeChunks = async (query: string) => {
 
   try {
     const pinecone = await initPinecone();
-    const namespace = pinecone.index(process.env.PINECONE_INDEX_NAME || 'davidlarrimore-resume', process.env.PINECONE_HOST).namespace("default");
+    const namespace = pinecone.index(process.env.PINECONE_RESUME_INDEX_NAME || 'davidlarrimore-resume', process.env.PINECONE_RESUME_INDEX_HOST).namespace("default");
 
     const response =  await namespace.searchRecords({
       query: {
         topK: 2,
         inputs: { text: query },
       },
-      fields: ['text', 'category'],
+      fields: ['text', 'section', 'organization', 'role', 'category'],
     });
     console.log('Number of Hits:', response.result.hits.length);
     let responses = response.result.hits.map(hit => (hit.fields as { text: string }).text).join("\n");
