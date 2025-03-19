@@ -6,6 +6,7 @@
     "sequence": 1,
     "category": "Summary",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Professional Summary"
   },
   {
@@ -16,6 +17,7 @@
     "category": "Skills",
     "subcategory": "AI & Machine Learning",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -27,6 +29,7 @@
     "subcategory": "Overview",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Job Description"
   },
   {
@@ -38,6 +41,7 @@
     "subcategory": "Organization Building",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Leadership"
   },
   {
@@ -49,6 +53,7 @@
     "subcategory": "Overview",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Job Description"
   },
   {
@@ -60,6 +65,7 @@
     "subcategory": "Sales Engineering",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Revenue Generation"
   },
   {
@@ -71,6 +77,7 @@
     "subcategory": "Overview",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Job Description"
   },
   {
@@ -82,6 +89,7 @@
     "subcategory": "Cloud Implementation",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Technical Leadership"
   },
   {
@@ -93,6 +101,7 @@
     "subcategory": "Overview",
     "organization": "USDA",
     "role": "Cloud Strategist",
+    "years": 2016,
     "achievement_type": "Job Description"
   },
   {
@@ -104,6 +113,7 @@
     "subcategory": "Collaboration",
     "organization": "USDA",
     "role": "Cloud Strategist",
+    "years": 2016,
     "achievement_type": "Leadership"
   },
   {
@@ -114,6 +124,7 @@
     "category": "Previous Positions",
     "organization": "General Services Administration",
     "role": "Analytics Branch Chief",
+    "years": 2011,
     "achievement_type": "Job"
   },
   {
@@ -124,6 +135,7 @@
     "category": "Recognition",
     "subcategory": "Federal",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Award"
   },
   {
@@ -134,6 +146,7 @@
     "category": "Skills",
     "subcategory": "Cloud Computing",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -145,6 +158,7 @@
     "subcategory": "AI Implementation",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Technical Leadership"
   },
   {
@@ -156,6 +170,7 @@
     "subcategory": "Technical Demonstrations",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Technical"
   },
   {
@@ -167,6 +182,7 @@
     "subcategory": "Cloud Migration",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Cost Savings"
   },
   {
@@ -178,6 +194,7 @@
     "subcategory": "Shared Services",
     "organization": "USDA",
     "role": "Cloud Strategist",
+    "years": 2016,
     "achievement_type": "Technical Leadership"
   },
   {
@@ -188,6 +205,7 @@
     "category": "Previous Positions",
     "organization": "Department of Homeland Security",
     "role": "IT Program Analyst",
+    "years": 2009,
     "achievement_type": "Job"
   },
   {
@@ -198,6 +216,7 @@
     "category": "Recognition",
     "subcategory": "Industry",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Award"
   },
   {
@@ -208,6 +227,7 @@
     "category": "Skills",
     "subcategory": "Software Development & Engineering",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -219,6 +239,7 @@
     "subcategory": "Policy Development",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Governance"
   },
   {
@@ -230,6 +251,7 @@
     "subcategory": "Solution Development",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Technical"
   },
   {
@@ -241,6 +263,7 @@
     "subcategory": "Platform Strategy",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Strategic Planning"
   },
   {
@@ -252,6 +275,7 @@
     "subcategory": "Policy Development",
     "organization": "USDA",
     "role": "Cloud Strategist",
+    "years": 2016,
     "achievement_type": "Governance"
   },
   {
@@ -262,6 +286,7 @@
     "category": "Previous Positions",
     "organization": "Aspex, Inc.",
     "role": "Software Engineer",
+    "years": 2008,
     "achievement_type": "Job"
   },
   {
@@ -272,6 +297,7 @@
     "category": "Recognition",
     "subcategory": "Agency",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2024,
     "achievement_type": "Award"
   },
   {
@@ -282,6 +308,7 @@
     "category": "Skills",
     "subcategory": "Agile & DevSecOps",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -293,6 +320,7 @@
     "subcategory": "Vendor Management",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Cost Savings"
   },
   {
@@ -304,6 +332,7 @@
     "subcategory": "Knowledge Sharing",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Leadership"
   },
   {
@@ -315,6 +344,7 @@
     "subcategory": "Process Improvement",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Transformation"
   },
   {
@@ -326,6 +356,7 @@
     "subcategory": "Customer Support",
     "organization": "USDA",
     "role": "Cloud Strategist",
+    "years": 2016,
     "achievement_type": "Consulting"
   },
   {
@@ -336,6 +367,7 @@
     "category": "Recognition",
     "subcategory": "Industry",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2024,
     "achievement_type": "Award"
   },
   {
@@ -346,6 +378,7 @@
     "category": "Skills",
     "subcategory": "Data Architecture & Analytics",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -357,6 +390,7 @@
     "subcategory": "Product Management",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Technical Leadership"
   },
   {
@@ -368,6 +402,7 @@
     "subcategory": "Partner Management",
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
+    "years": 2019,
     "achievement_type": "Relationship Management"
   },
   {
@@ -379,6 +414,7 @@
     "subcategory": "DevOps Implementation",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Technical Leadership"
   },
   {
@@ -389,6 +425,7 @@
     "category": "Recognition",
     "subcategory": "Industry",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2024,
     "achievement_type": "Award"
   },
   {
@@ -399,6 +436,7 @@
     "category": "Skills",
     "subcategory": "IT Governance & Enterprise Architecture",
     "role": "Technologist / Senior Executive / Leader",
+    "years": 2025,
     "achievement_type": "Technical Skill"
   },
   {
@@ -410,6 +448,7 @@
     "subcategory": "Risk Management",
     "organization": "Department of Homeland Security",
     "role": "Chief Technology and AI Officer",
+    "years": 2021,
     "achievement_type": "Leadership"
   },
   {
@@ -421,6 +460,7 @@
     "subcategory": "Team Support",
     "organization": "DHS/ICE",
     "role": "Chief Technology Officer",
+    "years": 2016,
     "achievement_type": "Technical Leadership"
   }
 ]

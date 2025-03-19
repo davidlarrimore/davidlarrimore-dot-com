@@ -1,11 +1,11 @@
 // app/api/projects/resumeChat/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { Pinecone } from '@pinecone-database/pinecone';
+import { NextRequest, NextResponse } from "next/server";
+import { Pinecone } from "@pinecone-database/pinecone";
 
 // Initialize Pinecone client
 const initPinecone = async () => {
   if (!process.env.PINECONE_API_KEY) {
-    throw new Error('PINECONE_API_KEY environment variable not set');
+    throw new Error("PINECONE_API_KEY environment variable not set");
   }
 
   return new Pinecone({
@@ -15,27 +15,41 @@ const initPinecone = async () => {
 
 // Query Pinecone for relevant resume chunks
 const getRelevantResumeChunks = async (query: string) => {
-  console.log('Querying Pinecone for relevant resume chunks:', query);
+  console.log("Querying Pinecone for relevant resume chunks:", query);
 
   try {
     const pinecone = await initPinecone();
-    const namespace = pinecone.index(process.env.PINECONE_RESUME_INDEX_NAME || 'davidlarrimore-resume', process.env.PINECONE_RESUME_INDEX_HOST).namespace("default");
+    const namespace = pinecone
+      .index(
+        process.env.PINECONE_RESUME_INDEX_NAME || "davidlarrimore-resume",
+        process.env.PINECONE_RESUME_INDEX_HOST
+      )
+      .namespace("default");
 
-    const response =  await namespace.searchRecords({
+    const response = await namespace.searchRecords({
       query: {
-        topK: 2,
+        topK: 10,
         inputs: { text: query },
       },
-      fields: ['text', 'section', 'organization', 'role', 'category'],
+      fields: [
+        "text",
+        "section",
+        "organization",
+        "role",
+        "achievement_type",
+        "category",
+        "years",
+      ],
     });
-    console.log('Number of Hits:', response.result.hits.length);
-    let responses = response.result.hits.map(hit => (hit.fields as { text: string }).text).join("\n");
-    console.log('Responses:', responses);
+    console.log("Number of Hits:", response.result.hits.length);
+    let responses = response.result.hits
+      .map((hit) => (hit.fields as { text: string }).text)
+      .join("\n");
+    console.log("Responses:", responses);
     return responses;
-
   } catch (error) {
-    console.error('Error querying Pinecone:', error);
-    return '';
+    console.error("Error querying Pinecone:", error);
+    return "";
   }
 };
 
@@ -258,7 +272,7 @@ Developed custom software solutions for federal government clients.
 
 // Anthropic API configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 
 export async function POST(request: NextRequest) {
   try {
@@ -266,17 +280,18 @@ export async function POST(request: NextRequest) {
 
     if (!ANTHROPIC_API_KEY) {
       return NextResponse.json(
-        { error: 'Anthropic API key is not configured' },
+        { error: "Anthropic API key is not configured" },
         { status: 500 }
       );
     }
 
     // Get only the user's most recent message
-    const userMessage = messages.filter((msg: any) => msg.role === 'user').pop()?.content || '';
+    const userMessage =
+      messages.filter((msg: any) => msg.role === "user").pop()?.content || "";
 
     // Initialize the system prompt
-    let systemPrompt = '';
-    
+    let systemPrompt = "";
+
     if (version === "rag") {
       // RAG approach: query Pinecone for relevant chunks
       try {
@@ -285,61 +300,82 @@ export async function POST(request: NextRequest) {
 
         console.log("Relevant context from Pinecone:", relevantContext);
         // Use retrieved context if available, otherwise fall back to full resume
-        const contextRecords = relevantContext ? relevantContext : RESUME_CONTEXT;
-        
-        systemPrompt = `You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements.
-I have retrieved the most relevant information from David's resume based on the user's question.
-Use ONLY the information provided in the context below to answer questions. If you don't know the answer based on the provided information, say so politely.
-Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate.
-Do not answer questions that are not related to David Larrimore's Resume.
 
-Here is the relevant context from David Larrimore's resume:
-${contextRecords}`;
+        systemPrompt = systemPrompt = `
+        You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate
+        
+        Here is basic information about David Larrimore:
+        - He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in art. He loves 3D printing, board games, and playing video games.
+
+        Here is basic information about his work experience:
+        David Larrimore's professional experience includes serving as Chief Technology and AI Officer at the Department of Homeland Security (DHS) from 2021 to present, where he manages a $10B IT portfolio and oversees all artificial intelligence. Previously, he worked as a Lead Solution Engineer at Salesforce from 2019 to 2021, providing technical support to government clients. From 2016 to 2019, he was the Chief Technology Officer (CTO) at DHS/ICE, managing enterprise technology functions for a 400-person organization. In 2016, he served as Cloud Strategist at USDA, developing the department-wide strategy for adopting secure commercial cloud solutions. His earlier positions include Analytics Branch Chief at General Services Administration (2011-2016), IT Program Analyst at Department of Homeland Security (2009-2011), and Software Engineer at Aspex, Inc. (2008-2009). His expertise spans AI governance, cloud computing, software development, Agile methodologies, data architecture, and IT governance.
+        
+        Here is specific detailed information based upon the prompt that was returned from the vector database:
+        <information>
+        ${relevantContext}
+        </information>
+
+        When answering questions about David Larrimore, follow these guidelines:
+        1. Only answer questions that are directly related to David Larrimore.
+        2. Keep your responses relatively short and concise, typically no more than 2-3 sentences.
+        3. Include references to the specific job, position, or company where the work or experience was gained if applicable to the question.
+        4. If a question cannot be answered based on the information above, politely state that you don't have that information.
+        5. Do not speculate or provide information that is not explicitly stated in the above information.
+        6. If asked about information not related to David Larrimore, politely decline to answer and explain that you can only provide information about David Larrimore.
+        7. Ensure your responses are factual and directly based on the information content.
+        8. If asked for contact information, you may provide davidlarrimore@gmail.com or his linked in page (linkedin.com/in/davidlarrimore)
+
+        If you cannot answer a question based on the information or if it's out of scope, use this format:
+          I'm sorry, but I don't have that information about that David Larrimore. I can only provide details about his professional experience, skills, and education that he has provided.
+        `;
       } catch (error) {
         console.error("Error with RAG implementation:", error);
         // Fall back to basic mode if RAG fails
         version = "basic";
       }
     }
-    
+
     // If not RAG or if RAG failed, use basic approach
     if (version !== "rag" || !systemPrompt) {
       console.log("Using basic approach with full resume context");
-      systemPrompt = `You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
-Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely.
-Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
+      systemPrompt = `
+        You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
+        Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely.
+        Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
 
-Here is David Larrimore's extended resume:
-${RESUME_CONTEXT}`;
+        Here is David Larrimore's extended resume:
+        ${RESUME_CONTEXT}
+        `;
+
     }
 
     console.log(`Systemprompt: ${systemPrompt}`);
     // Call the Anthropic Claude API
     const response = await fetch(ANTHROPIC_API_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
+        "Content-Type": "application/json",
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: "claude-3-haiku-20240307",
         max_tokens: 1024,
         system: systemPrompt,
         messages: [
           {
-            role: 'user',
-            content: userMessage
-          }
-        ]
+            role: "user",
+            content: userMessage,
+          },
+        ],
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error('Anthropic API Error:', errorData);
+      console.error("Anthropic API Error:", errorData);
       return NextResponse.json(
-        { error: 'Error communicating with AI service' },
+        { error: "Error communicating with AI service" },
         { status: response.status }
       );
     }
@@ -349,9 +385,9 @@ ${RESUME_CONTEXT}`;
 
     return NextResponse.json({ message: assistantMessage });
   } catch (error) {
-    console.error('Error in chat route:', error);
+    console.error("Error in chat route:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

@@ -49,7 +49,7 @@ function convertCsvToResumeChunks(csvFilePath = 'scripts/resume_chunks.csv', out
     if (row.subcategory && row.subcategory.trim()) chunk.subcategory = row.subcategory;
     if (row.organization && row.organization.trim()) chunk.organization = row.organization;
     if (row.role && row.role.trim()) chunk.role = row.role;
-    if (row.years && row.years.trim()) chunk.years = row.years;
+    if (row.years) chunk.years = row.years;
     if (row.achievement_type && row.achievement_type.trim()) chunk.achievement_type = row.achievement_type;
     
     return chunk;
@@ -86,18 +86,6 @@ function createTemplateCsv(outputPath = 'resume_template.csv') {
       years: '',
       achievement_type: '',
       sequence: 1
-    },
-    {
-      _id: 'exp_dhs_role_001',
-      text: '2021 - Present, Chief Technology and AI Officer at DHS, Washington, DC. Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives.',
-      section: 'experience',
-      category: '',
-      subcategory: '',
-      organization: 'DHS',
-      role: 'Chief Technology and AI Officer',
-      years: '2021-Present',
-      achievement_type: '',
-      sequence: 2
     }
   ];
   
