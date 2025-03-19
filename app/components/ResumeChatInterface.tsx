@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { RiRobot2Fill } from "react-icons/ri";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
@@ -10,6 +10,20 @@ import ReactMarkdown from "react-markdown";
 type Message = {
   role: "user" | "assistant";
   content: string;
+  retrievedChunks?: RetrievedChunk[];
+};
+
+type RetrievedChunk = {
+  text: string;
+  score: number;
+  metadata: {
+    section: string;
+    organization: string;
+    role: string;
+    achievement_type: string;
+    category: string;
+    years: string | number;
+  };
 };
 
 type ChatVersion = "basic" | "rag";
@@ -25,9 +39,22 @@ export default function ResumeChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatVersion, setChatVersion] = useState<ChatVersion>("basic");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Track if this is the initial render or a user-triggered message
+  const isInitialRender = useRef(true);
+  
+  // Track which message's chunks are expanded
+  const [expandedChunks, setExpandedChunks] = useState<number[]>([]);
 
-  // Scroll to bottom of chat whenever messages update
+  // Scroll to bottom of chat only after submitting a message, not on initial load
   useEffect(() => {
+    // Skip scrolling on the initial render
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+    
+    // Scroll to bottom when messages change (after first render)
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -60,8 +87,12 @@ export default function ResumeChatInterface() {
 
       const data = await response.json();
       
-      // Add assistant response to resumeChat
-      setMessages((prev) => [...prev, { role: "assistant", content: data.message }]);
+      // Add assistant response to resumeChat with retrieved chunks if available
+      setMessages((prev) => [...prev, { 
+        role: "assistant", 
+        content: data.message,
+        retrievedChunks: data.retrievedChunks || []
+      }]);
     } catch (error) {
       console.error("Error:", error);
       // Add error message
@@ -76,6 +107,14 @@ export default function ResumeChatInterface() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const toggleChunksDisplay = (index: number) => {
+    setExpandedChunks(prev => 
+      prev.includes(index)
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
   };
 
   return (
@@ -131,6 +170,79 @@ export default function ResumeChatInterface() {
                   >
                     {message.content}
                   </ReactMarkdown>
+                  
+                  {/* Display retrieved chunks for RAG mode */}
+                  {message.retrievedChunks && message.retrievedChunks.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-gray-300 dark:border-gray-600">
+                      <button 
+                        onClick={() => toggleChunksDisplay(index)}
+                        className="flex items-center text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        {expandedChunks.includes(index) ? (
+                          <>
+                            <FaAngleUp className="mr-1" /> 
+                            Hide retrieved chunks ({message.retrievedChunks.length})
+                          </>
+                        ) : (
+                          <>
+                            <FaAngleDown className="mr-1" /> 
+                            Show retrieved chunks ({message.retrievedChunks.length})
+                          </>
+                        )}
+                      </button>
+                      
+                      {expandedChunks.includes(index) && (
+                        <div className="mt-2 text-xs space-y-2 max-h-64 overflow-y-auto">
+                          <p className="font-semibold text-gray-700 dark:text-gray-300">
+                            Pinecone returned the following {message.retrievedChunks.length} chunks:
+                          </p>
+                          {message.retrievedChunks.map((chunk, chunkIndex) => (
+                            <div 
+                              key={chunkIndex} 
+                              className="border border-gray-300 dark:border-gray-600 rounded p-2 bg-gray-200 dark:bg-gray-800"
+                            >
+                              <div className="flex justify-between mb-1">
+                                <span className="font-bold text-xs">Score: {(chunk.score * 100).toFixed(2)}%</span>
+                                {chunk.metadata.section && (
+                                  <span className="text-xs px-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">
+                                    {chunk.metadata.section}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-300 text-xs">{chunk.text}</p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                {chunk.metadata.role && (
+                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                                    Role: {chunk.metadata.role}
+                                  </span>
+                                )}
+                                {chunk.metadata.organization && (
+                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                                    Org: {chunk.metadata.organization}
+                                  </span>
+                                )}
+                                {chunk.metadata.years && (
+                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                                    Year: {chunk.metadata.years}
+                                  </span>
+                                )}
+                                {chunk.metadata.category && (
+                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                                    Category: {chunk.metadata.category}
+                                  </span>
+                                )}
+                                {chunk.metadata.achievement_type && (
+                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                                    Type: {chunk.metadata.achievement_type}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <p className="whitespace-pre-wrap">{message.content}</p>

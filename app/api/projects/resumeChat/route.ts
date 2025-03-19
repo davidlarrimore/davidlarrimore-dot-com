@@ -42,14 +42,34 @@ const getRelevantResumeChunks = async (query: string) => {
       ],
     });
     console.log("Number of Hits:", response.result.hits.length);
-    let responses = response.result.hits
-      .map((hit) => (hit.fields as { text: string }).text)
-      .join("\n");
-    console.log("Responses:", responses);
-    return responses;
+    
+    // Extract retrieved chunks with their metadata
+    const retrievedChunks = response.result.hits.map(hit => ({
+      text: (hit.fields as { text: string }).text,
+      score: hit._score,
+      metadata: {
+        section: (hit.fields as any).section || '',
+        organization: (hit.fields as any).organization || '',
+        role: (hit.fields as any).role || '',
+        achievement_type: (hit.fields as any).achievement_type || '',
+        category: (hit.fields as any).category || '',
+        years: (hit.fields as any).years || '',
+      }
+    }));
+    
+    let concatenatedText = retrievedChunks.map(chunk => chunk.text).join("\n");
+    console.log("Responses:", concatenatedText);
+    
+    return {
+      text: concatenatedText,
+      chunks: retrievedChunks
+    };
   } catch (error) {
     console.error("Error querying Pinecone:", error);
-    return "";
+    return {
+      text: "",
+      chunks: []
+    };
   }
 };
 
@@ -261,6 +281,7 @@ Developed custom software solutions for federal government clients.
 - Docker/Kubernetes
 - Oracle
 - PostGres
+- MySQL
 - Linux
 - GIT
 - SCRUM
@@ -291,12 +312,15 @@ export async function POST(request: NextRequest) {
 
     // Initialize the system prompt
     let systemPrompt = "";
+    let retrievedChunks: { text: string; score: number; metadata: { section: string; organization: string; role: string; achievement_type: string; category: string; years: string } }[] = [];
 
     if (version === "rag") {
       // RAG approach: query Pinecone for relevant chunks
       try {
         console.log("Using RAG approach with Pinecone retrieval");
-        const relevantContext = await getRelevantResumeChunks(userMessage);
+        const result = await getRelevantResumeChunks(userMessage);
+        const relevantContext = result.text;
+        retrievedChunks = result.chunks;
 
         console.log("Relevant context from Pinecone:", relevantContext);
         // Use retrieved context if available, otherwise fall back to full resume
@@ -383,7 +407,10 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     const assistantMessage = data.content[0].text;
 
-    return NextResponse.json({ message: assistantMessage });
+    return NextResponse.json({ 
+      message: assistantMessage,
+      retrievedChunks: version === "rag" ? retrievedChunks : null
+    });
   } catch (error) {
     console.error("Error in chat route:", error);
     return NextResponse.json(
