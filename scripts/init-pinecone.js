@@ -75,7 +75,7 @@ async function upsertToPinecone(chunks) {
 
     console.log(`Deleting all records in index ${indexName}...`);
     // Delete all records in the index
-    await index.deleteAll();
+    await index.namespace('default').deleteAll();
 
     console.log(`Upserting ${formattedChunks.length} records to Pinecone...`);
     
