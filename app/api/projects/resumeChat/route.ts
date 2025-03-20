@@ -74,7 +74,6 @@ const getRelevantResumeChunks = async (query: string) => {
 };
 
 // This is the extended resume content that Claude will use to answer questions
-
 const RESUME_CONTEXT = `
 # David Larrimore - Professional Resume
 
@@ -295,6 +294,13 @@ Developed custom software solutions for federal government clients.
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 
+// Function to extract the last N messages from the conversation
+// for context without exceeding token limits
+const getConversationContext = (messages: any[], maxMessages = 10) => {
+  // Get the most recent messages, limited by maxMessages
+  return messages.slice(-maxMessages);
+};
+
 export async function POST(request: NextRequest) {
   try {
     let { messages, version = "basic" } = await request.json();
@@ -306,9 +312,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get only the user's most recent message
-    const userMessage =
+    // Get only the user's most recent message for query purposes
+    const latestUserMessage =
       messages.filter((msg: any) => msg.role === "user").pop()?.content || "";
+
+    // Get a limited context of the conversation for Claude
+    const conversationContext = getConversationContext(messages);
+    
+    // Format the conversation history for Claude
+    const formattedMessages = conversationContext.map((msg: any) => ({
+      role: msg.role,
+      content: msg.content
+    }));
 
     // Initialize the system prompt
     let systemPrompt = "";
@@ -318,15 +333,15 @@ export async function POST(request: NextRequest) {
       // RAG approach: query Pinecone for relevant chunks
       try {
         console.log("Using RAG approach with Pinecone retrieval");
-        const result = await getRelevantResumeChunks(userMessage);
+        const result = await getRelevantResumeChunks(latestUserMessage);
         const relevantContext = result.text;
         retrievedChunks = result.chunks;
 
         console.log("Relevant context from Pinecone:", relevantContext);
         // Use retrieved context if available, otherwise fall back to full resume
 
-        systemPrompt = systemPrompt = `
-        You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate
+        systemPrompt = `
+        You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the information below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate
         
         Here is basic information about David Larrimore:
         - He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in art. He loves 3D printing, board games, and playing video games.
@@ -348,6 +363,7 @@ export async function POST(request: NextRequest) {
         6. If asked about information not related to David Larrimore, politely decline to answer and explain that you can only provide information about David Larrimore.
         7. Ensure your responses are factual and directly based on the information content.
         8. If asked for contact information, you may provide davidlarrimore@gmail.com or his linked in page (linkedin.com/in/davidlarrimore)
+        9. Remember previous parts of the conversation when answering follow-up questions.
 
         If you cannot answer a question based on the information or if it's out of scope, use this format:
           I'm sorry, but I don't have that information about that David Larrimore. I can only provide details about his professional experience, skills, and education that he has provided.
@@ -364,16 +380,17 @@ export async function POST(request: NextRequest) {
       console.log("Using basic approach with full resume context");
       systemPrompt = `
         You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
-        Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely.
+        Use ONLY the information provided in the information below to answer questions. If you don't know the answer based on the provided information, say so politely.
         Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
+        Remember the conversation history and maintain context between messages. Refer back to previous parts of the conversation when appropriate.
 
-        Here is David Larrimore's extended resume:
+        Here is information about David Larrimore:
         ${RESUME_CONTEXT}
         `;
-
     }
 
-    console.log(`Systemprompt: ${systemPrompt}`);
+    console.log(`System prompt length: ${systemPrompt.length} characters`);
+
     // Call the Anthropic Claude API
     const response = await fetch(ANTHROPIC_API_URL, {
       method: "POST",
@@ -386,12 +403,7 @@ export async function POST(request: NextRequest) {
         model: "claude-3-haiku-20240307",
         max_tokens: 1024,
         system: systemPrompt,
-        messages: [
-          {
-            role: "user",
-            content: userMessage,
-          },
-        ],
+        messages: formattedMessages,
       }),
     });
 

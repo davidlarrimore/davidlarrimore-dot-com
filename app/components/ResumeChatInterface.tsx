@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaPaperPlane, FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaPaperPlane, FaAngleDown, FaAngleUp, FaTrash } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { RiRobot2Fill } from "react-icons/ri";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
@@ -28,6 +28,10 @@ type RetrievedChunk = {
 
 type ChatVersion = "basic" | "rag";
 
+// Local storage key for saving chat history
+const STORAGE_KEY = "resumeChat_history";
+const STORAGE_VERSION_KEY = "resumeChat_version";
+
 export default function ResumeChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -40,21 +44,54 @@ export default function ResumeChatInterface() {
   const [chatVersion, setChatVersion] = useState<ChatVersion>("basic");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  // Track if this is the initial render or a user-triggered message
-  const isInitialRender = useRef(true);
-  
   // Track which message's chunks are expanded
   const [expandedChunks, setExpandedChunks] = useState<number[]>([]);
-
-  // Scroll to bottom of chat only after submitting a message, not on initial load
+  
+  // Load saved messages from localStorage on initial render
   useEffect(() => {
-    // Skip scrolling on the initial render
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      return;
+    const savedMessages = localStorage.getItem(STORAGE_KEY);
+    const savedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
+    
+    if (savedMessages) {
+      try {
+        const parsedMessages = JSON.parse(savedMessages);
+        // Only update state if we have valid messages
+        if (Array.isArray(parsedMessages) && parsedMessages.length > 0) {
+          setMessages(parsedMessages);
+        }
+      } catch (error) {
+        console.error("Error parsing saved messages:", error);
+        // If there's an error, we'll just use the default messages
+      }
     }
     
-    // Scroll to bottom when messages change (after first render)
+    if (savedVersion) {
+      try {
+        const parsedVersion = JSON.parse(savedVersion);
+        if (parsedVersion === "basic" || parsedVersion === "rag") {
+          setChatVersion(parsedVersion);
+        }
+      } catch (error) {
+        console.error("Error parsing saved chat version:", error);
+      }
+    }
+  }, []);
+  
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    // Only save if we have more than the initial message
+    if (messages.length > 1) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    }
+  }, [messages]);
+  
+  // Save chat version to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_VERSION_KEY, JSON.stringify(chatVersion));
+  }, [chatVersion]);
+
+  // Scroll to bottom of chat when messages change
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -116,9 +153,33 @@ export default function ResumeChatInterface() {
         : [...prev, index]
     );
   };
+  
+  const clearChatHistory = () => {
+    // Reset to initial message
+    const initialMessage = {
+      role: "assistant" as const,
+      content: "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. You can switch between Basic and RAG modes using the toggle below. What would you like to know?",
+    };
+    
+    setMessages([initialMessage]);
+    
+    // Also clear from localStorage
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col h-[500px]">
+      <div className="bg-gray-100 dark:bg-gray-700 px-4 py-2 border-b border-gray-200 dark:border-gray-600 flex justify-between items-center">
+        <h3 className="font-medium text-gray-800 dark:text-gray-200">Resume Chat</h3>
+        <button 
+          onClick={clearChatHistory}
+          className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 p-1 rounded"
+          title="Clear chat history"
+        >
+          <FaTrash /> 
+        </button>
+      </div>
+      
       {/* Chat messages area */}
       <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message, index) => (
