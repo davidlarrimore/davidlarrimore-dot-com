@@ -80,6 +80,55 @@ export default function ProjectsPage() {
               </div>
             </div>
 
+            {/* AI Scavenger Hunt Project */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
+              <div className="h-48 relative bg-gradient-to-r from-purple-500 to-purple-700">
+                {/* Layered background with AI/puzzle patterns */}
+                <div className="absolute inset-0 opacity-20 bg-dots-pattern bg-dots-sm"></div>
+                <div className="absolute inset-0 overflow-hidden">
+                  <svg className="absolute -bottom-10 -right-10 w-64 h-64 text-purple-600/20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v4h4v2h-4v4h-2v-4H8V9h4V5zm-7.5 9.5h3v-1h-3V10h3V7.5h-4.5v9h4.5V14h-3v-1.5z"/>
+                  </svg>
+                  <svg className="absolute top-5 left-5 w-16 h-16 text-purple-300/30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
+                  </svg>
+                </div>
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center">
+                    <svg 
+                      className="w-24 h-24 text-white" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">AI Scavenger Hunt</h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  A fun quiz game where you use generative AI to solve challenges and answer questions. Test your prompt engineering skills!
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Claude AI</span>
+                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Next.js</span>
+                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Prompt Engineering</span>
+                </div>
+                <Link 
+                  href="/projects/ScavengerHunt" 
+                  className="mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700"
+                >
+                  Play Now
+                  <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
             {/* Coming Soon Project */}
             <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg opacity-90 transition-transform hover:scale-105">
               <div className="h-48 relative bg-gradient-to-r from-gray-500 to-gray-700">
