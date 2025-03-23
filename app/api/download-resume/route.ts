@@ -5,7 +5,7 @@ import path from 'path';
 export async function GET() {
   try {
     // Path to the resume PDF in the public folder
-    const filePath = path.join(process.cwd(), 'public/files', '2025_DavidLarrimore_Resume.pdf');
+    const filePath = path.join(process.cwd(), 'public/files', 'resume.pdf');
     
     // Read the file
     const fileBuffer = fs.readFileSync(filePath);
@@ -14,7 +14,7 @@ export async function GET() {
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="2025_DavidLarrimore_Resume.pdf"',
+        'Content-Disposition': 'attachment; filename="resume..pdf"',
       },
     });
   } catch (error) {

@@ -131,16 +131,18 @@ async function upsertToPinecone(chunks) {
     
     try {
       // Check if the index has any records
-      const stats = await index.describeStats();
+      const stats = await index.describeIndexStats();
       console.log(`Index ${indexName} has ${stats.totalRecordCount || stats.namespaces?.default?.vectorCount || 0} records.`);
       
       // Delete all records in the index (in the default namespace)
       console.log(`Deleting all records in index ${indexName}...`);
       try {
         // First try using the namespace
-        await index.namespace('default').deleteAll();
+        await index.deleteAll();
       } catch (deleteError) {
         // If that fails, try without specifying a namespace
+        console.warn(`Could not delete records using namespace`);
+        console.warn(deleteError.message);
         console.log('Trying alternative delete method...');
         try {
           await index.deleteAll();

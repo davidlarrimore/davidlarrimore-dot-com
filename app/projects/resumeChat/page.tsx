@@ -83,40 +83,28 @@ export default function ChatPage() {
                   The system prompt sent to Claude varies based on the mode selected:
                 </p>
                 
-                <div className="mt-3 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-auto text-sm font-mono">
-                  <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{`// Basic Mode Prompt
-You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
-Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely.
-Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
-
-Here is David Larrimore's extended resume:
-[FULL RESUME CONTENT]`}</p>
+                <div className="mt-3 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-auto text-sm">
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Basic Mode Prompt Structure:</h4>
+                  <ul className="list-disc pl-5 text-gray-800 dark:text-gray-200 space-y-1">
+                    <li>Defines the assistant's role as a helpful resource for questions about David's professional background</li>
+                    <li>Instructs the AI to use only information from the provided resume</li>
+                    <li>Sets expectations for response style: concise, friendly, and professional</li>
+                    <li>Includes formatting guidelines for better readability</li>
+                    <li>Provides the complete resume content as context for every question</li>
+                  </ul>
                 </div>
                 
-                <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-auto text-sm font-mono">
-                  <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{`// RAG Mode Prompt
-You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the resume below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate.
-
-Here is basic information about David Larrimore:
-- He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in art. He loves 3D printing, board games, and playing video games.
-
-Here is basic information about his work experience:
-David Larrimore's professional experience includes serving as Chief Technology and AI Officer at the Department of Homeland Security (DHS) from 2021 to present, where he manages a $10B IT portfolio and oversees all artificial intelligence. Previously, he worked as a Lead Solution Engineer at Salesforce from 2019 to 2021, providing technical support to government clients. From 2016 to 2019, he was the Chief Technology Officer (CTO) at DHS/ICE, managing enterprise technology functions for a 400-person organization. In 2016, he served as Cloud Strategist at USDA, developing the department-wide strategy for adopting secure commercial cloud solutions. His earlier positions include Analytics Branch Chief at General Services Administration (2011-2016), IT Program Analyst at Department of Homeland Security (2009-2011), and Software Engineer at Aspex, Inc. (2008-2009). His expertise spans AI governance, cloud computing, software development, Agile methodologies, data architecture, and IT governance.
-
-Here is specific detailed information based upon the prompt that was returned from the vector database:
-<information>
-[RETRIEVED RESUME CHUNKS]
-</information>
-
-When answering questions about David Larrimore, follow these guidelines:
-1. Only answer questions that are directly related to David Larrimore.
-2. Keep your responses relatively short and concise, typically no more than 2-3 sentences.
-3. Include references to the specific job, position, or company where the work or experience was gained if applicable to the question.
-4. If a question cannot be answered based on the information above, politely state that you don't have that information.
-5. Do not speculate or provide information that is not explicitly stated in the above information.
-6. If asked about information not related to David Larrimore, politely decline to answer and explain that you can only provide information about David Larrimore.
-7. Ensure your responses are factual and directly based on the information content.
-8. If asked for contact information, you may provide davidlarrimore@gmail.com or his linked in page (linkedin.com/in/davidlarrimore)`}</p>
+                <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-auto text-sm">
+                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">RAG Mode Prompt Structure:</h4>
+                  <ul className="list-disc pl-5 text-gray-800 dark:text-gray-200 space-y-1">
+                    <li>Sets a more conversational, enthusiastic tone for the assistant</li>
+                    <li>Includes basic biographical information about David</li>
+                    <li>Provides a high-level summary of his career progression</li>
+                    <li>Incorporates contextually relevant resume chunks retrieved from the vector database based on your question</li>
+                    <li>Features specific guidelines for answer length, accuracy, and relevance</li>
+                    <li>Includes instructions for handling questions outside the scope of available information</li>
+                    <li>Emphasizes factual responses based only on the information provided</li>
+                  </ul>
                 </div>
               </div>
               
