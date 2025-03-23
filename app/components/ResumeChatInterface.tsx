@@ -21,7 +21,7 @@ type RetrievedChunk = {
     organization: string;
     role: string;
     achievement_type: string;
-    category: string;
+    subcategory: string;
     years: string | number;
   };
 };
@@ -274,7 +274,7 @@ export default function ResumeChatInterface() {
                               <div className="mt-1 flex flex-wrap gap-1">
                                 {chunk.metadata.role && (
                                   <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Role: {chunk.metadata.role}
+                                    Title: {chunk.metadata.role}
                                   </span>
                                 )}
                                 {chunk.metadata.organization && (
@@ -287,14 +287,9 @@ export default function ResumeChatInterface() {
                                     Year: {chunk.metadata.years}
                                   </span>
                                 )}
-                                {chunk.metadata.category && (
+                                {chunk.metadata.subcategory && (
                                   <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Category: {chunk.metadata.category}
-                                  </span>
-                                )}
-                                {chunk.metadata.achievement_type && (
-                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Type: {chunk.metadata.achievement_type}
+                                    Skills: {chunk.metadata.subcategory}
                                   </span>
                                 )}
                               </div>

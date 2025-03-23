@@ -28,7 +28,7 @@ const getRelevantResumeChunks = async (query: string) => {
 
     const response = await namespace.searchRecords({
       query: {
-        topK: 10,
+        topK: 15,
         inputs: { text: query },
       },
       fields: [
@@ -36,39 +36,54 @@ const getRelevantResumeChunks = async (query: string) => {
         "section",
         "organization",
         "role",
-        "achievement_type",
         "category",
         "years",
       ],
     });
     console.log("Number of Hits:", response.result.hits.length);
-    
+
     // Extract retrieved chunks with their metadata
-    const retrievedChunks = response.result.hits.map(hit => ({
+    const retrievedChunks = response.result.hits.map((hit) => ({
       text: (hit.fields as { text: string }).text,
       score: hit._score,
       metadata: {
-        section: (hit.fields as any).section || '',
-        organization: (hit.fields as any).organization || '',
-        role: (hit.fields as any).role || '',
-        achievement_type: (hit.fields as any).achievement_type || '',
-        category: (hit.fields as any).category || '',
-        years: (hit.fields as any).years || '',
-      }
+        section: (hit.fields as any).section || "",
+        organization: (hit.fields as any).organization || "",
+        role: (hit.fields as any).role || "",
+        category: (hit.fields as any).category || "",
+        subcategory: (hit.fields as any).subcategory || "",
+        years: (hit.fields as any).years || "",
+      },
     }));
-    
-    let concatenatedText = retrievedChunks.map(chunk => chunk.text).join("\n");
-    console.log("Responses:", concatenatedText);
-    
+
+    let concatenatedText = retrievedChunks
+      .map((chunk) => {
+        const metadata = chunk.metadata;
+        return `
+          ---------------------
+            ${metadata.section || "N/A"} Item: 
+            Company: ${metadata.organization || "N/A"}
+            Title: ${metadata.role || "N/A"}
+            Category: ${metadata.category || "N/A"}
+            Skills or Technology Learned/Used: ${metadata.subcategory || "N/A"}
+            Years: ${metadata.years || "N/A"}
+            Summary: ${chunk.text}
+          ---------------------
+        `;
+      })
+      .join("\n\n");
+
+    console.log("Responses with metadata:", concatenatedText);
+
     return {
       text: concatenatedText,
-      chunks: retrievedChunks
+      chunks: retrievedChunks,
     };
   } catch (error) {
     console.error("Error querying Pinecone:", error);
     return {
       text: "",
-      chunks: []
+      chunks: [],
     };
   }
 };
@@ -149,7 +164,6 @@ As the Cloud Strategist in the OCIO Cloud Strategy and Policy division, I was re
 
 ### Analytics Branch Chief
 **General Services Administration** | Washington, DC | 2011 - 2016
-
 Led a team of data scientists and developers responsible for building analytics capabilities across GSA's acquisition systems.
 
 **Key Achievements:**
@@ -183,8 +197,7 @@ Developed custom software solutions for federal government clients.
 - Collaborated in Agile development teams to deliver solutions on time and within budget.
 
 ## Education
-- **Master of Science in Information Systems**, The George Washington University
-- **Bachelor of Science in Computer Science**, University of Maryland
+- **Bachelor of Art**, Salisbury University, 2005
 
 ## Technical Expertise
 
@@ -318,16 +331,26 @@ export async function POST(request: NextRequest) {
 
     // Get a limited context of the conversation for Claude
     const conversationContext = getConversationContext(messages);
-    
+
     // Format the conversation history for Claude
     const formattedMessages = conversationContext.map((msg: any) => ({
       role: msg.role,
-      content: msg.content
+      content: msg.content,
     }));
 
     // Initialize the system prompt
     let systemPrompt = "";
-    let retrievedChunks: { text: string; score: number; metadata: { section: string; organization: string; role: string; achievement_type: string; category: string; years: string } }[] = [];
+    let retrievedChunks: {
+      text: string;
+      score: number;
+      metadata: {
+        section: string;
+        organization: string;
+        role: string;
+        category: string;
+        years: string;
+      };
+    }[] = [];
 
     if (version === "rag") {
       // RAG approach: query Pinecone for relevant chunks
@@ -344,12 +367,20 @@ export async function POST(request: NextRequest) {
         You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the information below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate
         
         Here is basic information about David Larrimore:
-        - He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in art. He loves 3D printing, board games, and playing video games.
-
+        - He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in Visual Communications (Art). He loves 3D printing, Brazilian Ju-Jitsu, tabletop games like D&D, and playing video games.
+        - He is a Senior Executive Technologist with 15+ years of expertise in IT modernization, AI strategy, cloud computing, and enterprise technology transformation. Proven ability to develop and implement cutting-edge technology solutions, optimize IT investments, and drive innovation at scale. Passionate about AI, Product Development, and Human Centered Design.
+          
         Here is basic information about his work experience:
-        David Larrimore's professional experience includes serving as Chief Technology and AI Officer at the Department of Homeland Security (DHS) from 2021 to present, where he manages a $10B IT portfolio and oversees all artificial intelligence. Previously, he worked as a Lead Solution Engineer at Salesforce from 2019 to 2021, providing technical support to government clients. From 2016 to 2019, he was the Chief Technology Officer (CTO) at DHS/ICE, managing enterprise technology functions for a 400-person organization. In 2016, he served as Cloud Strategist at USDA, developing the department-wide strategy for adopting secure commercial cloud solutions. His earlier positions include Analytics Branch Chief at General Services Administration (2011-2016), IT Program Analyst at Department of Homeland Security (2009-2011), and Software Engineer at Aspex, Inc. (2008-2009). His expertise spans AI governance, cloud computing, software development, Agile methodologies, data architecture, and IT governance.
-        
-        Here is specific detailed information based upon the prompt that was returned from the vector database:
+        - Years: 2021 - Present, Company: Department of Homeland Security, Title: Chief Technology Officer (CTO) and Chief AI Officer (CAIO)
+        - Years: 2019 - 2021, Company: Salesforce, Title: Lead Solution Engineer
+        - Years: 2016 - 2019, Company: DHS Immigration and Customs Enforcement, Title: Chief Technology Officer (CTO)
+        - Years: 2016 - 2016, Company: USDA, Title: Cloud Strategist
+        - Years: 2011 - 2016, Company: General Services Administration, Title: Analytics Branch Chief
+        - Years: 2009 - 2011, Company: Department of Homeland Security, Title: IT Program Analyst
+        - Years: 2008 - 2009, Company: Aspex, Inc., Title: Software Engineer
+        - Years: 2005 - 2009, Company: Kennedy Krieger Institute, Title: Helpdesk Technician and Database Administrator
+
+        Here is specific detailed information based upon the prompt:
         <information>
         ${relevantContext}
         </information>
@@ -379,12 +410,23 @@ export async function POST(request: NextRequest) {
     if (version !== "rag" || !systemPrompt) {
       console.log("Using basic approach with full resume context");
       systemPrompt = `
-        You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. 
-        Use ONLY the information provided in the information below to answer questions. If you don't know the answer based on the provided information, say so politely.
-        Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate. Do not answer questions that are not related to David Larrimore's Resume.
-        Remember the conversation history and maintain context between messages. Refer back to previous parts of the conversation when appropriate.
+        You are an AI assistant that is an advocate for David Larrimore and helping people understand more about him. You like David Larrimore and want others to be as excited about him as you are. Act like you know the information about him and are excited to share it with others. You are a helpful AI assistant for David Larrimore, answering questions about his professional background, experience, skills, and achievements. Use ONLY the information provided in the information below to answer questions. If you don't know the answer based on the provided information, say so politely. Be concise, friendly, and professional in your responses. Format your answers with markdown for better readability when appropriate
+        
+        Here is basic information about David Larrimore:
+        - He was born in 1983, lives outside of Washington DC, and has a wife and three children. David went to Salisbury University, where he graduated in 2005 with a degree in Visual Communications (Art). He loves 3D printing, Brazilian Ju-Jitsu, tabletop games like D&D, and playing video games.
+        - He is a Senior Executive Technologist with 15+ years of expertise in IT modernization, AI strategy, cloud computing, and enterprise technology transformation. Proven ability to develop and implement cutting-edge technology solutions, optimize IT investments, and drive innovation at scale. Passionate about AI, Product Development, and Human Centered Design.
+          
+        Here is basic information about his work experience:
+        - Years: 2021 - Present, Company: Department of Homeland Security, Title: Chief Technology Officer (CTO) and Chief AI Officer (CAIO)
+        - Years: 2019 - 2021, Company: Salesforce, Title: Lead Solution Engineer
+        - Years: 2016 - 2019, Company: DHS Immigration and Customs Enforcement, Title: Chief Technology Officer (CTO)
+        - Years: 2016 - 2016, Company: USDA, Title: Cloud Strategist
+        - Years: 2011 - 2016, Company: General Services Administration, Title: Analytics Branch Chief
+        - Years: 2009 - 2011, Company: Department of Homeland Security, Title: IT Program Analyst
+        - Years: 2008 - 2009, Company: Aspex, Inc., Title: Software Engineer
+        - Years: 2005 - 2009, Company: Kennedy Krieger Institute, Title: Helpdesk Technician and Database Administrator
 
-        Here is information about David Larrimore:
+        Here is more information about David from is Resume:
         ${RESUME_CONTEXT}
         `;
     }
@@ -419,9 +461,9 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     const assistantMessage = data.content[0].text;
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       message: assistantMessage,
-      retrievedChunks: version === "rag" ? retrievedChunks : null
+      retrievedChunks: version === "rag" ? retrievedChunks : null,
     });
   } catch (error) {
     console.error("Error in chat route:", error);

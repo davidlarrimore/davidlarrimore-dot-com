@@ -34,7 +34,6 @@ function formatForPinecone(chunks) {
       organization: chunk.organization || '',
       role: chunk.role || '',
       years: chunk.years || '',
-      achievement_type: chunk.achievement_type || '',
       sequence: chunk.sequence
     }
   }));

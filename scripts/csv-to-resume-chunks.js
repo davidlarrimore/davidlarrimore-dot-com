@@ -2,7 +2,7 @@
  * Converts a CSV file containing resume information into the resume_chunks.json format
  * 
  * Expected CSV format:
- * _id,text,section,category,subcategory,organization,role,years,achievement_type,sequence
+ * _id,text,section,category,subcategory,organization,role,years,sequence
  * 
  * Example:
  * skills_ai_001,"AI & Machine Learning expertise includes AI governance, generative AI...",skills,technical,ai_ml,,,,,3
@@ -50,7 +50,6 @@ function convertCsvToResumeChunks(csvFilePath = 'scripts/resume_chunks.csv', out
     if (row.organization && row.organization.trim()) chunk.organization = row.organization;
     if (row.role && row.role.trim()) chunk.role = row.role;
     if (row.years) chunk.years = row.years;
-    if (row.achievement_type && row.achievement_type.trim()) chunk.achievement_type = row.achievement_type;
     
     return chunk;
   });
@@ -71,7 +70,7 @@ function convertCsvToResumeChunks(csvFilePath = 'scripts/resume_chunks.csv', out
  * @param {string} outputPath - Path where the template CSV will be saved
  */
 function createTemplateCsv(outputPath = 'resume_template.csv') {
-  const headers = ['_id', 'text', 'section', 'category', 'subcategory', 'organization', 'role', 'years', 'achievement_type', 'sequence'];
+  const headers = ['_id', 'text', 'section', 'category', 'subcategory', 'organization', 'role', 'years', 'sequence'];
   
   // Create some example rows
   const exampleRows = [
@@ -84,7 +83,6 @@ function createTemplateCsv(outputPath = 'resume_template.csv') {
       organization: '',
       role: '',
       years: '',
-      achievement_type: '',
       sequence: 1
     }
   ];
