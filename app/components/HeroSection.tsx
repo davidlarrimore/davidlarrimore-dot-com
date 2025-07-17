@@ -1,10 +1,20 @@
+// app/components/HeroSection.tsx
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaFileAlt } from "react-icons/fa"; // Import the resume icon
+import { FaFileAlt } from "react-icons/fa";
+import { event } from "@/lib/gtag";
 
 export default function HeroSection() {
+  const trackEvent = (action: string, label: string) => {
+    event({
+      action,
+      category: "engagement",
+      label,
+    });
+  };
+
   return (
     <section className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[85vh] relative overflow-hidden">
       {/* Tech background image with darker overlay */}
@@ -52,6 +62,7 @@ export default function HeroSection() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
           <Link
             href="/projects"
+            onClick={() => trackEvent("click", "hero_projects_button")}
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300"
           >
             Projects
@@ -70,6 +81,7 @@ export default function HeroSection() {
           </Link>
           <a
             href="/resume"
+            onClick={() => trackEvent("click", "hero_resume_button")}
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-gray-300 hover:bg-white/10 focus:ring-4 focus:ring-gray-400"
           >
             <FaFileAlt className="mr-2" /> View Resume
@@ -81,6 +93,7 @@ export default function HeroSection() {
             href="https://github.com/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("click", "hero_github_link")}
             className="text-white hover:text-blue-300"
           >
             <svg
@@ -100,6 +113,7 @@ export default function HeroSection() {
             href="https://linkedin.com/in/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("click", "hero_linkedin_link")}
             className="text-white hover:text-blue-300"
           >
             <svg
@@ -115,6 +129,7 @@ export default function HeroSection() {
             href="https://twitter.com/davidlarrimore"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("click", "hero_twitter_link")}
             className="text-white hover:text-blue-300"
           >
             <svg

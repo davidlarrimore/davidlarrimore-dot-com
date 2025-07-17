@@ -1,3 +1,4 @@
+// lib/config.ts
 /**
  * Configuration utility for accessing environment variables
  * This centralizes environment variable access and provides type safety
@@ -22,9 +23,9 @@ export const siteConfig = {
   }
   
   
-  // Analytics configuration (for future use)
+  // Analytics configuration
   export const analyticsConfig = {
-    googleAnalyticsId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "",
+    googleAnalyticsId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "G-X30NG4QSEN",
   }
   
   // API configuration (for future use)
