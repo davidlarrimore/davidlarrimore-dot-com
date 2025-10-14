@@ -43,7 +43,10 @@ export default function ResumeChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatVersion, setChatVersion] = useState<ChatVersion>("basic");
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const isInitialLoad = useRef(true);
+
   // Track which message's chunks are expanded
   const [expandedChunks, setExpandedChunks] = useState<number[]>([]);
   
@@ -51,7 +54,7 @@ export default function ResumeChatInterface() {
   useEffect(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY);
     const savedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
-    
+
     if (savedMessages) {
       try {
         const parsedMessages = JSON.parse(savedMessages);
@@ -64,7 +67,7 @@ export default function ResumeChatInterface() {
         // If there's an error, we'll just use the default messages
       }
     }
-    
+
     if (savedVersion) {
       try {
         const parsedVersion = JSON.parse(savedVersion);
@@ -90,15 +93,23 @@ export default function ResumeChatInterface() {
     localStorage.setItem(STORAGE_VERSION_KEY, JSON.stringify(chatVersion));
   }, [chatVersion]);
 
-  // Scroll to bottom of chat when messages change
+  // Scroll to bottom of chat when messages change (but not on initial load)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (!isInitialLoad.current && messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim() === "") return;
-    
+
+    // Blur the input to prevent scroll behavior
+    inputRef.current?.blur();
+
+    // Enable scrolling after first user interaction
+    isInitialLoad.current = false;
+
     // Add user message to resumeChat
     const userMessage: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
@@ -181,7 +192,7 @@ export default function ResumeChatInterface() {
       </div>
       
       {/* Chat messages area */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -357,6 +368,7 @@ export default function ResumeChatInterface() {
         </div>
         <form onSubmit={handleSubmit} className="flex items-center">
           <input
+            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
