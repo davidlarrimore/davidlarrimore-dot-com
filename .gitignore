@@ -3,34 +3,67 @@
 # dependencies
 /node_modules
 /.pnp
+.pnp.js
 .pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+!.yarn/sdks
 !.yarn/versions
 
 # testing
 /coverage
+*.lcov
+.nyc_output
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 
-# next.js
+# next.js build output
 /.next/
 /out/
+.next
+out
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 *.pem
+.AppleDouble
+.LSOverride
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
 
-# debug
+# debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+*.log
 
-# local env files
+# local env files - CRITICAL for API keys
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
 .env*.local
+*.env
 
 # vercel
 .vercel
@@ -38,34 +71,90 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+*.d.ts.map
 
-# Environment Variables
-.env
-.env.*
-!.env.example
-
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
+# IDE / Editor specific files
+.vscode/
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.history/
+
+# OS Files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Temporary folders
+tmp/
+temp/
+
+# Lock files (choose one based on your package manager)
+# If using npm, keep package-lock.json and remove these:
+# yarn.lock
+# pnpm-lock.yaml
+
+# If using yarn, keep yarn.lock and remove these:
+# package-lock.json
+# pnpm-lock.yaml
+
+# If using pnpm, keep pnpm-lock.yaml and remove these:
+# package-lock.json
+# yarn.lock
+
+# Railway specific (optional - usually Railway handles this)
+.railway/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+## Critical Items for Your Project
+
+### 🔴 MUST HAVE (Security Critical)
+
+1. **Environment Variables** - Protects API keys
