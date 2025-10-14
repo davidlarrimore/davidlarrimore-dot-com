@@ -192,10 +192,29 @@ export default function ResumePage() {
               </h2>
 
               <ResumeExperienceItem
+                title="Senior Vice President, Solution Engineering"
+                company="Amivero"
+                location="McLean, VA"
+                period="2025 - Present"
+                description="Leading technology strategy and innovation initiatives for a rapidly growing government contracting firm. Responsible for driving technical excellence, advancing AI capabilities, and fostering innovation across the organization's portfolio of federal projects."
+                achievements={[
+                  "Driving enterprise-wide technology strategy and digital transformation initiatives to enhance service delivery and operational excellence.",
+                  "Leading AI and emerging technology adoption across government client portfolios, ensuring responsible implementation and measurable outcomes.",
+                  "Establishing technical centers of excellence to elevate engineering practices, promote innovation, and develop scalable solutions.",
+                  "Partnering with executive leadership to align technology investments with business objectives and client mission needs.",
+                  "Mentoring and developing technical talent while fostering a culture of continuous learning and innovation.",
+                  "Building strategic partnerships with technology vendors and research institutions to stay at the forefront of emerging technologies.",
+                ]}
+                imageSrc="/images/logos/logo-4.webp"
+                imageAlt="Amivero Logo"
+                imageShape="square"
+              />
+
+              <ResumeExperienceItem
                 title="Chief Technology and AI Officer"
                 company="DHS"
                 location="Washington, DC"
-                period="2021 - Present"
+                period="2021 - 2025"
                 description="Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Managed a $15M budget and over 100 federal employees."
                 achievements={[
                   "Created DHS Office of the Chief AI Officer organization, including a nationwide hiring initiative that hired 50 AI experts from private sector, government, and academia.",

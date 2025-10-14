@@ -128,35 +128,35 @@ export default function AboutSection() {
             My Journey
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            I am the Chief Technology Officer (CTO) and Chief AI Officer (CAIO)
-            for the Department of Homeland Security (DHS), where I lead a team
-            of ~150 employees and contractors. Together, we develop
-            department-wide products, govern critical technology investments,
-            resolve high-impact software challenges, and guide the CIO on
-            strategic technology decisions and policy. My professional
-            background spans AI/ML, Cloud Computing, DevOps/Automation,
-            Application Development, Product Management, Business Intelligence,
-            and Analytics.
+            I am the Senior Vice President of Solution Engineering at Amivero, 
+            where I lead technology strategy and innovation initiatives for a rapidly 
+            growing government contracting firm. I'm responsible for driving technical 
+            excellence, advancing AI capabilities, and fostering innovation across our 
+            portfolio of federal projects. My professional background spans AI/ML, Cloud 
+            Computing, DevOps/Automation, Application Development, Product Management, 
+            Business Intelligence, and Analytics.
           </p>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Over the past three years, I have focused heavily on AI/ML at DHS.
-            Initially, this was to ensure compliance with new federal
-            regulations, but it turned into spearheading department-wide AI
-            pilots, recruiting a specialized team of 50 AI experts (Data
-            Scientists, ML Engineers, Product Managers, Researchers, etc..),
-            figuring out Facial Recognition Technology and GenAI when it was
-            new, and delivering AI-powered products that advance the DHS
-            mission. Most recently, we completed development of a
-            department-wide Generative AI chatbot and an AI sandbox
+            Prior to joining Amivero, I served as the Chief Technology Officer (CTO) 
+            and Chief AI Officer (CAIO) for the Department of Homeland Security (DHS) 
+            , where I led a team of ~150 employees and contractors. 
+            During this time, I spearheaded department-wide AI initiatives, recruited 
+            a specialized team of 50 AI experts, and delivered AI-powered products 
+            including a department-wide Generative AI chatbot used by 20,000 personnel. 
+            I established comprehensive AI governance frameworks and ensured the safe, 
+            responsible adoption of emerging technologies like facial recognition and 
+            generative AI.
           </p>
           <p className="text-gray-600 dark:text-gray-300">
             Outside of work, I am a passionate and lifelong gamer that still
-            remembers playing Counterstrike on my Toshiba Infinia 7200 in the
+            remembers playing Counter-Strike on my Toshiba Infinia 7200 in the
             90's. Whether it's replaying Final Fantasy VII for the hundredth
             time or trying a new RPG, RTS, FPS, or MMO, I love epic narratives
             that blend creativity, fantasy, strategy, and problem-solving. I'm
-            also a hands-on techie that does 3D printing and building IOT
-            devices for home projects like creating escape rooms.
+            also a hands-on techie that does 3D printing and building IoT
+            devices for home projects like creating escape rooms. Additionally,
+            I practice Brazilian Jiu-Jitsu and enjoy tabletop games like D&D 
+            with family and friends.
           </p>
         </div>
       </div>
