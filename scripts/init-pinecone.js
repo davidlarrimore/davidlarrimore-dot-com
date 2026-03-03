@@ -1,7 +1,6 @@
 require('dotenv').config();
 const fs = require('fs');
 const { Pinecone } = require('@pinecone-database/pinecone');
-const { v4: uuidv4 } = require('uuid');
 
 /**
  * Initialize the Pinecone client
