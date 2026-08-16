@@ -2,8 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { FaPaperPlane, FaAngleDown, FaAngleUp, FaTrash } from "react-icons/fa";
-import { IoMdPerson } from "react-icons/io";
-import { RiRobot2Fill } from "react-icons/ri";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 
@@ -28,29 +26,33 @@ type RetrievedChunk = {
 
 type ChatVersion = "basic" | "rag";
 
-// Local storage key for saving chat history
 const STORAGE_KEY = "resumeChat_history";
 const STORAGE_VERSION_KEY = "resumeChat_version";
 
+const INITIAL_MESSAGE: Message = {
+  role: "assistant",
+  content:
+    "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. You can switch between Basic and RAG modes using the toggle below. What would you like to know?",
+};
+
+const STARTERS = [
+  "What's your current role?",
+  "Tell me about your DHS experience.",
+  "What are your top skills?",
+  "What do you do outside of work?",
+];
+
 export default function ResumeChatInterface() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. You can switch between Basic and RAG modes using the toggle below. What would you like to know?",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatVersion, setChatVersion] = useState<ChatVersion>("basic");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isInitialLoad = useRef(true);
 
-  // Track which message's chunks are expanded
   const [expandedChunks, setExpandedChunks] = useState<number[]>([]);
-  
-  // Load saved messages from localStorage on initial render
+
   useEffect(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY);
     const savedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
@@ -58,13 +60,11 @@ export default function ResumeChatInterface() {
     if (savedMessages) {
       try {
         const parsedMessages = JSON.parse(savedMessages);
-        // Only update state if we have valid messages
         if (Array.isArray(parsedMessages) && parsedMessages.length > 0) {
           setMessages(parsedMessages);
         }
       } catch (error) {
         console.error("Error parsing saved messages:", error);
-        // If there's an error, we'll just use the default messages
       }
     }
 
@@ -79,50 +79,39 @@ export default function ResumeChatInterface() {
       }
     }
   }, []);
-  
-  // Save messages to localStorage whenever they change
+
   useEffect(() => {
-    // Only save if we have more than the initial message
     if (messages.length > 1) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     }
   }, [messages]);
-  
-  // Save chat version to localStorage when it changes
+
   useEffect(() => {
     localStorage.setItem(STORAGE_VERSION_KEY, JSON.stringify(chatVersion));
   }, [chatVersion]);
 
-  // Scroll to bottom of chat when messages change (but not on initial load)
   useEffect(() => {
     if (!isInitialLoad.current && messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.trim() === "") return;
+  const sendMessage = async (text: string) => {
+    const t = text.trim();
+    if (t === "") return;
 
-    // Blur the input to prevent scroll behavior
     inputRef.current?.blur();
-
-    // Enable scrolling after first user interaction
     isInitialLoad.current = false;
 
-    // Add user message to resumeChat
-    const userMessage: Message = { role: "user", content: input };
+    const userMessage: Message = { role: "user", content: t };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
 
     try {
-      // Send message to API with version parameter
       const response = await fetch("/api/projects/resumeChat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [...messages, userMessage],
           version: chatVersion,
@@ -134,22 +123,22 @@ export default function ResumeChatInterface() {
       }
 
       const data = await response.json();
-      
-      // Add assistant response to resumeChat with retrieved chunks if available
-      setMessages((prev) => [...prev, { 
-        role: "assistant", 
-        content: data.message,
-        retrievedChunks: data.retrievedChunks || []
-      }]);
-    } catch (error) {
-      console.error("Error:", error);
-      // Add error message
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content:
-            "I'm sorry, I encountered an error processing your request. Please try again later.",
+          content: data.message,
+          retrievedChunks: data.retrievedChunks || [],
+        },
+      ]);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "I'm sorry, I encountered an error processing your request. Please try again later.",
         },
       ]);
     } finally {
@@ -157,233 +146,199 @@ export default function ResumeChatInterface() {
     }
   };
 
-  const toggleChunksDisplay = (index: number) => {
-    setExpandedChunks(prev => 
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMessage(input);
   };
-  
+
+  const toggleChunksDisplay = (index: number) => {
+    setExpandedChunks((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]));
+  };
+
   const clearChatHistory = () => {
-    // Reset to initial message
-    const initialMessage = {
-      role: "assistant" as const,
-      content: "Hi there! I'm an AI assistant who can answer questions about David Larrimore's professional experience, skills, and background. You can switch between Basic and RAG modes using the toggle below. What would you like to know?",
-    };
-    
-    setMessages([initialMessage]);
-    
-    // Also clear from localStorage
+    setMessages([INITIAL_MESSAGE]);
     localStorage.removeItem(STORAGE_KEY);
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col h-[500px]">
-      <div className="bg-gray-100 dark:bg-gray-700 px-4 py-2 border-b border-gray-200 dark:border-gray-600 flex justify-between items-center">
-        <h3 className="font-medium text-gray-800 dark:text-gray-200">Resume Chat</h3>
-        <button 
-          onClick={clearChatHistory}
-          className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 p-1 rounded"
-          title="Clear chat history"
+    <div className="ds-card ds-card-hud ds-chat-panel" style={{ padding: 0, overflow: "hidden" }}>
+      <div className="ds-chat-head">
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)" }} />
+        <div
+          style={{
+            font: "700 13px var(--font-mono)",
+            textTransform: "uppercase",
+            letterSpacing: "var(--tracking-wide)",
+            color: "var(--fg)",
+            flex: 1,
+          }}
         >
-          <FaTrash /> 
+          resume_chat.exe
+        </div>
+        <button
+          type="button"
+          onClick={() => setChatVersion(chatVersion === "basic" ? "rag" : "basic")}
+          className="group relative flex items-center gap-2"
+          style={{ font: "12px var(--font-mono)", color: "var(--fg-secondary)" }}
+          title="Toggle Basic / RAG mode"
+        >
+          {chatVersion === "basic" ? "Basic" : "RAG"}
+          {chatVersion === "basic" ? (
+            <FaToggleOff style={{ color: "var(--fg-muted)" }} />
+          ) : (
+            <FaToggleOn style={{ color: "var(--accent-hover)" }} />
+          )}
+          <div
+            className="absolute right-0 top-full mt-2 hidden group-hover:block"
+            style={{
+              width: 260,
+              background: "var(--surface-raised)",
+              border: "1px solid var(--border-strong)",
+              color: "var(--fg-secondary)",
+              font: "12px/1.5 var(--font-sans)",
+              padding: 10,
+              zIndex: 20,
+              textAlign: "left",
+            }}
+          >
+            <p>
+              <strong style={{ color: "var(--fg)" }}>Basic:</strong> uses the entire resume as context.
+            </p>
+            <p className="mt-1">
+              <strong style={{ color: "var(--fg)" }}>RAG:</strong> retrieves only the most relevant resume chunks via
+              Pinecone.
+            </p>
+          </div>
+        </button>
+        <button
+          type="button"
+          onClick={clearChatHistory}
+          title="Clear chat history"
+          style={{ color: "var(--fg-muted)" }}
+        >
+          <FaTrash />
         </button>
       </div>
-      
-      {/* Chat messages area */}
-      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4">
+
+      <div ref={messagesContainerRef} className="ds-chat-scroll" style={{ height: 420 }}>
         {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex items-start mb-4 ${
-              message.role === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
-            {message.role === "assistant" && (
-              <div className="flex-shrink-0 mr-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                  <RiRobot2Fill className="text-primary text-xl" />
-                </div>
-              </div>
-            )}
-            <div
-              className={`max-w-[80%] rounded-lg p-3 ${
-                message.role === "user"
-                  ? "bg-primary text-white rounded-tr-none"
-                  : "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-tl-none"
-              }`}
-            >
-              {message.role === "assistant" ? (
-                <div className="prose dark:prose-invert prose-sm max-w-none">
-                  <ReactMarkdown
-                    components={{
-                      a: ({ node, ...props }) => (
-                        <a
-                          {...props}
-                          className="text-blue-600 dark:text-blue-400 hover:underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        />
-                      ),
-                      ul: ({ node, ...props }) => (
-                        <ul {...props} className="list-disc pl-5 space-y-1" />
-                      ),
-                      ol: ({ node, ...props }) => (
-                        <ol {...props} className="list-decimal pl-5 space-y-1" />
-                      ),
-                      li: ({ node, ...props }) => (
-                        <li {...props} className="mb-1" />
-                      ),
-                      p: ({ node, ...props }) => (
-                        <p {...props} className="mb-2 last:mb-0" />
-                      ),
-                    }}
-                  >
-                    {message.content}
-                  </ReactMarkdown>
-                  
-                  {/* Display retrieved chunks for RAG mode */}
-                  {message.retrievedChunks && message.retrievedChunks.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-gray-300 dark:border-gray-600">
-                      <button 
-                        onClick={() => toggleChunksDisplay(index)}
-                        className="flex items-center text-xs text-blue-600 dark:text-blue-400 hover:underline"
-                      >
-                        {expandedChunks.includes(index) ? (
-                          <>
-                            <FaAngleUp className="mr-1" /> 
-                            Hide retrieved chunks ({message.retrievedChunks.length})
-                          </>
-                        ) : (
-                          <>
-                            <FaAngleDown className="mr-1" /> 
-                            Show retrieved chunks ({message.retrievedChunks.length})
-                          </>
-                        )}
-                      </button>
-                      
-                      {expandedChunks.includes(index) && (
-                        <div className="mt-2 text-xs space-y-2 max-h-64 overflow-y-auto">
-                          <p className="font-semibold text-gray-700 dark:text-gray-300">
-                            Pinecone returned the following {message.retrievedChunks.length} chunks:
-                          </p>
-                          {message.retrievedChunks.map((chunk, chunkIndex) => (
-                            <div 
-                              key={chunkIndex} 
-                              className="border border-gray-300 dark:border-gray-600 rounded p-2 bg-gray-200 dark:bg-gray-800"
-                            >
-                              <div className="flex justify-between mb-1">
-                                <span className="font-bold text-xs">Score: {(chunk.score * 100).toFixed(2)}%</span>
-                                {chunk.metadata.section && (
-                                  <span className="text-xs px-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">
-                                    {chunk.metadata.section}
-                                  </span>
-                                )}
-                              </div>
-                              <p className="text-gray-700 dark:text-gray-300 text-xs">{chunk.text}</p>
-                              <div className="mt-1 flex flex-wrap gap-1">
-                                {chunk.metadata.role && (
-                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Title: {chunk.metadata.role}
-                                  </span>
-                                )}
-                                {chunk.metadata.organization && (
-                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Org: {chunk.metadata.organization}
-                                  </span>
-                                )}
-                                {chunk.metadata.years && (
-                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Year: {chunk.metadata.years}
-                                  </span>
-                                )}
-                                {chunk.metadata.subcategory && (
-                                  <span className="text-xs px-1 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
-                                    Skills: {chunk.metadata.subcategory}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+          <div key={index} className={`ds-chat-bubble ${message.role === "user" ? "ds-chat-bubble-user" : "ds-chat-bubble-bot"}`}>
+            {message.role === "assistant" ? (
+              <div className="prose prose-invert prose-sm max-w-none">
+                <ReactMarkdown
+                  components={{
+                    a: ({ ...props }) => (
+                      <a {...props} style={{ color: "var(--accent-hover)" }} target="_blank" rel="noopener noreferrer" />
+                    ),
+                    ul: ({ ...props }) => <ul {...props} className="list-disc pl-5 space-y-1" />,
+                    ol: ({ ...props }) => <ol {...props} className="list-decimal pl-5 space-y-1" />,
+                    li: ({ ...props }) => <li {...props} className="mb-1" />,
+                    p: ({ ...props }) => <p {...props} className="mb-2 last:mb-0" />,
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
+
+                {message.retrievedChunks && message.retrievedChunks.length > 0 && (
+                  <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+                    <button
+                      onClick={() => toggleChunksDisplay(index)}
+                      className="flex items-center"
+                      style={{ font: "11px var(--font-mono)", color: "var(--accent-hover)" }}
+                    >
+                      {expandedChunks.includes(index) ? (
+                        <>
+                          <FaAngleUp className="mr-1" /> Hide retrieved chunks ({message.retrievedChunks.length})
+                        </>
+                      ) : (
+                        <>
+                          <FaAngleDown className="mr-1" /> Show retrieved chunks ({message.retrievedChunks.length})
+                        </>
                       )}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <p className="whitespace-pre-wrap">{message.content}</p>
-              )}
-            </div>
-            {message.role === "user" && (
-              <div className="flex-shrink-0 ml-3">
-                <div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                  <IoMdPerson className="text-gray-700 dark:text-gray-300 text-xl" />
-                </div>
+                    </button>
+
+                    {expandedChunks.includes(index) && (
+                      <div className="mt-2 space-y-2 max-h-64 overflow-y-auto">
+                        <p style={{ font: "600 11px var(--font-mono)", color: "var(--fg-muted)" }}>
+                          Pinecone returned the following {message.retrievedChunks.length} chunks:
+                        </p>
+                        {message.retrievedChunks.map((chunk, chunkIndex) => (
+                          <div
+                            key={chunkIndex}
+                            style={{
+                              border: "1px solid var(--border)",
+                              background: "var(--surface-sunken)",
+                              padding: 8,
+                            }}
+                          >
+                            <div className="flex justify-between mb-1">
+                              <span style={{ font: "700 11px var(--font-mono)", color: "var(--fg-secondary)" }}>
+                                Score: {(chunk.score * 100).toFixed(2)}%
+                              </span>
+                              {chunk.metadata.section && <span className="ds-tag ds-tag-blue">{chunk.metadata.section}</span>}
+                            </div>
+                            <p style={{ font: "12px/1.5 var(--font-sans)", color: "var(--fg-secondary)" }}>{chunk.text}</p>
+                            <div className="mt-1 flex flex-wrap gap-1">
+                              {chunk.metadata.role && <span className="ds-tag ds-tag-gray">Title: {chunk.metadata.role}</span>}
+                              {chunk.metadata.organization && (
+                                <span className="ds-tag ds-tag-gray">Org: {chunk.metadata.organization}</span>
+                              )}
+                              {chunk.metadata.years && <span className="ds-tag ds-tag-gray">Year: {chunk.metadata.years}</span>}
+                              {chunk.metadata.subcategory && (
+                                <span className="ds-tag ds-tag-gray">Skills: {chunk.metadata.subcategory}</span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
+            ) : (
+              <p className="whitespace-pre-wrap">{message.content}</p>
             )}
           </div>
         ))}
         {isLoading && (
-          <div className="flex items-start mb-4 justify-start">
-            <div className="flex-shrink-0 mr-3">
-              <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                <RiRobot2Fill className="text-primary text-xl" />
-              </div>
-            </div>
-            <div className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg rounded-tl-none p-3">
-              <div className="flex space-x-2">
-                <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce"></div>
-                <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce" style={{ animationDelay: "0.4s" }}></div>
-              </div>
+          <div className="ds-chat-bubble ds-chat-bubble-bot">
+            <div className="flex space-x-2">
+              <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: "var(--fg-muted)" }} />
+              <div
+                className="w-2 h-2 rounded-full animate-bounce"
+                style={{ background: "var(--fg-muted)", animationDelay: "0.2s" }}
+              />
+              <div
+                className="w-2 h-2 rounded-full animate-bounce"
+                style={{ background: "var(--fg-muted)", animationDelay: "0.4s" }}
+              />
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
-      {/* Input area */}
-      <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-        <div className="flex justify-end mb-2">
-          <div 
-            className="flex items-center cursor-pointer text-sm text-gray-600 dark:text-gray-300 group relative"
-            onClick={() => setChatVersion(chatVersion === "basic" ? "rag" : "basic")}
-          >
-            <span className="mr-2">
-              {chatVersion === "basic" ? "Basic Mode" : "RAG Mode (Experimental)"}
-            </span>
-            {chatVersion === "basic" ? (
-              <FaToggleOff className="w-5 h-5 text-gray-400" />
-            ) : (
-              <FaToggleOn className="w-5 h-5 text-primary" />
-            )}
-            
-            {/* Tooltip */}
-            <div className="absolute bottom-full right-0 mb-2 w-64 bg-gray-800 text-white text-xs rounded p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-              <p><strong>Basic Mode:</strong> Uses the entire resume as context for every question.</p>
-              <p className="mt-1"><strong>RAG Mode:</strong> Uses Pinecone's embedding model to retrieve only the most relevant parts of the resume based on your question, potentially giving more focused answers.</p>
-            </div>
+      <div className="ds-chat-foot">
+        {messages.length === 1 && (
+          <div className="ds-chat-starters">
+            {STARTERS.map((s) => (
+              <button key={s} type="button" className="ds-chat-starter" onClick={() => sendMessage(s)}>
+                {s}
+              </button>
+            ))}
           </div>
-        </div>
-        <form onSubmit={handleSubmit} className="flex items-center">
+        )}
+        <form onSubmit={handleSubmit} className="ds-chat-form">
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything about David's experience..."
-            className="flex-1 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-l-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="ds-chat-input"
             disabled={isLoading}
           />
-          <button
-            type="submit"
-            className={`bg-primary hover:bg-primary/90 text-white rounded-r-lg p-2 h-full ${
-              isLoading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-            disabled={isLoading}
-          >
-            <FaPaperPlane className="w-6 h-6" />
+          <button type="submit" className="ds-btn ds-btn-primary ds-btn-sm" disabled={isLoading}>
+            <FaPaperPlane />
           </button>
         </form>
       </div>
