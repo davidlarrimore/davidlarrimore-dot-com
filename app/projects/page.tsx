@@ -2,169 +2,117 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import Image from "next/image";
 import { Metadata } from "next";
+import Card from "../components/ds/Card";
+import Eyebrow from "../components/ds/Eyebrow";
+import Tag from "../components/ds/Tag";
 
 export const metadata: Metadata = {
   title: "David Larrimore | Projects",
   description: "Explore my technical projects and professional work in AI, cloud computing, and software development",
 };
 
+interface ProjectCardProps {
+  eyebrow: string;
+  title: string;
+  desc: string;
+  tags: string[];
+  tagVariant: "blue" | "purple" | "gray";
+  cta: string;
+  ctaHref?: string;
+  ctaVariant: "primary" | "purple" | "ghost";
+  accentColor: string;
+}
+
+function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, ctaVariant, accentColor }: ProjectCardProps) {
+  return (
+    <Card hud>
+      <div
+        className="relative overflow-hidden mb-5"
+        style={{ height: 100, background: "var(--surface-sunken)", border: "1px solid var(--border)" }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            clipPath: "polygon(0 100%, 30% 0, 100% 0, 100% 100%)",
+            background: `linear-gradient(135deg, ${accentColor}, transparent)`,
+            opacity: 0.5,
+          }}
+        />
+        <div style={{ position: "absolute", bottom: 8, right: 10, font: "11px var(--font-mono)", color: "var(--fg-muted)" }}>
+          ./run
+        </div>
+      </div>
+      <Eyebrow color="var(--fg-muted)">{eyebrow}</Eyebrow>
+      <div style={{ font: "var(--text-h3)", color: "var(--fg)", marginBottom: 10 }}>{title}</div>
+      <div style={{ font: "14px/1.5 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 16 }}>{desc}</div>
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {tags.map((t) => (
+          <Tag key={t} variant={tagVariant}>
+            {t}
+          </Tag>
+        ))}
+      </div>
+      {ctaHref ? (
+        <Link href={ctaHref} className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>
+          {cta}
+        </Link>
+      ) : (
+        <button className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`} disabled>
+          {cta}
+        </button>
+      )}
+    </Card>
+  );
+}
+
 export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-16 min-h-screen">
-        <div className="px-4 mx-auto max-w-screen-xl">
-          {/* Page Header */}
-          <div className="mb-12 text-center">
-            <h1 className="mb-6 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-              My{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
-                Projects
-              </span>
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Explore my technical projects, experiments, and professional work in AI, cloud computing, and software development.
-            </p>
+      <main style={{ minHeight: "100vh" }}>
+        <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
+          <Eyebrow>// projects</Eyebrow>
+          <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)", marginBottom: 12 }}>
+            My Projects
+          </div>
+          <div style={{ font: "16px var(--font-sans)", color: "var(--fg-secondary)", maxWidth: 560, marginBottom: 48 }}>
+            Technical projects, experiments, and professional work in AI, cloud computing, and software development.
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Resume Chatbot Project */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
-              <div className="h-48 relative bg-gradient-to-r from-blue-500 to-blue-700">
-                {/* Layered background with icons and circuit patterns */}
-                <div className="absolute inset-0 opacity-20 bg-dots-pattern bg-dots-sm"></div>
-                <div className="absolute inset-0 overflow-hidden">
-                  <svg className="absolute -bottom-10 -right-10 w-64 h-64 text-blue-600/20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h2v3c0 .55.45 1 1 1h.5c.25 0 .5-.1.7-.29L12.7 18H20c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H12l-4 3v-3H4V4h16v12z"/>
-                  </svg>
-                  <svg className="absolute top-5 left-5 w-16 h-16 text-blue-300/30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/>
-                  </svg>
-                </div>
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <svg 
-                      className="w-24 h-24 text-white" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Resume Chatbot</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  An AI-powered chatbot built with Next.js and Anthropic's Claude that can answer questions about my professional experience, skills, and background.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">Claude AI</span>
-                  <span className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">Next.js</span>
-                  <span className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">React</span>
-                </div>
-                <Link 
-                  href="/projects/resumeChat" 
-                  className="mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90"
-                >
-                  Try It Out
-                  <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            {/* AI Scavenger Hunt Project */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
-              <div className="h-48 relative bg-gradient-to-r from-purple-500 to-purple-700">
-                {/* Layered background with AI/puzzle patterns */}
-                <div className="absolute inset-0 opacity-20 bg-dots-pattern bg-dots-sm"></div>
-                <div className="absolute inset-0 overflow-hidden">
-                  <svg className="absolute -bottom-10 -right-10 w-64 h-64 text-purple-600/20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v4h4v2h-4v4h-2v-4H8V9h4V5zm-7.5 9.5h3v-1h-3V10h3V7.5h-4.5v9h4.5V14h-3v-1.5z"/>
-                  </svg>
-                  <svg className="absolute top-5 left-5 w-16 h-16 text-purple-300/30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
-                  </svg>
-                </div>
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <svg 
-                      className="w-24 h-24 text-white" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">AI Scavenger Hunt</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  A fun quiz game where you use generative AI to solve challenges and answer questions. Test your prompt engineering skills!
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Claude AI</span>
-                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Next.js</span>
-                  <span className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-full">Prompt Engineering</span>
-                </div>
-                <Link 
-                  href="/projects/ScavengerHunt" 
-                  className="mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700"
-                >
-                  Play Now
-                  <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            {/* Coming Soon Project */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg opacity-90 transition-transform hover:scale-105">
-              <div className="h-48 relative bg-gradient-to-r from-gray-500 to-gray-700">
-                {/* Layered background with code pattern */}
-                <div className="absolute inset-0 opacity-10 bg-dots-pattern bg-dots-sm"></div>
-                <div className="absolute inset-0 overflow-hidden">
-                  <div className="absolute top-3 left-3 text-xs font-mono text-gray-300/30 whitespace-pre leading-tight">
-                    {`function launchProject() {
-  const project = {
-    name: "Coming Soon",
-    status: "In Development",
-    launch: new Date()
-  };
-  return project;
-}`}
-                  </div>
-                  <svg className="absolute -bottom-10 -right-10 w-64 h-64 text-gray-600/20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                  </svg>
-                </div>
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="bg-white/20 px-6 py-3 rounded-lg text-white font-bold text-xl">
-                    Coming Soon
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">More Projects</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Additional projects are currently in development. Check back soon for updates on new AI tools, cloud solutions, and software development projects.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full">In Development</span>
-                </div>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 gap-7">
+            <ProjectCard
+              eyebrow="claude ai · next.js"
+              title="Resume Chatbot"
+              desc="An AI-powered chatbot built with Next.js and Claude that answers questions about my professional background."
+              tags={["Claude AI", "Next.js", "React"]}
+              tagVariant="blue"
+              cta="Try It Out"
+              ctaHref="/projects/resumeChat"
+              ctaVariant="primary"
+              accentColor="var(--accent)"
+            />
+            <ProjectCard
+              eyebrow="claude ai · next.js"
+              title="AI Scavenger Hunt"
+              desc="A quiz game where you use generative AI to solve challenges. Test your prompt-engineering skills."
+              tags={["Claude AI", "Next.js", "Prompt Engineering"]}
+              tagVariant="purple"
+              cta="Play Now"
+              ctaHref="/projects/ScavengerHunt"
+              ctaVariant="purple"
+              accentColor="var(--accent2)"
+            />
+            <ProjectCard
+              eyebrow="in development"
+              title="More Projects"
+              desc="Additional AI tools, cloud solutions, and software projects in the works — plus a couple of game-dev experiments."
+              tags={["In Development"]}
+              tagVariant="gray"
+              cta="Coming Soon"
+              ctaVariant="ghost"
+              accentColor="var(--fg-muted)"
+            />
           </div>
         </div>
       </main>

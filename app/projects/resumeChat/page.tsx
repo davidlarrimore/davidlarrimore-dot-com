@@ -12,7 +12,7 @@ export default function ChatPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-16 min-h-screen bg-gray-50 dark:bg-gray-600">
+      <main className="pt-12 pb-16 min-h-screen bg-gray-50 dark:bg-gray-600">
         <div className="px-4 mx-auto max-w-4xl">
           <div className="mb-8 text-center">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
