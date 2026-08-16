@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 personal website for David Larrimore featuring AI-powered interactive projects. The site showcases professional experience, skills, and includes two main AI features: an AI Resume Chat and an AI Scavenger Hunt game.
+This is a Next.js 16 personal website for David Larrimore featuring AI-powered interactive projects. The site showcases professional experience, skills, and includes two main AI features: an AI Resume Chat and an AI Scavenger Hunt game.
 
 ## Development Commands
 
@@ -21,6 +21,10 @@ npm run check-pinecone        # Verify Pinecone setup and connection
 
 # Asset Generation
 npm run generate-favicons     # Generate favicon files from SVG icon
+
+# Docker (local dev alternative to `npm run dev`)
+docker compose up -d --build  # Build and serve on :3000, bind-mounted with hot reload, loads .env
+docker compose down           # Stop and remove the container
 ```
 
 ## Architecture
@@ -35,6 +39,7 @@ npm run generate-favicons     # Generate favicon files from SVG icon
   - **components/**: React components (shared across the site)
   - **projects/**: Project pages (resumeChat, ScavengerHunt)
   - **resume/**: Resume display page
+  - **blog/**: Blog list (`page.tsx`) and post (`[slug]/page.tsx`) pages, plus `components/BlogMarkdown.tsx` and `components/Mermaid.tsx`
   - `layout.tsx`: Root layout with Analytics integration
   - `page.tsx`: Homepage
 
@@ -42,6 +47,7 @@ npm run generate-favicons     # Generate favicon files from SVG icon
   - `config.ts`: Centralized environment variable configuration (site, contact, social, analytics)
   - `scavenger-hunt-questions.ts`: Question bank for scavenger hunt
   - `gtag.ts`: Google Analytics helpers
+  - `blog.ts`: Reads/parses markdown posts from `public/blog/posts/` (frontmatter, reading time, slugs)
 
 - **scripts/**: Data processing and Pinecone initialization scripts
   - `csv-to-resume-chunks.js`: Converts CSV resume data to JSON
@@ -52,6 +58,10 @@ npm run generate-favicons     # Generate favicon files from SVG icon
 
 - **public/files/**: Static content
   - `resume.md`: Full resume markdown (used in basic chat mode)
+
+- **public/blog/**: Blog content (source of truth for the blog, not code)
+  - `posts/*.md`: One markdown file per post, frontmatter + body (see Blog System below)
+  - `images/`: Post images, referenced from markdown/frontmatter as absolute `/blog/images/...` paths
 
 ### AI Integration Architecture
 
@@ -73,16 +83,28 @@ Two modes of operation:
    - Embedding dimension: 1536 (note: init script uses mock embeddings)
 
 Both modes:
-- Use Claude 3 Haiku model via Anthropic API
+- Use the Claude Haiku 4.5 model (`claude-haiku-4-5`) via raw `fetch()` calls to the Anthropic Messages API (no SDK)
 - Maintain conversation context (last 10 messages)
 - Follow strict guidelines to only answer David Larrimore-related questions
 - Return formatted markdown responses
 
 #### Scavenger Hunt (app/api/projects/scavenger-hunt/chat/route.ts)
 
-- Simple chat interface with Claude 3 Haiku
+- Simple chat interface with Claude Haiku 4.5
 - Context-specific system prompts based on challenge
 - Designed to teach prompt engineering skills
+
+### Blog System
+
+Blog posts are plain markdown files — no CMS or database.
+
+- **Content**: `public/blog/posts/*.md`. Filename (minus `.md`) is the slug. Frontmatter fields: `title`, `date` (`YYYY-MM-DD`), `excerpt`, `tags` (array), `cover` (optional absolute path), `draft` (optional bool — draft posts are hidden in production but visible in dev).
+- **Images**: put post images under `public/blog/images/` and reference with an absolute path (e.g. `/blog/images/<slug>/cover.jpg`), since `public/` is served from the site root.
+- **Reading (`lib/blog.ts`)**: `getAllPosts()` (sorted by date desc, drafts filtered in prod), `getPostBySlug(slug)`, `getPostSlugs()` (for `generateStaticParams`).
+- **Rendering (`app/blog/components/BlogMarkdown.tsx`)**: `react-markdown` + `remark-gfm` (tables/strikethrough/task lists) + `rehype-slug` (heading anchors) + `rehype-highlight` (code syntax highlighting, styled in `globals.css` under `.hljs`, no external theme CSS imported).
+- **Mermaid diagrams**: fenced code blocks with the `mermaid` language are intercepted by a custom `code`/`pre` renderer and handed to `app/blog/components/Mermaid.tsx`, a client component that lazy-loads `mermaid` and renders SVG in `useEffect` (diagrams cannot render during SSR).
+- **Styling**: markdown body is wrapped in `.blog-prose` (defined in `app/globals.css`), a hand-rolled prose style built on the same `--fg`/`--surface`/`--space-*` design tokens as the rest of the site's `.ds-*` classes — no Tailwind typography plugin.
+- Pages: `app/blog/page.tsx` (list) and `app/blog/[slug]/page.tsx` (post, statically generated via `generateStaticParams`).
 
 ### Environment Configuration
 
@@ -103,10 +125,14 @@ See `.env.example` for required environment variables.
 
 ### Key Dependencies
 
-- **@anthropic-ai/sdk**: Claude AI integration
 - **@pinecone-database/pinecone**: Vector database for RAG
-- **react-markdown**: Markdown rendering
+- **react-markdown**: Markdown rendering (resume chat responses and blog posts)
 - **react-icons**: Icon components
+- **gray-matter**: Blog post frontmatter parsing
+- **remark-gfm** / **rehype-slug** / **rehype-highlight**: Blog markdown plugins (GFM tables/task lists, heading anchors, code syntax highlighting)
+- **mermaid**: Client-side diagram rendering for blog posts
+
+Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat API routes call the Anthropic Messages API directly with `fetch()`.
 
 ## Important Implementation Details
 
