@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 personal website for David Larrimore featuring AI-powered interactive projects. The site showcases professional experience, skills, and includes two main AI features: an AI Resume Chat and an AI Scavenger Hunt game.
+This is a Next.js 16 personal website for David Larrimore featuring AI-powered interactive projects. The site showcases professional experience, skills, and includes two main AI features: an AI Resume Chat and an AI Scavenger Hunt game.
 
 ## Development Commands
 
@@ -21,6 +21,10 @@ npm run check-pinecone        # Verify Pinecone setup and connection
 
 # Asset Generation
 npm run generate-favicons     # Generate favicon files from SVG icon
+
+# Docker (local dev alternative to `npm run dev`)
+docker compose up -d --build  # Build and serve on :3000, bind-mounted with hot reload, loads .env
+docker compose down           # Stop and remove the container
 ```
 
 ## Architecture
@@ -73,14 +77,14 @@ Two modes of operation:
    - Embedding dimension: 1536 (note: init script uses mock embeddings)
 
 Both modes:
-- Use Claude 3 Haiku model via Anthropic API
+- Use the Claude Haiku 4.5 model (`claude-haiku-4-5`) via raw `fetch()` calls to the Anthropic Messages API (no SDK)
 - Maintain conversation context (last 10 messages)
 - Follow strict guidelines to only answer David Larrimore-related questions
 - Return formatted markdown responses
 
 #### Scavenger Hunt (app/api/projects/scavenger-hunt/chat/route.ts)
 
-- Simple chat interface with Claude 3 Haiku
+- Simple chat interface with Claude Haiku 4.5
 - Context-specific system prompts based on challenge
 - Designed to teach prompt engineering skills
 
@@ -103,10 +107,11 @@ See `.env.example` for required environment variables.
 
 ### Key Dependencies
 
-- **@anthropic-ai/sdk**: Claude AI integration
 - **@pinecone-database/pinecone**: Vector database for RAG
 - **react-markdown**: Markdown rendering
 - **react-icons**: Icon components
+
+Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat API routes call the Anthropic Messages API directly with `fetch()`.
 
 ## Important Implementation Details
 
