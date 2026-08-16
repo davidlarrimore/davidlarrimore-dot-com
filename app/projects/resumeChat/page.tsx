@@ -6,18 +6,11 @@ import ResumeChatInterface from "../../components/ResumeChatInterface";
 import Card from "../../components/ds/Card";
 import Eyebrow from "../../components/ds/Eyebrow";
 import Tag from "../../components/ds/Tag";
-import Terminal from "../../components/ds/Terminal";
 
 export const metadata: Metadata = {
   title: "David Larrimore | Resume Chatbot",
   description: "Chat with an AI assistant to learn more about David Larrimore's professional experience, skills, and background",
 };
-
-const BUILD_LOG = [
-  { type: "cmd" as const, text: "next build && next start" },
-  { type: "out" as const, text: "loaded resume.md as system context" },
-  { type: "out" as const, text: "✓ ready — serving /projects/resumeChat" },
-];
 
 export default function ChatPage() {
   return (
@@ -41,26 +34,20 @@ export default function ChatPage() {
 
           <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start mb-16">
             <ResumeChatInterface />
-            <div className="flex flex-col gap-6">
-              <Card>
-                <Eyebrow color="var(--fg-muted)">// how it works</Eyebrow>
-                <div style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 20 }}>
-                  Claude is grounded in my résumé content, so it answers in my voice — roles, skills, awards, and the
-                  occasional hobby detail. Basic mode sends the whole résumé as context; RAG mode retrieves only the
-                  most relevant chunks from Pinecone for each question.
-                </div>
-                <Link
-                  href="/resume"
-                  style={{ font: "12px var(--font-mono)", textTransform: "uppercase", letterSpacing: "var(--tracking-wide)", color: "var(--accent-hover)" }}
-                >
-                  ← Back to Résumé
-                </Link>
-              </Card>
-              <div>
-                <Eyebrow color="var(--fg-muted)">// deploy log</Eyebrow>
-                <Terminal lines={BUILD_LOG} cursor={false} />
+            <Card>
+              <Eyebrow color="var(--fg-muted)">// how it works</Eyebrow>
+              <div style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 20 }}>
+                Claude is grounded in my résumé content, so it answers in my voice — roles, skills, awards, and the
+                occasional hobby detail. Basic mode sends the whole résumé as context; RAG mode retrieves only the
+                most relevant chunks from Pinecone for each question.
               </div>
-            </div>
+              <Link
+                href="/resume"
+                style={{ font: "12px var(--font-mono)", textTransform: "uppercase", letterSpacing: "var(--tracking-wide)", color: "var(--accent-hover)" }}
+              >
+                ← Back to Résumé
+              </Link>
+            </Card>
           </div>
 
           {/* About This Project */}
