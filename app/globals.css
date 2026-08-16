@@ -275,3 +275,81 @@
 
 /* Utility for pages built on the v2 tokens */
 .ds-eyebrow { font:var(--text-eyebrow); text-transform:uppercase; letter-spacing:var(--tracking-wide); margin-bottom:12px; }
+
+/* =========================================================================
+   Blog markdown rendering — content authored in public/blog/posts/*.md
+   ========================================================================= */
+
+.blog-prose { font:var(--text-body) var(--font-sans); color:var(--fg-secondary); max-width:100%; }
+.blog-prose > *:first-child { margin-top:0; }
+
+.blog-prose h1, .blog-prose h2, .blog-prose h3, .blog-prose h4 {
+  color:var(--fg); font-weight:800; letter-spacing:var(--tracking-tight); scroll-margin-top:90px;
+  margin-top:var(--space-7); margin-bottom:var(--space-3);
+}
+.blog-prose h1 { font-size:1.875rem; line-height:1.25; }
+.blog-prose h2 { font-size:1.5rem; line-height:1.3; }
+.blog-prose h3 { font-size:1.25rem; line-height:1.35; }
+.blog-prose h4 { font-size:1.0625rem; line-height:1.4; }
+
+.blog-prose p { margin:0 0 var(--space-4); }
+.blog-prose a { color:var(--accent-hover); text-decoration:underline; text-underline-offset:2px; }
+.blog-prose a:hover { color:var(--accent); }
+
+.blog-prose ul, .blog-prose ol { margin:0 0 var(--space-4); padding-left:1.4em; }
+.blog-prose li { margin-bottom:var(--space-1); }
+.blog-prose li::marker { color:var(--fg-muted); }
+
+.blog-prose blockquote {
+  margin:0 0 var(--space-4); padding:var(--space-2) var(--space-4);
+  border-left:2px solid var(--accent); color:var(--fg-muted); font-style:italic;
+  background:var(--surface);
+}
+
+.blog-prose hr { border:none; border-top:1px solid var(--border); margin:var(--space-6) 0; }
+
+.blog-prose img.blog-img {
+  max-width:100%; height:auto; border-radius:var(--radius-md); border:1px solid var(--border);
+  margin:var(--space-4) 0; display:block;
+}
+
+.blog-prose code {
+  font:var(--text-code); background:var(--surface-raised); color:var(--accent-soft-text);
+  padding:2px 6px; border-radius:var(--radius-sm); border:1px solid var(--border);
+}
+.blog-prose pre.blog-pre {
+  background:var(--surface-sunken) !important; border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:var(--space-4); overflow-x:auto; margin:0 0 var(--space-4);
+}
+.blog-prose pre.blog-pre code {
+  background:none; border:none; padding:0; font:var(--text-code); line-height:1.6;
+}
+
+.blog-prose table {
+  width:100%; border-collapse:collapse; margin:0 0 var(--space-4); font-size:0.9rem;
+}
+.blog-prose th, .blog-prose td {
+  border:1px solid var(--border); padding:var(--space-2) var(--space-3); text-align:left;
+}
+.blog-prose th { background:var(--surface); color:var(--fg); font-weight:600; }
+
+.blog-prose strong { color:var(--fg); font-weight:700; }
+
+.blog-mermaid { display:flex; justify-content:center; margin:0 0 var(--space-4); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--space-4); overflow-x:auto; }
+.blog-mermaid svg { max-width:100%; }
+.blog-mermaid-error { font:var(--text-code); color:var(--destructive-foreground); background:var(--surface); border:1px solid var(--destructive); border-radius:var(--radius-md); padding:var(--space-3); margin:0 0 var(--space-4); white-space:pre-wrap; }
+
+/* highlight.js token colors, mapped onto the v2 palette */
+.hljs { color:var(--fg-secondary); }
+.hljs-comment, .hljs-quote { color:var(--fg-muted); font-style:italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-subst { color:var(--accent2-soft-text); }
+.hljs-string, .hljs-doctag, .hljs-regexp, .hljs-addition { color:var(--success); }
+.hljs-number, .hljs-attr, .hljs-attribute { color:#f0b56b; }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-name { color:var(--accent-soft-text); font-weight:600; }
+.hljs-type, .hljs-class .hljs-title { color:var(--primary-300); }
+.hljs-variable, .hljs-template-variable, .hljs-params { color:var(--fg); }
+.hljs-symbol, .hljs-bullet, .hljs-link, .hljs-meta { color:var(--accent2-soft-text); }
+.hljs-built_in, .hljs-builtin-name { color:var(--primary-300); }
+.hljs-deletion { color:var(--destructive-foreground); }
+.hljs-emphasis { font-style:italic; }
+.hljs-strong { font-weight:700; }

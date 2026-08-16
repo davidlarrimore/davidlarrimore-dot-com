@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Traditional automation compared with reverse automation</title>
+  <desc id="desc">Traditional automation starts with tasks and codifies steps forward. Reverse automation starts with a valuable outcome and works backward to automate the work required.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071427"/><stop offset="1" stop-color="#102540"/></linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#3AD7FF"/><stop offset="1" stop-color="#6CF0C2"/></linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFB35C"/><stop offset="1" stop-color="#FFD27A"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".25"/></filter>
+    <marker id="arrowAmber" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#FFBC66"/></marker>
+    <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#51E1DE"/></marker>
+    <style>
+      .sans{font-family:Inter,Arial,sans-serif}.eyebrow{font-size:24px;font-weight:700;letter-spacing:3px}.h1{font-size:58px;font-weight:780}.h2{font-size:36px;font-weight:750}.body{font-size:25px}.small{font-size:20px}.label{font-size:22px;font-weight:700}.muted{fill:#A8B7C9}.white{fill:#F7FAFD}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1450" cy="120" r="240" fill="#1B5572" opacity=".18"/><circle cx="100" cy="920" r="300" fill="#744A1C" opacity=".13"/>
+  <text x="100" y="92" class="sans eyebrow" fill="#77DFF5">THE TALE OF TWO AUTOMATION JOURNEYS</text>
+  <text x="100" y="160" class="sans h1 white">Same ambition. A different starting point.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="220" width="1440" height="320" rx="28" fill="#132A44" stroke="#37516B" stroke-width="2"/>
+    <rect x="80" y="220" width="20" height="320" rx="10" fill="url(#amber)"/>
+  </g>
+  <text x="135" y="275" class="sans eyebrow" fill="#FFC475">TRADITIONAL AUTOMATION</text>
+  <text x="135" y="322" class="sans h2 white">Start with the work. Codify the steps forward.</text>
+  <line x1="170" y1="405" x2="1420" y2="405" stroke="#FFBC66" stroke-width="5" marker-end="url(#arrowAmber)"/>
+  <g class="sans label white" text-anchor="middle">
+    <g transform="translate(190 405)"><circle r="40" fill="#203A55" stroke="#FFBC66" stroke-width="3"/><text y="8">01</text><text y="78" class="small">Manual work</text></g>
+    <g transform="translate(485 405)"><circle r="40" fill="#203A55" stroke="#FFBC66" stroke-width="3"/><text y="8">02</text><text y="78" class="small">Scripts</text></g>
+    <g transform="translate(780 405)"><circle r="40" fill="#203A55" stroke="#FFBC66" stroke-width="3"/><text y="8">03</text><text y="78" class="small">RPA</text></g>
+    <g transform="translate(1075 405)"><circle r="40" fill="#203A55" stroke="#FFBC66" stroke-width="3"/><text y="8">04</text><text y="78" class="small">Traditional ML</text></g>
+    <g transform="translate(1370 405)"><circle r="40" fill="#684B29" stroke="#FFD27A" stroke-width="3"/><text y="8">05</text><text y="78" class="small">Automated tasks</text></g>
+  </g>
+  <text x="135" y="520" class="sans small muted">Core question: “How do I codify the steps?”</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="560" width="1440" height="340" rx="28" fill="#102F43" stroke="#2B6372" stroke-width="2"/>
+    <rect x="80" y="560" width="20" height="340" rx="10" fill="url(#cyan)"/>
+  </g>
+  <text x="135" y="615" class="sans eyebrow" fill="#69E5E0">REVERSE / INTELLIGENT AUTOMATION</text>
+  <text x="135" y="662" class="sans h2 white">Start with the outcome. Automate backward toward the work.</text>
+  <line x1="1420" y1="758" x2="170" y2="758" stroke="#51E1DE" stroke-width="5" marker-end="url(#arrowCyan)"/>
+  <g class="sans label white" text-anchor="middle">
+    <g transform="translate(1370 758)"><circle r="44" fill="#1D615F" stroke="#6CF0C2" stroke-width="3"/><text y="8">01</text><text y="80" class="small">Decision outcome</text></g>
+    <g transform="translate(1075 758)"><circle r="40" fill="#17435A" stroke="#51E1DE" stroke-width="3"/><text y="8">02</text><text y="80" class="small">Insights + narrative</text></g>
+    <g transform="translate(780 758)"><circle r="40" fill="#17435A" stroke="#51E1DE" stroke-width="3"/><text y="8">03</text><text y="80" class="small">Guided workflow</text></g>
+    <g transform="translate(485 758)"><circle r="40" fill="#17435A" stroke="#51E1DE" stroke-width="3"/><text y="8">04</text><text y="80" class="small">Connected actions</text></g>
+    <g transform="translate(190 758)"><circle r="40" fill="#17435A" stroke="#51E1DE" stroke-width="3"/><text y="8">05</text><text y="80" class="small">Adaptive ingest</text></g>
+  </g>
+  <text x="135" y="875" class="sans small muted">Core question: “How do I achieve the goal?”</text>
+  <text x="1510" y="958" class="sans small muted" text-anchor="end">Reverse Automation • Outcome first, human governance throughout</text>
+</svg>

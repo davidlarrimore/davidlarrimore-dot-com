@@ -39,6 +39,7 @@ docker compose down           # Stop and remove the container
   - **components/**: React components (shared across the site)
   - **projects/**: Project pages (resumeChat, ScavengerHunt)
   - **resume/**: Resume display page
+  - **blog/**: Blog list (`page.tsx`) and post (`[slug]/page.tsx`) pages, plus `components/BlogMarkdown.tsx` and `components/Mermaid.tsx`
   - `layout.tsx`: Root layout with Analytics integration
   - `page.tsx`: Homepage
 
@@ -46,6 +47,7 @@ docker compose down           # Stop and remove the container
   - `config.ts`: Centralized environment variable configuration (site, contact, social, analytics)
   - `scavenger-hunt-questions.ts`: Question bank for scavenger hunt
   - `gtag.ts`: Google Analytics helpers
+  - `blog.ts`: Reads/parses markdown posts from `public/blog/posts/` (frontmatter, reading time, slugs)
 
 - **scripts/**: Data processing and Pinecone initialization scripts
   - `csv-to-resume-chunks.js`: Converts CSV resume data to JSON
@@ -56,6 +58,10 @@ docker compose down           # Stop and remove the container
 
 - **public/files/**: Static content
   - `resume.md`: Full resume markdown (used in basic chat mode)
+
+- **public/blog/**: Blog content (source of truth for the blog, not code)
+  - `posts/*.md`: One markdown file per post, frontmatter + body (see Blog System below)
+  - `images/`: Post images, referenced from markdown/frontmatter as absolute `/blog/images/...` paths
 
 ### AI Integration Architecture
 
@@ -88,6 +94,18 @@ Both modes:
 - Context-specific system prompts based on challenge
 - Designed to teach prompt engineering skills
 
+### Blog System
+
+Blog posts are plain markdown files — no CMS or database.
+
+- **Content**: `public/blog/posts/*.md`. Filename (minus `.md`) is the slug. Frontmatter fields: `title`, `date` (`YYYY-MM-DD`), `excerpt`, `tags` (array), `cover` (optional absolute path), `draft` (optional bool — draft posts are hidden in production but visible in dev).
+- **Images**: put post images under `public/blog/images/` and reference with an absolute path (e.g. `/blog/images/<slug>/cover.jpg`), since `public/` is served from the site root.
+- **Reading (`lib/blog.ts`)**: `getAllPosts()` (sorted by date desc, drafts filtered in prod), `getPostBySlug(slug)`, `getPostSlugs()` (for `generateStaticParams`).
+- **Rendering (`app/blog/components/BlogMarkdown.tsx`)**: `react-markdown` + `remark-gfm` (tables/strikethrough/task lists) + `rehype-slug` (heading anchors) + `rehype-highlight` (code syntax highlighting, styled in `globals.css` under `.hljs`, no external theme CSS imported).
+- **Mermaid diagrams**: fenced code blocks with the `mermaid` language are intercepted by a custom `code`/`pre` renderer and handed to `app/blog/components/Mermaid.tsx`, a client component that lazy-loads `mermaid` and renders SVG in `useEffect` (diagrams cannot render during SSR).
+- **Styling**: markdown body is wrapped in `.blog-prose` (defined in `app/globals.css`), a hand-rolled prose style built on the same `--fg`/`--surface`/`--space-*` design tokens as the rest of the site's `.ds-*` classes — no Tailwind typography plugin.
+- Pages: `app/blog/page.tsx` (list) and `app/blog/[slug]/page.tsx` (post, statically generated via `generateStaticParams`).
+
 ### Environment Configuration
 
 All environment variables centralized in `lib/config.ts`:
@@ -108,8 +126,11 @@ See `.env.example` for required environment variables.
 ### Key Dependencies
 
 - **@pinecone-database/pinecone**: Vector database for RAG
-- **react-markdown**: Markdown rendering
+- **react-markdown**: Markdown rendering (resume chat responses and blog posts)
 - **react-icons**: Icon components
+- **gray-matter**: Blog post frontmatter parsing
+- **remark-gfm** / **rehype-slug** / **rehype-highlight**: Blog markdown plugins (GFM tables/task lists, heading anchors, code syntax highlighting)
+- **mermaid**: Client-side diagram rendering for blog posts
 
 Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat API routes call the Anthropic Messages API directly with `fetch()`.
 
