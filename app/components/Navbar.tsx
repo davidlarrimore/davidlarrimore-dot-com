@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { contactConfig } from "@/lib/config";
 import Button from "./ds/Button";
-import StatusPill from "./ds/StatusPill";
 
 const LINKS = [
   { label: "Home", href: "/" },
@@ -73,7 +72,6 @@ export default function Navbar() {
                 }}
               >
                 {l.label}
-                {l.label === "Blog" && <StatusPill tone="new">New</StatusPill>}
               </Link>
             );
           })}
@@ -124,7 +122,6 @@ export default function Navbar() {
                 }}
               >
                 {l.label}
-                {l.label === "Blog" && <StatusPill tone="new">New</StatusPill>}
               </Link>
             );
           })}

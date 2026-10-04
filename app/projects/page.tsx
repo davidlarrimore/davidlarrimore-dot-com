@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 import Card from "../components/ds/Card";
 import Eyebrow from "../components/ds/Eyebrow";
@@ -22,10 +23,12 @@ interface ProjectCardProps {
   ctaHref?: string;
   ctaVariant: "primary" | "purple" | "ghost";
   accentColor: string;
+  bannerSrc?: string;
+  linkCard?: boolean;
 }
 
-function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, ctaVariant, accentColor }: ProjectCardProps) {
-  return (
+function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, ctaVariant, accentColor, bannerSrc, linkCard }: ProjectCardProps) {
+  const card = (
     <Card hud>
       <div
         className="relative overflow-hidden mb-5"
@@ -39,9 +42,15 @@ function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, cta
             opacity: 0.5,
           }}
         />
-        <div style={{ position: "absolute", bottom: 8, right: 10, font: "11px var(--font-mono)", color: "var(--fg-muted)" }}>
-          ./run
-        </div>
+        {bannerSrc ? (
+          <div className="relative flex h-full items-center justify-center">
+            <Image src={bannerSrc} alt={`${title} logo`} width={84} height={84} />
+          </div>
+        ) : (
+          <div style={{ position: "absolute", bottom: 8, right: 10, font: "11px var(--font-mono)", color: "var(--fg-muted)" }}>
+            ./run
+          </div>
+        )}
       </div>
       <Eyebrow color="var(--fg-muted)">{eyebrow}</Eyebrow>
       <div style={{ font: "var(--text-h3)", color: "var(--fg)", marginBottom: 10 }}>{title}</div>
@@ -53,7 +62,9 @@ function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, cta
           </Tag>
         ))}
       </div>
-      {ctaHref ? (
+      {linkCard && ctaHref ? (
+        <span className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>{cta}</span>
+      ) : ctaHref ? (
         <Link href={ctaHref} className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>
           {cta}
         </Link>
@@ -64,6 +75,12 @@ function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, cta
       )}
     </Card>
   );
+
+  return linkCard && ctaHref ? (
+    <Link href={ctaHref} className="block" aria-label={`Explore ${title}`}>
+      {card}
+    </Link>
+  ) : card;
 }
 
 export default function ProjectsPage() {
@@ -93,15 +110,17 @@ export default function ProjectsPage() {
               accentColor="var(--accent)"
             />
             <ProjectCard
-              eyebrow="claude ai · next.js"
-              title="AI Scavenger Hunt"
-              desc="A quiz game where you use generative AI to solve challenges. Test your prompt-engineering skills."
-              tags={["Claude AI", "Next.js", "Prompt Engineering"]}
+              eyebrow="ai · experiential learning"
+              title="E.L.V.I.S."
+              desc="Experiential Learning Virtual Instructor and Simulator. Practice AI judgment, human factors, and workflow design through interactive scenarios and AI feedback."
+              tags={["Generative AI", "Interactive Simulations", "Learning by Doing"]}
               tagVariant="purple"
-              cta="Play Now"
-              ctaHref="/projects/ScavengerHunt"
+              cta="Learn by Doing"
+              ctaHref="https://elvis.davidlarrimore.com/"
               ctaVariant="purple"
               accentColor="var(--accent2)"
+              bannerSrc="/images/elvis-logo.webp"
+              linkCard
             />
             <ProjectCard
               eyebrow="in development"
