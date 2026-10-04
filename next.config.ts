@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/projects/ScavengerHunt",
+        destination: "https://elvis.davidlarrimore.com/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
