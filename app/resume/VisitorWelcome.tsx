@@ -57,7 +57,7 @@ export default function VisitorWelcome() {
         <footer className="visitor-welcome-resources">
           <h2>How federal acquisition works</h2>
           <p>Curious about how government buys technology? The acquisition lifecycle moves from identifying needs and planning, through solicitation, evaluation and award, to managing the contract and closing it out.</p>
-          <p>Technical expertise and acquisition decision-making have distinct roles. Technical staff can help define requirements and evaluate proposed solutions. For competitive negotiated acquisitions, the designated source selection authority chooses the successful offer; the contracting officer awards the contract within their delegated authority. A technical leadership title alone doesn’t establish either authority.</p>
+          <p>Technical expertise and acquisition decision-making have distinct roles. Technical staff can help define requirements and evaluate proposed solutions. For competitive negotiated acquisitions, the designated source selection authority chooses the successful offer; the contracting officer awards the contract within their delegated authority. In my own government service, I never held the role of source selection official. That distinction helps explain the responsibilities behind the job titles.</p>
           <p>These official resources explain the process, the responsibilities, and the rules:</p>
           <ul>
             <li><a href="https://www.gsa.gov/assisted-acquisition-services/acquisition-process">The acquisition lifecycle — GSA’s practical overview <span aria-hidden="true">↗</span></a></li>
