@@ -61,9 +61,6 @@ export default function VisitorWelcome() {
           <p>These official resources explain the process, the responsibilities, and the rules:</p>
           <ul>
             <li><a href="https://www.gsa.gov/assisted-acquisition-services/acquisition-process">The acquisition lifecycle — GSA’s practical overview <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.acquisition.gov/far/7.104">Planning together: technical, legal and contracting roles — FAR 7.104 <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.acquisition.gov/far/subpart-15.3">Who evaluates, selects and awards — FAR 15.303 <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.acquisition.gov/far/1.602-1">Contracting officers and their delegated authority — FAR 1.602-1 <span aria-hidden="true">↗</span></a></li>
             <li><a href="https://www.oge.gov/">U.S. Office of Government Ethics <span aria-hidden="true">↗</span></a></li>
           </ul>
           <section className="visitor-welcome-login" aria-labelledby="login-gov-heading">
