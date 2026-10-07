@@ -8,6 +8,7 @@ import Card from "../components/ds/Card";
 import Eyebrow from "../components/ds/Eyebrow";
 import Tag from "../components/ds/Tag";
 import "./resume.css";
+import VisitorWelcome from "./VisitorWelcome";
 
 export const metadata: Metadata = {
   title: "David Larrimore | Resume",
@@ -54,14 +55,15 @@ export default function ResumePage() {
   return (
     <>
       <Navbar />
+      <VisitorWelcome />
       <main style={{ minHeight: "100vh" }}>
         <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: 760, margin: "0 auto" }}>
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 mb-3">
             <div>
               <Eyebrow>// resume</Eyebrow>
-              <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)" }}>
+              <h1 id="resume-title" tabIndex={-1} style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)" }}>
                 My Resume
-              </div>
+              </h1>
             </div>
             <div className="flex flex-wrap gap-2.5 no-print">
               <Link href="/projects/resumeChat" className="ds-btn ds-btn-ghost ds-btn-sm">
