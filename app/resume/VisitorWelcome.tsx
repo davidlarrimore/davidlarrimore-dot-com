@@ -11,9 +11,11 @@ export default function VisitorWelcome() {
   const previousOverflow = useRef("");
 
   useEffect(() => {
-    if (!VISITOR_WELCOME_ENABLED || !isWelcomeReferrer(document.referrer)) return;
+    const preview = process.env.NODE_ENV === "development" &&
+      new URLSearchParams(window.location.search).get("previewWelcome") === "1";
+    if (!preview && (!VISITOR_WELCOME_ENABLED || !isWelcomeReferrer(document.referrer))) return;
     try {
-      if (sessionStorage.getItem(DISMISSED_KEY)) return;
+      if (!preview && sessionStorage.getItem(DISMISSED_KEY)) return;
     } catch { /* The welcome also works when browser storage is unavailable. */ }
 
     const element = dialog.current;
@@ -53,13 +55,25 @@ export default function VisitorWelcome() {
           <Link href="/blog" onClick={dismiss} className="visitor-welcome-writing">Read my writing</Link>
         </div>
         <footer className="visitor-welcome-resources">
-          <h2>For the curious</h2>
-          <p>If you’d like to explore federal acquisition and government ethics, here are a few official resources to start with.</p>
+          <h2>How federal acquisition works</h2>
+          <p>Curious about how government buys technology? The acquisition lifecycle moves from identifying needs and planning, through solicitation, evaluation and award, to managing the contract and closing it out.</p>
+          <p>Technical expertise and acquisition decision-making have distinct roles. Technical staff can help define requirements and evaluate proposed solutions. For competitive negotiated acquisitions, the designated source selection authority chooses the successful offer; the contracting officer awards the contract within their delegated authority. A technical leadership title alone doesn’t establish either authority.</p>
+          <p>These official resources explain the process, the responsibilities, and the rules:</p>
           <ul>
-            <li><a href="https://www.acquisition.gov/browse/index/far">Federal Acquisition Regulation (FAR) <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.acquisition.gov/content/regulations">Agency acquisition regulations <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.gsa.gov/assisted-acquisition-services/acquisition-process">The acquisition lifecycle — GSA’s practical overview <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.acquisition.gov/far/7.104">Planning together: technical, legal and contracting roles — FAR 7.104 <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.acquisition.gov/far/subpart-15.3">Who evaluates, selects and awards — FAR 15.303 <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.acquisition.gov/far/1.602-1">Contracting officers and their delegated authority — FAR 1.602-1 <span aria-hidden="true">↗</span></a></li>
             <li><a href="https://www.oge.gov/">U.S. Office of Government Ethics <span aria-hidden="true">↗</span></a></li>
           </ul>
+          <section className="visitor-welcome-login" aria-labelledby="login-gov-heading">
+            <a href="https://login.gov/" className="visitor-welcome-login-logo">
+              <img src="/images/login-gov-logo.svg" alt="Login.gov" width={156} height={24} />
+            </a>
+            <h2 id="login-gov-heading">A government service worth getting to know</h2>
+            <p>I appreciate technology that makes everyday tasks a little easier. Login.gov lets people use one account for secure access to participating government agencies. It’s a practical example of public-service technology focused on the people who use it.</p>
+            <a href="https://login.gov/">Learn more about Login.gov <span aria-hidden="true">↗</span></a>
+          </section>
         </footer>
       </div>
     </dialog>

@@ -102,3 +102,7 @@
 }
 /* Initial reading focus is on the heading, not an interactive control. */
 .visitor-welcome h1:focus { outline: none; }
+.visitor-welcome-login { margin-top: 28px; padding: 24px; background: var(--surface-sunken); border: 1px solid var(--border-strong); }
+.visitor-welcome-login-logo { display: inline-flex; align-items: center; background: #fff; padding: 14px 18px; margin-bottom: 20px; }
+.visitor-welcome-login-logo img { display: block; width: 156px; height: auto; max-width: 100%; }
+.visitor-welcome-login > a:last-child { font: var(--text-small); }

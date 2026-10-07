@@ -36,3 +36,27 @@ Run `node --experimental-strip-types --test tests/visitor-welcome.test.mjs`
 (Node 22.6+), then `npx tsc --noEmit`. For browser checks, open `/resume` with
 Playwright's `page.goto(url, { referer: 'https://fedscoop.com/' })` in a fresh
 context, then verify dismissal, reload, Escape, focus, and mobile scrolling.
+
+## Acquisition learning resources and Login.gov
+
+The resource section explains the lifecycle and distinguishes technical input
+from designated source-selection and contracting authority. Technical personnel
+can participate in acquisition planning and evaluations; the copy does not imply
+that every technical role is excluded from acquisitions or establish an
+individual's involvement from their title.
+
+Sources checked October 7, 2026:
+- https://www.gsa.gov/assisted-acquisition-services/acquisition-process
+- https://www.acquisition.gov/far/7.104
+- https://www.acquisition.gov/far/subpart-15.3 (15.303)
+- https://www.acquisition.gov/far/1.602-1
+- https://login.gov/
+
+The official Login.gov logo is stored at `public/images/login-gov-logo.svg`,
+downloaded unchanged from https://login.gov/assets/img/logo.svg. It identifies
+an external educational resource, not a site sign-in integration or endorsement.
+The official press kit identifies the logo as a GSA mark:
+https://login.gov/docs/login-gov-press-kit.pdf.
+
+Local preview: `/resume?previewWelcome=1` forces the welcome in development,
+including after dismissal. The query parameter has no effect in production.
