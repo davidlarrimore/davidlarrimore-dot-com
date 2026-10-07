@@ -44,7 +44,7 @@ export default function VisitorWelcome() {
           <span>A NOTE FROM DAVID</span>
           <button type="button" onClick={dismiss} aria-label="Close welcome and read résumé" className="visitor-welcome-close">×</button>
         </div>
-        <h1 id="welcome-title" tabIndex={-1} autoFocus>Hi, I’m David.<br />Thanks for stopping by.</h1>
+        <h1 id="welcome-title" tabIndex={-1} autoFocus>Hi, I’m Dave.<br />Thanks for stopping by.</h1>
         <p className="visitor-welcome-intro">If you found your way here through FedScoop, welcome. I appreciate you taking a moment to learn more about me.</p>
         <p>I’m David Larrimore, a technologist who likes to build things, solve useful problems, and help people make sense of technology. This site is a little window into that work: the teams I’ve been part of, the things I’m learning, and the projects I’m still tinkering with.</p>
         <p>There’s a person behind the résumé, too. Outside of work, you’ll find me gaming, experimenting with 3D printing and home projects, or playing tabletop games with family and friends.</p>
