@@ -68,7 +68,7 @@ export default function VisitorWelcome() {
               <img src="/images/login-gov-logo.svg" alt="Login.gov" width={156} height={24} />
             </a>
             <h2 id="login-gov-heading">A government service worth getting to know</h2>
-            <p>I appreciate technology that makes everyday tasks a little easier. Login.gov lets people use one account for secure access to participating government agencies. It’s a practical example of public-service technology focused on the people who use it.</p>
+            <p>Built by government, for the people it serves. Login.gov lets people use one account for secure access to participating government agencies. I appreciate public-service technology that makes everyday tasks a little easier.</p>
             <a href="https://login.gov/">Learn more about Login.gov <span aria-hidden="true">↗</span></a>
           </section>
         </footer>
