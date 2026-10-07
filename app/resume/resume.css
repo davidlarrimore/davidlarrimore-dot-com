@@ -61,3 +61,44 @@
       display: none;
     }
   }
+/* Temporary referral welcome; uses the existing site palette. */
+.visitor-welcome {
+  position: fixed;
+  inset: 0;
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-top: 3px solid var(--accent-hover);
+  box-shadow: 0 24px 100px #0008;
+}
+.visitor-welcome::backdrop { background: #070912db; backdrop-filter: blur(6px); }
+.visitor-welcome-content { padding: clamp(24px, 5vw, 48px); }
+.visitor-welcome-topline { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.visitor-welcome-topline > span { font: 600 11px/1.5 var(--font-mono); letter-spacing: .12em; color: var(--accent-hover); }
+.visitor-welcome-close { flex: 0 0 44px; height: 44px; font-size: 28px; line-height: 1; color: var(--fg-secondary); border: 1px solid var(--border-strong); }
+.visitor-welcome h1 { font: var(--text-h1); letter-spacing: var(--tracking-tight); margin-bottom: 24px; }
+.visitor-welcome p { font: var(--text-body); color: var(--fg-secondary); margin-bottom: 16px; }
+.visitor-welcome .visitor-welcome-intro { color: var(--fg); font: var(--text-body-lg); }
+.visitor-welcome-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 28px 0 32px; }
+.visitor-welcome-writing { font: var(--text-small); padding: 12px 0; }
+.visitor-welcome-resources { border-top: 1px solid var(--border-strong); padding-top: 24px; }
+.visitor-welcome-resources h2 { font: 600 15px/1.5 var(--font-sans); margin-bottom: 8px; }
+.visitor-welcome-resources p, .visitor-welcome-resources li { font: var(--text-small); }
+.visitor-welcome-resources ul { display: grid; gap: 10px; }
+.visitor-welcome-resources a, .visitor-welcome-writing { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 4px; }
+.visitor-welcome :is(a, button):focus-visible { outline: 2px solid var(--accent-hover); outline-offset: 4px; }
+@media (max-width: 480px) {
+  .visitor-welcome-actions { align-items: stretch; flex-direction: column; }
+  .visitor-welcome-actions .ds-btn { white-space: normal; text-align: center; }
+}
+@media print {
+  .visitor-welcome, .visitor-welcome::backdrop { display: none !important; }
+}
+/* Initial reading focus is on the heading, not an interactive control. */
+.visitor-welcome h1:focus { outline: none; }
