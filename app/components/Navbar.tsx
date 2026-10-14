@@ -23,11 +23,10 @@ export default function Navbar() {
     <header
       style={{
         borderBottom: "1px solid var(--border)",
-        background: "rgba(12,15,28,0.85)",
-        backdropFilter: "blur(10px)",
+        background: "var(--bg)",
         position: "sticky",
         top: 0,
-        zIndex: 10,
+        zIndex: 100,
       }}
     >
       <div className="flex items-center justify-between px-5 py-4 md:px-10">
