@@ -1,6 +1,8 @@
 services:
   web:
     build: .
+    # Dockerfile CMD runs the production server for Railway; locally we want hot reload
+    command: ["npm", "run", "dev"]
     ports:
       - "3000:3000"
     env_file:
