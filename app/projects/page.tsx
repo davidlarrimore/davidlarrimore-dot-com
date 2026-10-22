@@ -123,6 +123,19 @@ export default function ProjectsPage() {
               linkCard
             />
             <ProjectCard
+              eyebrow="kubernetes · gitops · local ai"
+              title="Homelab"
+              desc="The Mac Studio homelab that runs my apps and AI tooling: the hardware, the core services (Argo CD, LiteLLM, Prometheus and more), and how it's all put together."
+              tags={["Kubernetes", "Argo CD", "Self-Hosted AI"]}
+              tagVariant="blue"
+              cta="Tour the Lab"
+              ctaHref="https://lab.davidlarrimore.com/"
+              ctaVariant="primary"
+              accentColor="var(--accent)"
+              bannerSrc="/images/homelab-mascot.png"
+              linkCard
+            />
+            <ProjectCard
               eyebrow="in development"
               title="More Projects"
               desc="Additional AI tools, cloud solutions, and software projects in the works — plus a couple of game-dev experiments."
