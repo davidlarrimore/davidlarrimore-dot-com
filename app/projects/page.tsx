@@ -136,14 +136,17 @@ export default function ProjectsPage() {
               linkCard
             />
             <ProjectCard
-              eyebrow="in development"
-              title="More Projects"
-              desc="Additional AI tools, cloud solutions, and software projects in the works — plus a couple of game-dev experiments."
-              tags={["In Development"]}
-              tagVariant="gray"
-              cta="Coming Soon"
-              ctaVariant="ghost"
-              accentColor="var(--fg-muted)"
+              eyebrow="ai · learning resources"
+              title="AI Learning Catalog"
+              desc="A curated collection of AI and generative AI training courses from across the web. Find your next learning opportunity in one place."
+              tags={["AI", "Generative AI", "Learning Resources"]}
+              tagVariant="purple"
+              cta="Explore the Catalog"
+              ctaHref="https://ai-learning-catalog.davidlarrimore.com/"
+              ctaVariant="purple"
+              accentColor="var(--accent2)"
+              bannerSrc="/images/ai-learning-catalog-logo.png"
+              linkCard
             />
           </div>
         </div>
