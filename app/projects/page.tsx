@@ -29,9 +29,9 @@ interface ProjectCardProps {
 
 function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, ctaVariant, accentColor, bannerSrc, linkCard }: ProjectCardProps) {
   const card = (
-    <Card hud>
+    <Card hud className="flex h-full flex-col">
       <div
-        className="relative overflow-hidden mb-5"
+        className="relative shrink-0 overflow-hidden mb-5"
         style={{ height: 100, background: "var(--surface-sunken)", border: "1px solid var(--border)" }}
       >
         <div
@@ -62,17 +62,19 @@ function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, cta
           </Tag>
         ))}
       </div>
-      {linkCard && ctaHref ? (
-        <span className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>{cta}</span>
-      ) : ctaHref ? (
-        <Link href={ctaHref} className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>
-          {cta}
-        </Link>
-      ) : (
-        <button className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`} disabled>
-          {cta}
-        </button>
-      )}
+      <div className="mt-auto">
+        {linkCard && ctaHref ? (
+          <span className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>{cta}</span>
+        ) : ctaHref ? (
+          <Link href={ctaHref} className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`}>
+            {cta}
+          </Link>
+        ) : (
+          <button className={`ds-btn ds-btn-${ctaVariant} ds-btn-sm`} disabled>
+            {cta}
+          </button>
+        )}
+      </div>
     </Card>
   );
 
