@@ -109,10 +109,12 @@
 
 /* White wordmarks need a dark backing, including when the page is printed. */
 .resume-wordmark {
-  width: 304px;
-  max-width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
   background: #0c0f1c;
   border: 1px solid #30364a;
   border-radius: 6px;

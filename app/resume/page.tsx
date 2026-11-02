@@ -35,7 +35,7 @@ export default function ResumePage() {
               <Link href="/projects/resumeChat" className="ds-btn ds-btn-ghost ds-btn-sm">
                 Chat with my Résumé
               </Link>
-              <a href="/api/download-resume" download="resume.pdf" className="ds-btn ds-btn-secondary ds-btn-md">
+              <a href="/api/download-resume" download="David_Larrimore_Resume.pdf" className="ds-btn ds-btn-secondary ds-btn-md">
                 Download PDF
               </a>
             </div>
@@ -91,9 +91,9 @@ export default function ResumePage() {
           </div>
 
           {/* Awards */}
-          <Eyebrow color="var(--fg-muted)">// recent awards</Eyebrow>
+          <Eyebrow color="var(--fg-muted)">// awards & recognition</Eyebrow>
           <div className="flex flex-wrap gap-2">
-            {content.awards.map((a) => (
+            {[...content.awards, ...content.nominations].map((a) => (
               <Tag key={a} variant="blue">
                 {a}
               </Tag>
