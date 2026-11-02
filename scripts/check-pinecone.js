@@ -1,82 +1,25 @@
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
+const assert = require('node:assert/strict');
 const { Pinecone } = require('@pinecone-database/pinecone');
-
-// Initialize Pinecone client
-const initPinecone = async () => {
-  if (!process.env.PINECONE_API_KEY) {
-    throw new Error('PINECONE_API_KEY environment variable not set');
+const chunks = require('./resume_chunks.json');
+const { namespace } = require('../lib/resume-index.json');
+async function main() {
+  const name = process.env.PINECONE_RESUME_INDEX_NAME;
+  if (!name) throw new Error('PINECONE_RESUME_INDEX_NAME is required');
+  const index = new Pinecone().index(name, process.env.PINECONE_RESUME_INDEX_HOST).namespace(namespace);
+  const result = await index.fetch({ ids: chunks.map(c => c._id) });
+  for (const chunk of chunks) {
+    assert.equal(result.records[chunk._id]?.metadata?.text, chunk.text, `Missing or stale record: ${chunk._id}`);
   }
-
-  return new Pinecone({
-    apiKey: process.env.PINECONE_API_KEY,
-  });
-};
-
-// Main function to check Pinecone status
-const main = async () => {
-  try {
-    console.log('Initializing Pinecone client...');
-    const pinecone = await initPinecone();
-    
-    console.log('Fetching list of indexes...');
-    const indexesResponse = await pinecone.listIndexes();
-    
-    // The Pinecone SDK v2+ returns an object with indexes as an array property
-    const indexes = indexesResponse.indexes || [];
-    
-    console.log('\n===== Pinecone Indexes =====');
-    if (!indexes.length) {
-      console.log('No indexes found in your Pinecone account.');
-    } else {
-      console.log(`Found ${indexes.length} index(es):`);
-      for (const index of indexes) {
-        console.log(`\n- Index Name: ${index.name}`);
-        
-        try {
-          // Fetch description
-          const indexDescription = await pinecone.describeIndex(index.name);
-          console.log(`  Status: ${indexDescription.status}`);
-          console.log(`  Dimension: ${indexDescription.dimension}`);
-          console.log(`  Metric: ${indexDescription.metric}`);
-          console.log(`  Host: ${indexDescription.host || 'N/A'}`);
-          
-          // Get index stats
-          const indexInstance = pinecone.Index(index.name);
-          const stats = await indexInstance.describeIndexStats();
-          
-          console.log(`  Total Vector Count: ${stats.totalVectorCount || 0}`);
-          
-          // Handle namespaces if available
-          const namespaces = stats.namespaces ? Object.keys(stats.namespaces) : [];
-          console.log(`  Namespaces: ${namespaces.length ? namespaces.join(', ') : 'default'}`);
-          
-          // Check if this is the index configured in .env
-          const envIndexName = process.env.PINECONE_INDEX_NAME || 'resume-index';
-          if (index.name === envIndexName) {
-            console.log(`  ✅ This is your configured index (PINECONE_INDEX_NAME=${envIndexName})`);
-          }
-        } catch (error) {
-          console.error(`  Error getting details for index ${index.name}:`, error.message);
-        }
-      }
-    }
-    
-    // Check environment variable
-    const envIndexName = process.env.PINECONE_INDEX_NAME || 'resume-index';
-    console.log(`\nYour .env is configured to use index: "${envIndexName}"`);
-    
-    const indexExists = indexes.some(idx => idx.name === envIndexName);
-    if (!indexExists) {
-      console.log(`⚠️ Warning: The index "${envIndexName}" does not exist yet.`);
-      console.log('Run the initialization script to create it:');
-      console.log('  npm run init-pinecone');
-    }
-    
-    console.log('\n===== Pinecone Status Check Complete =====');
-  } catch (error) {
-    console.error('Error checking Pinecone status:', error);
-    process.exit(1);
+  for (const [query, expected] of [
+    ['What results did Dave achieve with the growth intelligence platform at Amivero?', '150%'],
+    ['How did Dave support the acquisition of Amivero by Xpect Solutions?', 'Xpect'],
+    ['What recognition did Dave receive in 2026?', 'National Security 150'],
+  ]) {
+    const response = await index.searchRecords({ query: { topK: 5, inputs: { text: query } }, fields: ['text'] });
+    assert(response.result.hits.some(hit => String(hit.fields.text).includes(expected)), `Retrieval missed ${expected}`);
+    console.log(`Verified semantic retrieval: ${expected}`);
   }
-};
-
-main();
+  console.log(`Verified all ${chunks.length} records in ${name}/${namespace}.`);
+}
+main().catch(error => { console.error(error.message); process.exitCode = 1; });

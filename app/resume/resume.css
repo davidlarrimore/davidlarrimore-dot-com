@@ -106,3 +106,22 @@
 .visitor-welcome-login-logo { display: inline-flex; align-items: center; background: #fff; padding: 14px 18px; margin-bottom: 20px; }
 .visitor-welcome-login-logo img { display: block; width: 156px; height: auto; max-width: 100%; }
 .visitor-welcome-login > a:last-child { font: var(--text-small); }
+
+/* White wordmarks need a dark backing, including when the page is printed. */
+.resume-wordmark {
+  width: 304px;
+  max-width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #0c0f1c;
+  border: 1px solid #30364a;
+  border-radius: 6px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.resume-wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

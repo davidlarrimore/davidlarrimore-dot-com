@@ -7,7 +7,8 @@
     "generate-favicons": "npx sharp -i public/icon.svg -o public/favicon.ico --resize 32 && npx sharp -i public/icon.svg -o public/apple-touch-icon.png --resize 180 && npx sharp -i public/icon.svg -o public/android-chrome-192x192.png --resize 192 && npx sharp -i public/icon.svg -o public/android-chrome-512x512.png --resize 512",
     "init-pinecone": "node scripts/init-pinecone.js",
     "check-pinecone": "node scripts/check-pinecone.js",
-    "csv-to-resume-chunks": "node scripts/csv-to-resume-chunks.js"
+    "csv-to-resume-chunks": "node scripts/csv-to-resume-chunks.js",
+    "generate-resume": "node scripts/generate-resume-content.js"
   },
   "dependencies": {
     "@pinecone-database/pinecone": "^7.1.0",

@@ -80,7 +80,7 @@ Two modes of operation:
    - Each chunk includes metadata: section, organization, role, category, years
    - Retrieved chunks passed to Claude API as targeted context
    - Falls back to basic mode if Pinecone fails
-   - Embedding dimension: 1536 (note: init script uses mock embeddings)
+   - Uses the configured Pinecone integrated embedding model; content revisions use isolated namespaces.
 
 Both modes:
 - Use the Claude Haiku 4.5 model (`claude-haiku-4-5`) via raw `fetch()` calls to the Anthropic Messages API (no SDK)
@@ -139,11 +139,10 @@ Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat A
 ### Pinecone Setup
 
 The RAG mode requires Pinecone initialization:
-1. Resume data stored in `scripts/resume_chunks.csv`
-2. Run `npm run csv-to-resume-chunks` to convert to JSON
-3. Run `npm run init-pinecone` to create index and upload embeddings
-4. **Note**: Current implementation uses mock embeddings in `init-pinecone.js` (line 28)
-   - For production, replace with real embeddings from a model like OpenAI's text-embedding-ada-002
+1. Update the shared content in `lib/resume-content.json`.
+2. Run `npm run generate-resume` to regenerate chatbot markdown, text, CSV, JSON, and the revision namespace.
+3. Run `npm run init-pinecone` to upload using the existing index’s integrated embeddings.
+4. Run `npm run check-pinecone` before deploying the matching code. Previous namespaces are retained for rollback.
 
 ### Resume Chat Guidelines
 

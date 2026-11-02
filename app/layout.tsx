@@ -21,7 +21,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name
+  title: siteConfig.name,
+  description: "Dave Larrimore is a technology executive and hands-on AI engineer with nearly 20 years of experience in enterprise modernization, federal technology leadership, and strategic growth."
 };
 
 export default function RootLayout({

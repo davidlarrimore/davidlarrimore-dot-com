@@ -11,6 +11,7 @@ interface ExperienceItemProps {
   icon?: ReactNode;
   imageSrc?: string;
   imageAlt?: string;
+  imageLayout?: string;
   imageShape?: "circle" | "square";
 }
 
@@ -24,10 +25,11 @@ export default function ResumeExperienceItem({
   imageSrc,
   imageAlt,
   imageShape = "circle",
+  imageLayout,
 }: ExperienceItemProps) {
   return (
     <div className="flex gap-4 mb-8">
-      {imageSrc && (
+      {imageSrc && imageLayout !== "wordmark" && (
         <Avatar
           src={imageSrc}
           alt={imageAlt || `${company} logo`}
@@ -36,7 +38,14 @@ export default function ResumeExperienceItem({
           className={imageShape === "square" ? "ds-avatar-contain" : ""}
         />
       )}
-      <div className="flex-1 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div className="flex-1 min-w-0 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
+        {imageSrc && imageLayout === "wordmark" && (
+          <div className="resume-wordmark">
+            {/* Preserve the full acquisition lockup and its white lettering. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={imageSrc} alt={imageAlt || `${company} logo`} width={1204} height={320} />
+          </div>
+        )}
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
           <div>
             <div style={{ font: "700 16px var(--font-sans)", color: "var(--fg)" }}>

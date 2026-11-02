@@ -1,285 +1,452 @@
 [
   {
-    "_id": "chunk_1",
-    "text": "AI & Machine Learning: AI governance, generative AI, large language models (LLMs), Responsible Use, Facial Recognition Technology (FRT), AI automation",
-    "section": "Technical Expertise",
-    "sequence": 1,
-    "category": "Skills",
-    "subcategory": "AI & Machine Learning",
-    "years": "2010 - 2025"
+    "_id": "profile",
+    "text": "Technology Executive | AI Engineering | Strategic Growth\nI’m a senior technology executive and hands-on engineer with nearly 20 years of experience building enterprise platforms, driving AI innovation, and leading technology transformation across government and industry. As a former DHS Chief Technology Officer and Chief AI Officer, I oversaw a $10 billion federal IT portfolio and delivered AI capabilities at enterprise scale. I combine engineering expertise with strategic growth, business development, and executive leadership to turn emerging technologies into measurable mission and business outcomes.\nI believe effective technology leadership requires understanding the entire lifecycle of innovation: identifying the problem, designing the solution, building the technology, earning organizational adoption, and delivering measurable value. My career has let me approach that lifecycle as a software engineer, enterprise architect, federal CTO, AI executive, commercial solution engineer, and senior leader in a growing government technology company.",
+    "section": "Profile",
+    "category": "Profile",
+    "sequence": 1
   },
   {
-    "_id": "chunk_7",
-    "text": "Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Managed a $15M budget and over 100 federal employees. Worked directly with major programs across the department to resolve risks and issues by applying problem-solving techniques, risk management strategies, collaboration, and technical oversight. Managed Enterprise services.",
-    "section": "Professional Experience",
-    "sequence": 1,
-    "category": "Job Description",
-    "subcategory": "Project/Program Management, Senior Executive",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
+    "_id": "contact",
+    "text": "David Larrimore: davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com",
+    "section": "Contact",
+    "category": "Contact",
+    "sequence": 2
   },
   {
-    "_id": "chunk_8",
-    "text": "Created DHS Office of the Chief AI Officer organization, including a nationwide hiring initiative that hired 50 AI experts from private sector, government, and academia.",
+    "_id": "experience_0",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nLed technology innovation, solution engineering, and AI transformation initiatives, combining hands-on technical leadership with business development, organizational growth, and strategic planning.",
     "section": "Professional Experience",
-    "sequence": 1,
+    "category": "Professional Experience",
+    "sequence": 3,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_0_outcome_0",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nArchitected and developed secure enterprise AI infrastructure, generative AI chatbots, and reusable data and AI platforms supporting internal operations and federal customer missions.",
+    "section": "Professional Experience",
     "category": "Outcome",
-    "subcategory": "Organization Building",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
+    "sequence": 4,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
   },
   {
-    "_id": "chunk_13",
-    "text": "As a Lead Solution Engineer in one of the fastest growing business units (Global Public Sector) in Salesforce, he provided strategic and tactical account support ranging from small civilian agencies to entire departments blending my federal experience with adaptable technical skills.. Developed Proofs of Concept for enterprise grade implementations supporting client requirements. Followed human centered design practices and SecDevOps create tailored demonstrations and shareable assets for enterprise use. Led internal Q&A sessions to help federal sales organization understand federal laws, policies, standards, and best practices. Worked with government Solution Integrators (SI's) and other partners to ensure solutions led to customer success.Provided technical leadership on 52 different opportunities since 2019, totaling over $10 million in revenue.",
+    "_id": "experience_0_outcome_1",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nDeveloped tailored innovation plans with program delivery leadership, implementing mission-driven AI and automation technologies across approximately 50% of active projects within existing contracts.",
     "section": "Professional Experience",
-    "sequence": 1,
-    "category": "Job Description",
-    "subcategory": "Apex, Software Development, CI/CD, DevOps, Salesforce Developer Project Management, ",
+    "category": "Outcome",
+    "sequence": 5,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_0_outcome_2",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nLed company-wide AI literacy, upskilling, and reskilling initiatives, engaging more than 40% of the workforce and empowering employees to develop AI solutions that improved productivity and operational efficiency.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 6,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_0_outcome_3",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nArchitected and developed a proprietary AI-powered growth intelligence platform that automated opportunity discovery, evaluation, and proposal workflows, increasing the business development pipeline by 150% and reducing proposal development time by 60%.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 7,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_0_outcome_4",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nLed technical growth and capture efforts that converted greenfield Data and AI opportunities into contract wins through customer engagement, technical demonstrations and challenges, proposal development, and oral presentations.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 8,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_0_outcome_5",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nSupported Amivero’s successful acquisition by Xpect Solutions, a NewSpring Holdings platform company, in 2026 through executive management briefings and technology due diligence. Executed an AI strategy that strengthened the company’s capabilities and market differentiation.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 9,
+    "organization": "Amivero",
+    "role": "Senior Vice President, Solution Engineering",
+    "years": "2025 — Present"
+  },
+  {
+    "_id": "experience_1",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nProvided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Managed a $15M budget and over 100 federal employees.",
+    "section": "Professional Experience",
+    "category": "Professional Experience",
+    "sequence": 10,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_1_outcome_0",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nHelped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 11,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_1_outcome_1",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nLed development and enterprise deployment of a generative AI chatbot serving approximately 20,000 DHS personnel.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 12,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_1_outcome_2",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nDeveloped and implemented department-wide AI governance policies, standards, and workforce training for responsible adoption of generative AI and facial recognition.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 13,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_1_outcome_3",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nNegotiated a department-wide Login.gov enterprise agreement, generating more than $2.5 million in cost avoidance and establishing a unified authentication capability for external-facing services.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 14,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_1_outcome_4",
+    "text": "Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)\nDirected enterprise platforms including secure DevSecOps toolchains, generative AI applications, and information-sharing solutions.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 15,
+    "organization": "U.S. Department of Homeland Security",
+    "role": "Chief Technology and AI Officer",
+    "years": "2021 — 2025"
+  },
+  {
+    "_id": "experience_2",
+    "text": "Lead Solution Engineer at Salesforce (2019 — 2021)\nProvided technical solution engineering, strategic account engagement, and business development in Salesforce Global Public Sector, combining federal leadership experience with commercial solution development.",
+    "section": "Professional Experience",
+    "category": "Professional Experience",
+    "sequence": 16,
     "organization": "Salesforce",
     "role": "Lead Solution Engineer",
-    "years": 2019
+    "years": "2019 — 2021"
   },
   {
-    "_id": "chunk_14",
-    "text": "As the ICE CTO, he managed all enterprise technology functions (Enterprise Architecture, Data Architecture, Vendor Management), as well as defined and led the technology culture change of a 400-person organization and half a billion dollars in IT Spend. Worked with individual systems teams to plan cloud migration, migrate to Open Source technologies, and adopt a DevOps \"toolchain\".",
+    "_id": "experience_2_outcome_0",
+    "text": "Lead Solution Engineer at Salesforce (2019 — 2021)\nProvided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.",
     "section": "Professional Experience",
-    "sequence": 1,
-    "category": "Job Description",
-    "organization": "DHS/ICE",
-    "role": "Chief Technology Officer",
-    "years": 2016
-  },
-  {
-    "_id": "chunk_15",
-    "text": "Implemented enterprise-wide multi-cloud General Support System (GSS) leveraging Amazon Web Services and Microsoft Azure as well as an enterprise DevSecOps toolchain to enable every OCIO development team with distributed CI/CD, Test Automation, and Cloud Orchestration capabilities.",
-    "section": "Professional Experience",
-    "sequence": 1,
     "category": "Outcome",
-    "subcategory": "Cloud, Agile, DevOps, Project Management, CI/CD",
-    "organization": "DHS/ICE",
-    "role": "Chief Technology Officer",
-    "years": 2016
+    "sequence": 17,
+    "organization": "Salesforce",
+    "role": "Lead Solution Engineer",
+    "years": "2019 — 2021"
   },
   {
-    "_id": "chunk_19",
-    "text": "As the Cloud Strategist in the OCIO Cloud Strategy and Policy division, I was responsible for planning and executing the department-wide strategy for adopting secure commercial cloud solutions. Worked directly with USDA Customer Agencies to identify common commercial cloud service needs and provide necessary expertise. Engaged USDA enterprise shared service providers to evaluate and certify commercial cloud ready shared services that can be leveraged by all USDA customer Agencies. Built coalitions with department level engineering, networking, and security leadership to develop a common-sense approach to incrementally adopting commercial cloud solutions. Led working groups and integrated project teams to develop enterprise cloud policy and guidance that identified areas of trust and flexibility for USDA customer Agencies to drastically reduce the acquisition and securing of commercial cloud solutions while still ensuring security and compliance.",
+    "_id": "experience_2_outcome_1",
+    "text": "Lead Solution Engineer at Salesforce (2019 — 2021)\nDeveloped tailored demonstrations and enterprise proofs of concept using human-centered design and DevSecOps practices.",
     "section": "Professional Experience",
-    "sequence": 1,
-    "category": "Job Description",
-    "subcategory": "Project/Program Management, Cloud, Partnership",
-    "organization": "USDA",
+    "category": "Outcome",
+    "sequence": 18,
+    "organization": "Salesforce",
+    "role": "Lead Solution Engineer",
+    "years": "2019 — 2021"
+  },
+  {
+    "_id": "experience_2_outcome_2",
+    "text": "Lead Solution Engineer at Salesforce (2019 — 2021)\nLed internal Q&A sessions on federal laws, policies, standards, and best practices.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 19,
+    "organization": "Salesforce",
+    "role": "Lead Solution Engineer",
+    "years": "2019 — 2021"
+  },
+  {
+    "_id": "experience_2_outcome_3",
+    "text": "Lead Solution Engineer at Salesforce (2019 — 2021)\nPartnered with account executives, technical specialists, and systems integrators to translate customer challenges into practical solutions.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 20,
+    "organization": "Salesforce",
+    "role": "Lead Solution Engineer",
+    "years": "2019 — 2021"
+  },
+  {
+    "_id": "experience_3",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nLed enterprise technology strategy, architecture, and modernization across a 400-person IT organization with approximately $500 million in annual technology spending, spanning enterprise and data architecture, cloud strategy, and vendor management.",
+    "section": "Professional Experience",
+    "category": "Professional Experience",
+    "sequence": 21,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_3_outcome_0",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nEstablished a multi-cloud strategy leveraging AWS and Microsoft Azure.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 22,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_3_outcome_1",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nMigrated 87 production systems and 133 environments to the cloud within six months, resulting in compute cost savings of up to 75%.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 23,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_3_outcome_2",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nEstablishment of an enterprise Application Platform as a Service capability enabled no-code and low-code rapid application development.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 24,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_3_outcome_3",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nLed Agile engineering and DevSecOps initiatives that reduced resource provisioning lead times by 99%, doubled deployment frequency, and doubled Agile team maturity.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 25,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_3_outcome_4",
+    "text": "Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)\nEstablished an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration capabilities.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 26,
+    "organization": "U.S. Immigration and Customs Enforcement",
+    "role": "Chief Technology Officer (CTO)",
+    "years": "2016 — 2019"
+  },
+  {
+    "_id": "experience_4",
+    "text": "Cloud Strategist at U.S. Department of Agriculture (2016)\nSupported department-wide adoption of secure commercial cloud technologies through enterprise policies, shared-service strategies, and acquisition guidance.",
+    "section": "Professional Experience",
+    "category": "Professional Experience",
+    "sequence": 27,
+    "organization": "U.S. Department of Agriculture",
     "role": "Cloud Strategist",
-    "years": 2016
+    "years": "2016"
   },
   {
-    "_id": "chunk_20",
-    "text": "As a Branch Chief, he was responsible for managing a team of government project managers and contractors to deliver critical Agency cloud digital services, analytics and data management initiatives. He supervised team of 35 to deliver digital services (Custom development and Salesforce) and data management solutions for the General Services Administration. He planned and implemented migration of all division projects from waterfall to agile project management (Scrum, Kanban, and SAFe); successfully decreasing time to delivery by 50%, as well as decreased management overhead costs on all Agile projects by over 15%. He performed financial, budget, asset, and contract management. He migrated to cloud Infrastructure as a Service (IaaS), which not only decreased infrastructure and operations costs by 50%, but also drastically increased our development velocity.",
+    "_id": "experience_4_outcome_0",
+    "text": "Cloud Strategist at U.S. Department of Agriculture (2016)\nWorked with engineering, cybersecurity, and agency leadership to develop a practical approach to cloud adoption.",
     "section": "Professional Experience",
-    "sequence": 1,
-    "category": "Job Description",
-    "subcategory": "Business Intelligence, Cloud, Data Warehousing, SecDevOps, Agile",
+    "category": "Outcome",
+    "sequence": 28,
+    "organization": "U.S. Department of Agriculture",
+    "role": "Cloud Strategist",
+    "years": "2016"
+  },
+  {
+    "_id": "experience_4_outcome_1",
+    "text": "Cloud Strategist at U.S. Department of Agriculture (2016)\nEvaluated cloud-ready shared services and helped agencies identify common commercial cloud needs.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 29,
+    "organization": "U.S. Department of Agriculture",
+    "role": "Cloud Strategist",
+    "years": "2016"
+  },
+  {
+    "_id": "experience_4_outcome_2",
+    "text": "Cloud Strategist at U.S. Department of Agriculture (2016)\nDeveloped cloud policy and guidance that balanced enterprise security and compliance with agency flexibility.",
+    "section": "Professional Experience",
+    "category": "Outcome",
+    "sequence": 30,
+    "organization": "U.S. Department of Agriculture",
+    "role": "Cloud Strategist",
+    "years": "2016"
+  },
+  {
+    "_id": "earlier_0",
+    "text": "Analytics Branch Chief at General Services Administration (2011–2016). Led federal analytics initiatives spanning data management, business intelligence, technology strategy, and organizational leadership.",
+    "section": "Earlier Career",
+    "category": "Earlier Career",
+    "sequence": 31,
     "organization": "General Services Administration",
     "role": "Analytics Branch Chief",
-    "years": 2011
+    "years": "2011–2016"
   },
   {
-    "_id": "chunk_23",
-    "text": "Presidential Rank Award, 2025 (Nominated)",
-    "section": "Award Received",
-    "sequence": 1,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2025
-  },
-  {
-    "_id": "chunk_2",
-    "text": "Cloud Computing: AWS, Microsoft Azure, multi-cloud architecture, cloud security, cloud cost optimization",
-    "section": "Technical Expertise",
-    "sequence": 2,
-    "category": "Skills",
-    "subcategory": "Cloud Computing",
-    "years": "2011 - 2025"
-  },
-  {
-    "_id": "chunk_9",
-    "text": "Led development and implementation of LLM powered Generative AI Chatbot used by 20,000 DHS personnel.",
-    "section": "Professional Experience",
-    "sequence": 2,
-    "category": "Outcome",
-    "subcategory": "AI Implementation",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
-  },
-  {
-    "_id": "chunk_16",
-    "text": "Managed the migration of 87 production systems and 133 total environments to cloud in six months providing up-to 75% cost savings on compute costs.",
-    "section": "Professional Experience",
-    "sequence": 2,
-    "category": "Outcome",
-    "subcategory": "Cloud Migration",
-    "organization": "DHS/ICE",
-    "role": "Chief Technology Officer",
-    "years": 2016
-  },
-  {
-    "_id": "chunk_21",
-    "text": "As a Program Analyst working under the Chief Financial Officer (CFO) of the Department of Homeland Security (DHS), he was involved in several programs ranging from small financial applications to Category 1 Acquisitions. He worked with external agencies to collaborate and identify opportunities to share software that lead to saving the Federal Law Enforcement Training Center (FLETC) over $300,000 in developments costs (2010). He aligned all milestones and schedules with DHS Acquisition, Systems Engineering Life Cycle (SELC), and Enterprise Architecture (EA) processes and presenting them to program leadership. He managed the Test and Evaluation (T&E) of the TASC program, including: coordinating with internal and external groups, establishing and leading the TASC T&E Working Group (WG), authoring T&E documentation, planning the T&E IMS, and reporting up to management on T&E strategy and status. He authored and coordinated Acquisition documentation such as PWS and IGCE requests.",
-    "section": "Professional Experience",
-    "sequence": 2,
-    "category": "Job Description",
-    "subcategory": "Project/Program Management, ERP, Financial Systems, Oracle",
+    "_id": "earlier_1",
+    "text": "IT Program Analyst at Department of Homeland Security (2009–2011). Supported federal IT programs, enterprise IT management, and government technology operations.",
+    "section": "Earlier Career",
+    "category": "Earlier Career",
+    "sequence": 32,
     "organization": "Department of Homeland Security",
     "role": "IT Program Analyst",
-    "years": 2009
+    "years": "2009–2011"
   },
   {
-    "_id": "chunk_24",
-    "text": "GovExec The Federal 100 Award, 2025",
-    "section": "Award Received",
-    "sequence": 2,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2025
-  },
-  {
-    "_id": "chunk_3",
-    "text": "Software Development & Engineering: Open Source, Python, Java, Node.js, Apex (SFDC), SQL, API development, database architecture, full-stack development",
-    "section": "Technical Expertise",
-    "sequence": 3,
-    "category": "Skills",
-    "subcategory": "Software Development & Engineering",
-    "years": "2012 - 2025"
-  },
-  {
-    "_id": "chunk_10",
-    "text": "Developed and implemented department-wide policies and training programs to ensure the safe and responsible adoption of AI technologies, including facial recognition and generative AI.",
-    "section": "Professional Experience",
-    "sequence": 3,
-    "category": "Outcome",
-    "subcategory": "Policy Development",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
-  },
-  {
-    "_id": "chunk_17",
-    "text": "Developed strategy and led IPT to implement enterprise Application Platform as a Service capability (APaaS) to enable no-code/low-code Rapid Application Development (RAD).",
-    "section": "Professional Experience",
-    "sequence": 3,
-    "category": "Outcome",
-    "subcategory": "Platform Strategy, ServiceNow",
-    "organization": "DHS/ICE",
-    "role": "Chief Technology Officer",
-    "years": 2016
-  },
-  {
-    "_id": "chunk_22",
-    "text": "As the lead software engineer, he supported the migration, certification & accreditation (C&A), and operations and maintenance (O&M) of the DHS CFO�s Treasury Information Executive Repository (TIER). He served as the contractor implementation manager for the project; authoring change requests with all supporting documentation, vetting change requests through all required channels, and presenting the change requests to the DHS infrastructure change control board (ICCB) for approval.He coordinated all change management practices as well as navigated the complex enterprise configuration management structure of DHS for all system changes, hardening, documentation, security, which resolved all compliance deficiencies as well as section 508 compliant (2009) for systems that I managed. He developed new lightweight documentation to support the operations and maintenance of the application that lead to the overall decrease in system outages (30%), as well as better support auditing, testing, and CM practices.",
-    "section": "Professional Experience",
-    "sequence": 3,
-    "category": "Job Description",
-    "subcategory": "Oracle, SQL, P/SQL, Java J2EE, STRUTS, ModSQL. Software Development, Database Management",
+    "_id": "earlier_2",
+    "text": "Software Engineer at Aspex, Inc. (2008–2009). Built the software engineering foundation that continues to inform my architecture, product development, and leadership.",
+    "section": "Earlier Career",
+    "category": "Earlier Career",
+    "sequence": 33,
     "organization": "Aspex, Inc.",
     "role": "Software Engineer",
-    "years": 2008
+    "years": "2008–2009"
   },
   {
-    "_id": "chunk_25",
-    "text": "Under Secretary's Award for Special Achievement, 2024",
-    "section": "Award Received",
-    "sequence": 3,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2024
-  },
-  {
-    "_id": "chunk_4",
-    "text": "Agile & DevSecOps: Scaled Agile Framework (SAFe), CI/CD pipelines, test automation, Kubernetes, Docker, Infrastructure as Code (IaC)",
+    "_id": "expertise_0",
+    "text": "Artificial Intelligence & Intelligent Automation: Generative AI, large language models, AI governance, responsible AI, enterprise AI platforms, AI-powered applications, intelligent automation, AI orchestration, and retrieval-augmented generation.",
     "section": "Technical Expertise",
-    "sequence": 4,
-    "category": "Skills",
-    "subcategory": "Agile & DevSecOps",
-    "years": "2013 - 2025"
+    "category": "Technical Expertise",
+    "sequence": 34
   },
   {
-    "_id": "chunk_11",
-    "text": "Led negotiation and awarded Enterprise User Agreement with Login.gov that has provided over $2.5M in cost avoidance and provided enterprise mechanism to onboard all DHS external onto a unified authentication services providing a streamlined user experience.",
-    "section": "Professional Experience",
-    "sequence": 4,
-    "category": "Outcome",
-    "subcategory": "Vendor Management",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
-  },
-  {
-    "_id": "chunk_18",
-    "text": "Implemented enterprise Agile coaching and DevSecOps tools strategy that reduced lead and delivery time on provisioning of new resources by 99%, doubled deployment frequency, and doubled Agile team maturity.",
-    "section": "Professional Experience",
-    "sequence": 4,
-    "category": "Outcome",
-    "subcategory": "Process Improvement",
-    "organization": "DHS/ICE",
-    "role": "Chief Technology Officer",
-    "years": 2016
-  },
-  {
-    "_id": "chunk_26",
-    "text": "Washington Exec, Pinnacle Cloud Executive of the Year, 2024",
-    "section": "Award Received",
-    "sequence": 4,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2024
-  },
-  {
-    "_id": "chunk_5",
-    "text": "Data Architecture & Analytics: Big Data (Hadoop, Hortonworks), Business Intelligence (Tableau, MicroStrategy), Data Warehousing, SQL, MongoDB",
+    "_id": "expertise_1",
+    "text": "Software Engineering & Product Development: Application architecture, Python, JavaScript, Java, Node.js, API development, full-stack engineering, distributed systems, open-source technologies, and modern product development.",
     "section": "Technical Expertise",
-    "sequence": 5,
-    "category": "Skills",
-    "subcategory": "Data Architecture & Analytics",
-    "years": "2014 - 2025"
+    "category": "Technical Expertise",
+    "sequence": 35
   },
   {
-    "_id": "chunk_12",
-    "text": "Managed Enterprise Project/Program Management and Software Development platform, increasing adoption across the department by over 300%.",
-    "section": "Professional Experience",
-    "sequence": 5,
-    "category": "Outcome",
-    "subcategory": "Product Management",
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2021
-  },
-  {
-    "_id": "chunk_27",
-    "text": "Washington Exec, Top Exec to Watch, 2024",
-    "section": "Award Received",
-    "sequence": 5,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2024
-  },
-  {
-    "_id": "chunk_6",
-    "text": "IT Governance & Enterprise Architecture: Technical reference models, IT portfolio management, Automated Governance, IT acquisition strategy",
+    "_id": "expertise_2",
+    "text": "Cloud & Platform Engineering: AWS, Microsoft Azure, multi-cloud architecture, Kubernetes, Docker, infrastructure as code, cloud security, DevSecOps, CI/CD automation, and enterprise platform engineering.",
     "section": "Technical Expertise",
-    "sequence": 6,
-    "category": "Skills",
-    "subcategory": "IT Governance & Enterprise Architecture",
-    "years": "2015 - 2025"
+    "category": "Technical Expertise",
+    "sequence": 36
   },
   {
-    "_id": "chunk_28",
-    "text": "Secretaries Award for Champion of Equity",
-    "section": "Award Received",
-    "sequence": 6,
-    "organization": "Department of Homeland Security",
-    "role": "Chief Technology and AI Officer",
-    "years": 2023
+    "_id": "expertise_3",
+    "text": "Data Architecture & Analytics: Enterprise data architecture, relational databases, data integration, data pipelines, business intelligence, and analytics platforms that make organizational data accessible and actionable.",
+    "section": "Technical Expertise",
+    "category": "Technical Expertise",
+    "sequence": 37
+  },
+  {
+    "_id": "expertise_4",
+    "text": "Technology Strategy & Governance: Enterprise architecture, IT modernization, technical portfolio management, technology investment strategy, AI governance, responsible technology adoption, and digital transformation.",
+    "section": "Technical Expertise",
+    "category": "Technical Expertise",
+    "sequence": 38
+  },
+  {
+    "_id": "expertise_5",
+    "text": "Strategic Growth & Executive Leadership: Technical business development, federal capture support, solution engineering, opportunity shaping, customer engagement, technical proposals, oral presentations, workforce transformation, organizational leadership, and M&A technology due diligence.",
+    "section": "Technical Expertise",
+    "category": "Technical Expertise",
+    "sequence": 39
+  },
+  {
+    "_id": "awards",
+    "text": "National Security 150 — 2026\nDHS Secretary’s Silver Medal — 2025\nFederal 100 Award — 2025\nDHS Under Secretary’s Award for Special Achievement — 2024\nWashingtonExec Pinnacle Award, Cloud Executive of the Year — 2024\nWashingtonExec Top Exec to Watch — 2024\nDHS Secretary’s Award for Champion of Equity — 2023",
+    "section": "Awards",
+    "category": "Awards",
+    "sequence": 40
+  },
+  {
+    "_id": "nominations",
+    "text": "Affirm Leadership Awards, Emerging Visionary — 2025 (Nominated)\nPresidential Rank Award — 2025 (Nominated)",
+    "section": "Award Nominations",
+    "category": "Award Nominations",
+    "sequence": 41
+  },
+  {
+    "_id": "focus_0",
+    "text": "AI Engineering & Innovation: I build AI systems that solve real problems. From generative AI and intelligent automation to secure enterprise platforms and responsible governance, I help organizations move beyond experimentation and make emerging technology practical, secure, and valuable.",
+    "section": "Focus",
+    "category": "Focus",
+    "sequence": 42
+  },
+  {
+    "_id": "focus_1",
+    "text": "Technology Leadership & Transformation: I’ve led engineering teams and enterprise transformation across government and industry. Successful transformation takes strong teams, a clear strategy, an understanding of organizational culture, and the ability to turn ambitious goals into executable plans.",
+    "section": "Focus",
+    "category": "Focus",
+    "sequence": 43
+  },
+  {
+    "_id": "focus_2",
+    "text": "Strategic Growth & Business Development: I connect technology with business strategy through federal sales, technical capture, customer engagement, and differentiated solutions. My experience includes opportunity shaping, executive management briefings, and M&A technology due diligence.",
+    "section": "Focus",
+    "category": "Focus",
+    "sequence": 44
+  },
+  {
+    "_id": "focus_3",
+    "text": "Hands-On Engineering & Product Development: I’ve never stopped being an engineer. I design architectures, write code, and build applications, exploring distributed systems, cloud-native infrastructure, AI orchestration, automation, and data platforms. Staying hands-on is part of being an effective technology leader.",
+    "section": "Focus",
+    "category": "Focus",
+    "sequence": 45
+  },
+  {
+    "_id": "approach_0",
+    "text": "Strategy Is Important. Execution Is Everything.: A great technology strategy should be ambitious enough to change what’s possible and practical enough to implement. That requires understanding the technology, the organization, and the people who depend on the outcome. Sometimes the greatest improvements come from simplifying processes, reusing proven capabilities, or removing unnecessary complexity.",
+    "section": "Leadership Approach",
+    "category": "Leadership Approach",
+    "sequence": 46
+  },
+  {
+    "_id": "approach_1",
+    "text": "Build Capabilities, Not Just Projects: A successful project solves an immediate problem. A well-designed platform can help an organization solve an entire class of problems. I look for opportunities to create reusable AI infrastructure, development platforms, automation, and shared services, while being deliberate about where standardization creates value beyond the original use case.",
+    "section": "Leadership Approach",
+    "category": "Leadership Approach",
+    "sequence": 47
+  },
+  {
+    "_id": "approach_2",
+    "text": "Make Innovation Accessible: Transformation succeeds when people across an organization can participate. AI literacy, workforce development, and practical education help the people closest to a problem apply technology to their work. My role is to create the environment, tools, and guardrails that empower them to innovate responsibly.",
+    "section": "Leadership Approach",
+    "category": "Leadership Approach",
+    "sequence": 48
+  },
+  {
+    "_id": "approach_3",
+    "text": "Connect Technology to Outcomes: Complexity is never the objective. What matters is whether a solution improves customer experience, reduces operational friction, accelerates delivery, or creates new opportunities. Effective technology leaders move between vision, architecture, engineering, organizational change, and measurable results.",
+    "section": "Leadership Approach",
+    "category": "Leadership Approach",
+    "sequence": 49
+  },
+  {
+    "_id": "beyond_work",
+    "text": "Technology has always been both my profession and my hobby. I’m a lifelong gamer, from classic RPGs and strategy games to first-person shooters and MMOs. I enjoy exploring game engines and how interactive experiences bring together technology, design, and storytelling. I also enjoy Dungeons & Dragons, 3D printing, home automation, electronics, and experimenting with development tools. Whether I’m building an AI application or a home project, I’m usually learning something new.",
+    "section": "Beyond Work",
+    "category": "Beyond Work",
+    "sequence": 50
+  },
+  {
+    "_id": "short_bio",
+    "text": "Dave Larrimore is a technology executive, AI engineer, and former federal Chief Technology Officer with nearly 20 years of experience driving enterprise modernization, technology innovation, and business growth. He has served in senior leadership roles at DHS and ICE, overseeing large-scale technology portfolios and advancing enterprise cloud and AI capabilities. As Senior Vice President of Solution Engineering at Amivero, he combined hands-on AI engineering with technology strategy and business development. His work included enterprise AI platforms and proprietary automation that increased the business development pipeline by 150% and reduced proposal development time by 60%. He also supported executive management briefings and technology due diligence during Amivero’s acquisition by Xpect Solutions in 2026. Dave remains an active technologist, building software and exploring AI, product engineering, and organizational transformation.",
+    "section": "Short Biography",
+    "category": "Short Biography",
+    "sequence": 51
   }
 ]

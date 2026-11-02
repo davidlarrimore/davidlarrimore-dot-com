@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Pinecone } from "@pinecone-database/pinecone";
 import fs from 'fs';
 import path from 'path';
+import resumeIndex from '@/lib/resume-index.json';
+import content from '@/lib/resume-content.json';
 
 // Initialize Pinecone client
 const initPinecone = async () => {
@@ -26,7 +28,7 @@ const getRelevantResumeChunks = async (query: string) => {
         process.env.PINECONE_RESUME_INDEX_NAME || "davidlarrimore-resume",
         process.env.PINECONE_RESUME_INDEX_HOST
       )
-      .namespace("default");
+      .namespace(resumeIndex.namespace);
 
     const response = await namespace.searchRecords({
       query: {
@@ -39,6 +41,7 @@ const getRelevantResumeChunks = async (query: string) => {
         "organization",
         "role",
         "category",
+        "subcategory",
         "years",
       ],
     });
@@ -170,46 +173,19 @@ export async function POST(request: NextRequest) {
       try {
         console.log("Using RAG approach with Pinecone retrieval");
         const result = await getRelevantResumeChunks(latestUserMessage);
-        const relevantContext = result.text;
-        console.log("Relevant context from Pinecone:", relevantContext);
+        if (!result.text.trim()) throw new Error("No resume context retrieved");
         retrievedChunks = result.chunks;
+        const career = content.experience.map(role => `${role.period}: ${role.title} at ${role.company}`).join("\n");
+        systemPrompt = `You are a helpful assistant answering questions about David Larrimore. Use only the supplied facts; do not invent accomplishments or treat nominations as awards won.
 
-        console.log("Relevant context from Pinecone:", relevantContext);
-        // Use retrieved context if available, otherwise fall back to full resume
+        Current career overview:
+        ${career}
 
-        systemPrompt = `
-        You are a knowledgeable advocate for David Larrimore. You know him well professionally and are genuinely enthusiastic about his experience and accomplishments. Your goal is to help people understand what makes Dave an exceptional technologist and leader. Be conversational, confident, and engaging - like you're having a natural conversation about a colleague you respect and admire.
+        Retrieved resume context:
+        ${result.text}
 
-        Here is what you know about David Larrimore:
-
-        Personal Background:
-        - Born in 1983, lives outside of Washington DC with his wife and three children
-        - Graduated from Salisbury University in 2005 with a degree in Visual Communications (Art)
-        - Passionate about 3D printing, Brazilian Ju-Jitsu, tabletop games like D&D, and video games
-
-        Professional Summary:
-        - Senior Executive Technologist with 15+ years of expertise in IT modernization, AI strategy, cloud computing, and enterprise technology transformation
-        - Proven ability to develop and implement cutting-edge technology solutions, optimize IT investments, and drive innovation at scale
-        - Passionate about AI, Product Development, and Human Centered Design
-
-        Career Highlights:
-        - 2021 - Present: Chief Technology Officer (CTO) and Chief AI Officer (CAIO) at Department of Homeland Security
-        - 2019 - 2021: Lead Solution Engineer at Salesforce
-        - 2016 - 2019: Chief Technology Officer (CTO) at DHS Immigration and Customs Enforcement
-        - 2016: Cloud Strategist at USDA
-        - 2011 - 2016: Analytics Branch Chief at General Services Administration
-        - 2009 - 2011: IT Program Analyst at Department of Homeland Security
-        - 2008 - 2009: Software Engineer at Aspex, Inc.
-        - 2005 - 2009: Helpdesk Technician and Database Administrator at Kennedy Krieger Institute
-
-        Additional Context:
-        ${relevantContext}
-
-        Guidelines for your responses:
-        ${RESUME_GUIDELINES}
-
-        If asked about something outside Dave's professional background or shared personal details, respond naturally: "That's not something I'm familiar with from Dave's background. I'd be happy to tell you about his work in AI, cloud modernization, or his experience as CTO at DHS. What interests you most?"
-        `;
+        Guidelines:
+        ${RESUME_GUIDELINES}`;
       } catch (error) {
         console.error("Error with RAG implementation:", error);
         // Fall back to basic mode if RAG fails
@@ -229,11 +205,6 @@ export async function POST(request: NextRequest) {
         You are a knowledgeable advocate for David Larrimore. You know him well professionally and are genuinely enthusiastic about his experience and accomplishments. Your goal is to help people understand what makes Dave an exceptional technologist and leader. Be conversational, confident, and engaging - like you're having a natural conversation about a colleague you respect and admire.
 
         Here is what you know about David Larrimore:
-
-        Personal Background:
-        - Born in 1983, lives outside of Washington DC with his wife and three children
-        - Graduated from Salisbury University in 2005 with a degree in Visual Communications (Art)
-        - Passionate about 3D printing, Brazilian Ju-Jitsu, tabletop games like D&D, and video games
 
         Professional Background and Resume Details:
         ${RESUME_CONTEXT}

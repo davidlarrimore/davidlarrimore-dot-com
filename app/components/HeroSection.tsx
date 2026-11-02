@@ -68,8 +68,7 @@ export default function HeroSection() {
             className="mx-auto md:mx-0"
             style={{ font: "var(--text-body-lg)", color: "var(--fg-secondary)", marginBottom: 32, maxWidth: 520 }}
           >
-            I build modern digital experiences and lead the teams that ship them — with a lifelong pull toward
-            games, prototypes, and emerging tech.
+            I build technology, lead teams, and turn complex challenges into practical solutions.
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
             <Link

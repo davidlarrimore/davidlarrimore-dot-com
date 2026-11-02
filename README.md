@@ -70,10 +70,16 @@ Ask questions about my professional experience, skills, and background. The chat
 To set up the Pinecone vector database for the RAG feature:
 
 ```bash
-npm run csv-to-resume-chunks  # Convert scripts/resume_chunks.csv to JSON
-npm run init-pinecone         # Create the index and upload embeddings
-npm run check-pinecone        # Verify the setup
+npm run generate-resume      # Generate markdown, text, CSV, JSON, and namespace from lib/resume-content.json
+npm run init-pinecone         # Upload text using the existing index’s integrated embedding model
+npm run check-pinecone        # Verify every record and representative semantic searches
 ```
+
+Resume content is maintained in `lib/resume-content.json`, shared by the homepage and resume page. The generator produces the full-context chatbot markdown and RAG records together. Replace `public/files/resume.pdf` with the supplied PDF when updating the downloadable resume.
+
+The Pinecone index must already exist with integrated embeddings and `fieldMap.text = "text"`. Ingestion uses `upsertRecords`, not random vectors. Each content revision has a deterministic namespace in `lib/resume-index.json`. Upload and verify it **before deploying** the matching application code. Prior namespaces remain intact for rollback. The chat route queries only its matching revision and falls back to the full resume when retrieval fails or returns no results.
+
+`csv-to-resume-chunks` remains available for legacy imports; normal updates should use `generate-resume` so all formats stay in sync.
 
 ### AI Scavenger Hunt
 
