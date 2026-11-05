@@ -110,6 +110,20 @@ export default function ProjectsPage() {
               ctaHref="/projects/resumeChat"
               ctaVariant="primary"
               accentColor="var(--accent)"
+              bannerSrc="/images/resume-chatbot-icon.svg"
+            />
+            <ProjectCard
+              eyebrow="ai · creative storytelling"
+              title="Mad-Lib Generator"
+              desc="Turn a handful of words into a wildly imaginative story, then watch AI bring it to life with a custom illustration. Built for playful, interactive group sessions."
+              tags={["Generative AI", "React", "Interactive Storytelling"]}
+              tagVariant="purple"
+              cta="Create a Story"
+              ctaHref="https://mad-libs.davidlarrimore.com/"
+              ctaVariant="purple"
+              accentColor="var(--accent2)"
+              bannerSrc="/images/mad-libs-logo.png"
+              linkCard
             />
             <ProjectCard
               eyebrow="ai · experiential learning"
