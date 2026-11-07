@@ -101,6 +101,19 @@ export default function ProjectsPage() {
 
           <div className="grid md:grid-cols-2 gap-7">
             <ProjectCard
+              eyebrow="ai · natural language processing"
+              title="NLP Playground"
+              desc="Explore how AI works with language through hands-on demos of tokenization, embeddings, translation, sentiment analysis, and transformers."
+              tags={["NLP", "Interactive Learning", "Streamlit"]}
+              tagVariant="blue"
+              cta="Explore the Playground"
+              ctaHref="https://nlp-playground.davidlarrimore.com/"
+              ctaVariant="primary"
+              accentColor="var(--accent)"
+              bannerSrc="/images/nlp-playground-logo.png"
+              linkCard
+            />
+            <ProjectCard
               eyebrow="claude ai · next.js"
               title="Resume Chatbot"
               desc="An AI-powered chatbot built with Next.js and Claude that answers questions about my professional background."
