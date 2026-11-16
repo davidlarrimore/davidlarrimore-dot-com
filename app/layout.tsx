@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
+import { buildMetadata, siteUrl, SITE_DESCRIPTION } from "@/lib/seo";
 import Analytics from "./components/Analytics";
 import PixelCompanion from "./components/ds/PixelCompanion";
 
@@ -20,9 +21,11 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+// Site-wide defaults. Pages call buildMetadata() themselves so their link
+// previews (LinkedIn, Slack, etc.) get a page-specific title, URL, and image.
 export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: "Dave Larrimore is a technology executive and hands-on AI engineer with nearly 20 years of experience in enterprise modernization, federal technology leadership, and strategic growth."
+  metadataBase: new URL(siteUrl),
+  ...buildMetadata({ title: siteConfig.name, description: SITE_DESCRIPTION }),
 };
 
 export default function RootLayout({

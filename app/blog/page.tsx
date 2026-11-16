@@ -1,6 +1,7 @@
 // app/blog/page.tsx
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/ds/Card";
@@ -8,10 +9,11 @@ import Eyebrow from "../components/ds/Eyebrow";
 import Tag from "../components/ds/Tag";
 import { getAllPosts } from "@/lib/blog";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "David Larrimore | Blog",
   description: "Notes on AI governance, prototyping, and building modern digital experiences.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();

@@ -4,14 +4,16 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Card from "../components/ds/Card";
 import Eyebrow from "../components/ds/Eyebrow";
 import Tag from "../components/ds/Tag";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "David Larrimore | Projects",
   description: "Explore my technical projects and professional work in AI, cloud computing, and software development",
-};
+  path: "/projects",
+});
 
 interface ProjectCardProps {
   eyebrow: string;

@@ -8,6 +8,7 @@ import Eyebrow from "../../components/ds/Eyebrow";
 import Tag from "../../components/ds/Tag";
 import BlogMarkdown from "../components/BlogMarkdown";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { buildMetadata } from "@/lib/seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -22,11 +23,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  return {
+  return buildMetadata({
     title: `David Larrimore | ${post.title}`,
     description: post.excerpt,
-    openGraph: post.cover ? { images: [post.cover] } : undefined,
-  };
+    path: `/blog/${post.slug}`,
+    image: post.ogImage,
+    imageAlt: post.title,
+    article: {
+      publishedTime: post.date ? new Date(post.date).toISOString() : undefined,
+      tags: post.tags,
+    },
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ResumeExperienceItem from "../components/ResumeExperienceItem";
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { socialConfig } from "@/lib/config";
 import Card from "../components/ds/Card";
 import Eyebrow from "../components/ds/Eyebrow";
@@ -11,11 +12,12 @@ import Tag from "../components/ds/Tag";
 import "./resume.css";
 import VisitorWelcome from "./VisitorWelcome";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "David Larrimore | Resume",
   description:
     "Professional resume of David Larrimore - Senior Executive Technologist with expertise in IT modernization, AI strategy, cloud computing, and enterprise technology transformation",
-};
+  path: "/resume",
+});
 
 export default function ResumePage() {
   return (
