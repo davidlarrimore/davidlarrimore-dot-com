@@ -8,7 +8,8 @@
     "init-pinecone": "node scripts/init-pinecone.js",
     "check-pinecone": "node scripts/check-pinecone.js",
     "csv-to-resume-chunks": "node scripts/csv-to-resume-chunks.js",
-    "generate-resume": "node scripts/generate-resume-content.js"
+    "generate-resume": "node scripts/generate-resume-content.js",
+    "generate-og-images": "node scripts/generate-og-images.js"
   },
   "dependencies": {
     "@pinecone-database/pinecone": "^7.1.0",

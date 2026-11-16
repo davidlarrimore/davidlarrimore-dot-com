@@ -2,15 +2,17 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import ResumeChatInterface from "../../components/ResumeChatInterface";
 import Card from "../../components/ds/Card";
 import Eyebrow from "../../components/ds/Eyebrow";
 import Tag from "../../components/ds/Tag";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "David Larrimore | Resume Chatbot",
   description: "Chat with an AI assistant to learn more about David Larrimore's professional experience, skills, and background",
-};
+  path: "/projects/resumeChat",
+});
 
 export default function ChatPage() {
   return (

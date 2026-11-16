@@ -11,12 +11,24 @@ export interface PostMeta {
   excerpt: string;
   tags: string[];
   cover?: string;
+  /** Link-preview image (PNG/JPG) for LinkedIn etc.; undefined → site default. */
+  ogImage?: string;
   draft: boolean;
   readingTime: number;
 }
 
 export interface Post extends PostMeta {
   content: string;
+}
+
+// Preview crawlers (notably LinkedIn) don't reliably render WebP/SVG covers, so
+// prefer the og.jpg written by `npm run generate-og-images`, and only fall back
+// to the cover itself when it is already a PNG/JPG.
+function resolveOgImage(slug: string, cover?: string): string | undefined {
+  const generated = `/blog/images/${slug}/og.jpg`;
+  if (fs.existsSync(path.join(process.cwd(), "public", generated))) return generated;
+  if (cover && /\.(png|jpe?g)$/i.test(cover)) return cover;
+  return undefined;
 }
 
 function readPostFile(filename: string): Post {
@@ -34,6 +46,7 @@ function readPostFile(filename: string): Post {
     excerpt: data.excerpt ?? "",
     tags: Array.isArray(data.tags) ? data.tags : [],
     cover: data.cover,
+    ogImage: resolveOgImage(slug, data.cover),
     draft: Boolean(data.draft),
     readingTime,
     content,

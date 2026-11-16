@@ -21,6 +21,7 @@ npm run check-pinecone        # Verify Pinecone setup and connection
 
 # Asset Generation
 npm run generate-favicons     # Generate favicon files from SVG icon
+npm run generate-og-images    # Generate link-preview images (site default + one per blog post cover)
 
 # Docker (local dev alternative to `npm run dev`)
 docker compose up -d --build  # Build and serve on :3000, bind-mounted with hot reload, loads .env
@@ -47,6 +48,7 @@ docker compose down           # Stop and remove the container
   - `config.ts`: Centralized environment variable configuration (site, contact, social, analytics)
   - `scavenger-hunt-questions.ts`: Question bank for scavenger hunt
   - `gtag.ts`: Google Analytics helpers
+  - `seo.ts`: `buildMetadata()` helper for Open Graph / Twitter card / canonical tags (link previews on LinkedIn, Facebook, X, etc.)
   - `blog.ts`: Reads/parses markdown posts from `public/blog/posts/` (frontmatter, reading time, slugs)
 
 - **scripts/**: Data processing and Pinecone initialization scripts
@@ -105,6 +107,15 @@ Blog posts are plain markdown files — no CMS or database.
 - **Mermaid diagrams**: fenced code blocks with the `mermaid` language are intercepted by a custom `code`/`pre` renderer and handed to `app/blog/components/Mermaid.tsx`, a client component that lazy-loads `mermaid` and renders SVG in `useEffect` (diagrams cannot render during SSR).
 - **Styling**: markdown body is wrapped in `.blog-prose` (defined in `app/globals.css`), a hand-rolled prose style built on the same `--fg`/`--surface`/`--space-*` design tokens as the rest of the site's `.ds-*` classes — no Tailwind typography plugin.
 - Pages: `app/blog/page.tsx` (list) and `app/blog/[slug]/page.tsx` (post, statically generated via `generateStaticParams`).
+
+### Link Previews (Open Graph)
+
+Social link previews (LinkedIn, Facebook, X, Instagram/Threads, Slack, iMessage) are driven by `lib/seo.ts`.
+
+- Every page exports its metadata via `buildMetadata({ title, description, path })`. Next.js replaces (does not merge) a parent's `openGraph` object when a page defines its own metadata, so a page that exports a plain `{ title, description }` loses its preview tags — always use the helper.
+- Preview images must be PNG/JPG (LinkedIn does not reliably render WebP/SVG), sized 1200x627. The site default is `public/images/og-default.png`.
+- Blog posts use `public/blog/images/<slug>/og.jpg`, generated from the post's `cover` by `npm run generate-og-images`. Run it and commit the output when adding a post or changing a cover; posts without one fall back to the site default.
+- `metadataBase` comes from `PUBLIC_SITE_URL` (a missing protocol is tolerated).
 
 ### Environment Configuration
 
