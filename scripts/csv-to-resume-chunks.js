@@ -6,7 +6,7 @@
  * 
  * Example:
  * skills_ai_001,"AI & Machine Learning expertise includes AI governance, generative AI...",skills,technical,ai_ml,,,,,3
- * exp_dhs_role_001,"2021 - Present, Chief Technology and AI Officer at DHS, Washington, DC...",experience,,,,Chief Technology and AI Officer,2021-Present,,9
+ * exp_dhs_role_001,"2021 - Present, Chief Technology Officer and Chief AI Officer at DHS, Washington, DC...",experience,,,,Chief Technology Officer and Chief AI Officer,2021-Present,,9
  * 
  * Usage: 
  * node csv-to-resume-chunks.js input.csv output.json
