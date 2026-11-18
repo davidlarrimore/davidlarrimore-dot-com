@@ -77,17 +77,25 @@
       "imageAlt": "Salesforce Logo",
       "imageShape": "square",
       "achievements": [
+        "Led solution engineering for the U.S. Department of Agriculture’s end-to-end recruit-to-retire HR platform, later awarded, after leaving Salesforce, as a five-year, $100 million contract.",
+        "Rebuilt the HR demonstration from the ground up, and the product team adopted much of it when it turned the HR solution into a Salesforce Public Sector product.",
         "Provided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.",
         "Developed tailored demonstrations and enterprise proofs of concept using human-centered design and DevSecOps practices.",
         "Led internal Q&A sessions on federal laws, policies, standards, and best practices.",
         "Partnered with account executives, technical specialists, and systems integrators to translate customer challenges into practical solutions."
       ],
       "evidence": [
-        "Used human-centered design in pre-sales, working with prospective end users, technical leaders, and subject-matter experts to design application workflows on the Salesforce platform."
+        "Used human-centered design in pre-sales, working with prospective end users, technical leaders, and subject-matter experts to design application workflows on the Salesforce platform.",
+        "Represented the core Salesforce platform on the Department of Homeland Security solution engineering team, and led the solutions that needed specialist resources.",
+        "Wrote and deployed custom Lightning Web Components with Salesforce DX, and automated setting up, tearing down, and resetting demonstration environments.",
+        "Built an open-source package manager, with a command-line version, for the team’s heavily customized demonstration org, letting administrators install, update, and remove managed and unmanaged packages without manual steps.",
+        "Created about half a dozen reusable modules, components, shareable assets, and demonstrations for the solution engineering team.",
+        "Built a mobile demonstration for U.S. Citizenship and Immigration Services giving records staff check-in, check-out, optimized retrieval routes, and full chain of custody for physical immigration case files.",
+        "Built a wildfire response demonstration for the USDA Forest Service: a real-time map of fire stations, equipment, vehicles, trained wildfire staff, and smokejumper availability shared across federal, state, and local agencies."
       ]
     },
     {
-      "title": "Chief Technology Officer (CTO)",
+      "title": "Chief Technology Officer",
       "company": "U.S. Immigration and Customs Enforcement",
       "location": "Washington, DC",
       "period": "2016 — 2019",
@@ -122,20 +130,31 @@
       "imageAlt": "USDA Logo",
       "imageShape": "square",
       "achievements": [
+        "Served as lead cloud strategist under the U.S. Department of Agriculture’s Chief Technology Officer, for the department and all of its agencies.",
+        "Led working groups of IT leaders across the department to develop and implement an enterprise cloud onboarding process.",
+        "Tested the cloud policy and onboarding process before implementation through tabletop exercises with cloud service providers and business, IT, cybersecurity, and contracting leaders from across the department.",
+        "Co-developed the department’s customer control matrix for commercial cloud services."
+      ],
+      "evidence": [
         "Worked with engineering, cybersecurity, and agency leadership to develop a practical approach to cloud adoption.",
         "Evaluated cloud-ready shared services and helped agencies identify common commercial cloud needs.",
         "Developed cloud policy and guidance that balanced enterprise security and compliance with agency flexibility."
+      ]
+    },
+    {
+      "title": "Supervisory IT Branch Chief",
+      "company": "General Services Administration",
+      "period": "2011 — 2015",
+      "description": "Led a branch of 6 federal employees and about two dozen contractors running enterprise analytics, spanning data management, business intelligence, technology strategy, and organizational leadership.",
+      "achievements": [
+        "Built GSA’s first enterprise data warehouse, with its enterprise reporting and dashboards, for the Federal Acquisition Service, managing a multi-vendor team with Agile practices.",
+        "United two customer groups behind one shared, jointly funded development team that saved about $500,000 in its pilot year, and brought in the third group once the pilot became the normal way of working."
       ],
-      "evidence": []
+      "evidence": [],
+      "location": ""
     }
   ],
   "earlier": [
-    {
-      "title": "Analytics Branch Chief",
-      "company": "General Services Administration",
-      "period": "2011–2016",
-      "description": "Led federal analytics initiatives spanning data management, business intelligence, technology strategy, and organizational leadership."
-    },
     {
       "title": "IT Program Analyst",
       "company": "Department of Homeland Security",
@@ -260,6 +279,11 @@
       "degree": "Bachelor of Arts",
       "school": "Salisbury University",
       "year": "2005"
+    },
+    {
+      "degree": "Voyagers Program",
+      "school": "ACT-IAC",
+      "year": "2014"
     }
   ],
   "projects": [
