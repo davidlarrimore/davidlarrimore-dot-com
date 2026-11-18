@@ -203,6 +203,16 @@ Provided technical solution engineering, strategic account engagement, and busin
 ## Professional Experience — Lead Solution Engineer
 
 Lead Solution Engineer at Salesforce (2019 — 2021)
+Led solution engineering for the U.S. Department of Agriculture’s end-to-end recruit-to-retire HR platform, later awarded, after leaving Salesforce, as a five-year, $100 million contract.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Rebuilt the HR demonstration from the ground up, and the product team adopted much of it when it turned the HR solution into a Salesforce Public Sector product.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
 Provided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.
 
 ## Professional Experience — Lead Solution Engineer
@@ -225,75 +235,125 @@ Partnered with account executives, technical specialists, and systems integrator
 Lead Solution Engineer at Salesforce (2019 — 2021)
 Used human-centered design in pre-sales, working with prospective end users, technical leaders, and subject-matter experts to design application workflows on the Salesforce platform.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Lead Solution Engineer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Represented the core Salesforce platform on the Department of Homeland Security solution engineering team, and led the solutions that needed specialist resources.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Wrote and deployed custom Lightning Web Components with Salesforce DX, and automated setting up, tearing down, and resetting demonstration environments.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Built an open-source package manager, with a command-line version, for the team’s heavily customized demonstration org, letting administrators install, update, and remove managed and unmanaged packages without manual steps.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Created about half a dozen reusable modules, components, shareable assets, and demonstrations for the solution engineering team.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Built a mobile demonstration for U.S. Citizenship and Immigration Services giving records staff check-in, check-out, optimized retrieval routes, and full chain of custody for physical immigration case files.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Built a wildfire response demonstration for the USDA Forest Service: a real-time map of fire stations, equipment, vehicles, trained wildfire staff, and smokejumper availability shared across federal, state, and local agencies.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Led enterprise technology strategy, architecture, and modernization across a 400-person IT organization with approximately $500 million in annual technology spending, spanning enterprise and data architecture, cloud strategy, and vendor management.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Established a multi-cloud strategy leveraging AWS and Microsoft Azure.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Migrated 87 production systems and 133 environments to the cloud within six months as program manager, with 23 teams working in parallel under a change freeze and a status dashboard open to the whole organization, with minimal downtime; applications, middleware, databases, storage, and compute ran at up to 75% less than the amortized capital cost of the physical hardware they replaced.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Establishment of an enterprise Application Platform as a Service capability enabled no-code and low-code rapid application development.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Led Agile engineering and DevSecOps initiatives that reduced resource provisioning lead times by 99%, doubled deployment frequency, and doubled team maturity on a five-level maturity model the organization developed, from simple automation to fully auto-healing deployments with no user interaction.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Established an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration capabilities.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Led a newly formed technology strategy and architecture office of five senior technologists with a history of reassignment and conflict, and raised every member’s performance rating to four or higher of five through individual roadmaps, development plans, and direct coaching; two reached their five-year career goals, one by promotion.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Led a two-year organization-wide campaign to change how the IT organization delivered technology, with a theme, training, and quarterly public results; it cut rework and project delays by 25% and produced the agency’s first authorized cloud environment and four shared automation tools.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Formed a cloud broker team and brought in cloud specialists who trained the existing staff, then gave teams self-service provisioning tied to their technical maturity, starting projects two months sooner.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Replaced proprietary software with open-source standards after running the proofs of concept himself, reducing a $22 million software budget by more than $7 million.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Assessed every delivery team with embedded coaches, published a maturity dashboard for the whole organization, and met open opposition from project managers by adjusting targets where justified and writing the change into performance plans where not.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Cut data-model review lead time from almost two weeks to under a day by automating notification from the teams’ own project tools.
 
-## Professional Experience — Chief Technology Officer (CTO)
+## Professional Experience — Chief Technology Officer
 
-Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Received the 2018 organizational excellence award for coaching and customer support, and contributed to a year-over-year rise in the organization’s employee satisfaction score.
 
 ## Professional Experience — Cloud Strategist
 
 Cloud Strategist at U.S. Department of Agriculture (2016)
 Supported department-wide adoption of secure commercial cloud technologies through enterprise policies, shared-service strategies, and acquisition guidance.
+
+## Professional Experience — Cloud Strategist
+
+Cloud Strategist at U.S. Department of Agriculture (2016)
+Served as lead cloud strategist under the U.S. Department of Agriculture’s Chief Technology Officer, for the department and all of its agencies.
+
+## Professional Experience — Cloud Strategist
+
+Cloud Strategist at U.S. Department of Agriculture (2016)
+Led working groups of IT leaders across the department to develop and implement an enterprise cloud onboarding process.
+
+## Professional Experience — Cloud Strategist
+
+Cloud Strategist at U.S. Department of Agriculture (2016)
+Tested the cloud policy and onboarding process before implementation through tabletop exercises with cloud service providers and business, IT, cybersecurity, and contracting leaders from across the department.
+
+## Professional Experience — Cloud Strategist
+
+Cloud Strategist at U.S. Department of Agriculture (2016)
+Co-developed the department’s customer control matrix for commercial cloud services.
 
 ## Professional Experience — Cloud Strategist
 
@@ -310,9 +370,20 @@ Evaluated cloud-ready shared services and helped agencies identify common commer
 Cloud Strategist at U.S. Department of Agriculture (2016)
 Developed cloud policy and guidance that balanced enterprise security and compliance with agency flexibility.
 
-## Earlier Career — Analytics Branch Chief
+## Professional Experience — Supervisory IT Branch Chief
 
-Analytics Branch Chief at General Services Administration (2011–2016). Led federal analytics initiatives spanning data management, business intelligence, technology strategy, and organizational leadership.
+Supervisory IT Branch Chief at General Services Administration (2011 — 2015)
+Led a branch of 6 federal employees and about two dozen contractors running enterprise analytics, spanning data management, business intelligence, technology strategy, and organizational leadership.
+
+## Professional Experience — Supervisory IT Branch Chief
+
+Supervisory IT Branch Chief at General Services Administration (2011 — 2015)
+Built GSA’s first enterprise data warehouse, with its enterprise reporting and dashboards, for the Federal Acquisition Service, managing a multi-vendor team with Agile practices.
+
+## Professional Experience — Supervisory IT Branch Chief
+
+Supervisory IT Branch Chief at General Services Administration (2011 — 2015)
+United two customer groups behind one shared, jointly funded development team that saved about $500,000 in its pilot year, and brought in the third group once the pilot became the normal way of working.
 
 ## Earlier Career — IT Program Analyst
 
@@ -383,6 +454,10 @@ DHS Secretary’s Award for Champion of Equity — 2023
 ## Education
 
 Bachelor of Arts, Salisbury University — 2005
+
+## Education
+
+Voyagers Program, ACT-IAC — 2014
 
 ## Award Nominations
 
