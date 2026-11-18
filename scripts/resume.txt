@@ -8,7 +8,7 @@ I believe effective technology leadership requires understanding the entire life
 
 ## Contact
 
-David Larrimore: davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com
+David Larrimore: Northern Virginia; davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
@@ -28,7 +28,7 @@ Developed tailored innovation plans with program delivery leadership, implementi
 ## Professional Experience — Senior Vice President, Solution Engineering
 
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
-Led company-wide AI literacy, upskilling, and reskilling initiatives, engaging more than 40% of the workforce and empowering employees to develop AI solutions that improved productivity and operational efficiency.
+Led company-wide AI literacy, upskilling, and reskilling initiatives, engaging more than 40% of the workforce through a gamified program of weekly spy-themed challenges with a leaderboard, and empowering employees to develop AI solutions that improved productivity and operational efficiency.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
@@ -45,35 +45,155 @@ Led technical growth and capture efforts that converted greenfield Data and AI o
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
 Supported Amivero’s successful acquisition by Xpect Solutions, a NewSpring Holdings platform company, in 2026 through executive management briefings and technology due diligence. Executed an AI strategy that strengthened the company’s capabilities and market differentiation.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Senior Vice President, Solution Engineering
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
-Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Managed a $15M budget and over 100 federal employees.
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Deployed and operate all of the company’s AI technology for a 200-person company: commercial platforms, internal chatbots, AI-assisted development tools, and custom automation, at more than 1.5 billion tokens a month with no significant outage in the first year.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Senior Vice President, Solution Engineering
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
-Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government.
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Architected and built, largely as the sole developer, a shared enterprise AI platform on Amazon EKS with a single model gateway (LiteLLM to Anthropic Claude on Amazon Bedrock), so every product reaches models through one governed route; the cluster is managed with Argo CD and averages 190 deployments a month across patches, fixes, new features, backend improvements, and new services.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Senior Vice President, Solution Engineering
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
-Led development and enterprise deployment of a generative AI chatbot serving approximately 20,000 DHS personnel.
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Took two production AI systems in turn from idea to internal pilot in eight weeks and to full operation in three months each, building with AI coding agents (Claude Code), and ran the customer discovery, feedback, training, and intake that brought them into use.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Senior Vice President, Solution Engineering
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Built that platform as a content-curation and retrieval service: one pipeline ingests SharePoint, CRM, federal opportunity, and web sources, and serves hybrid search with reranking, a Microsoft Teams assistant, and Model Context Protocol (MCP) tools to AI assistants under each user’s own identity.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Deployed the company’s secure generative AI chat service for staff on open-source software, with single sign-on through Microsoft Entra ID, document-grounded answers using retrieval-augmented generation (RAG), and tool use through MCP.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Led the agentic case analysis for a security-clearance adjudication system at the Department of Homeland Security, released to production in three months: an orchestration model with parallel specialist sub-agents and tool-calling that batch-analyzes cases against federal adjudicative guidelines before they reach an adjudicator; it has since analyzed thousands of cases.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Evaluated each version of that case analysis against ground-truth historical cases as champion and challenger, measuring true positives, false positives, false negatives, token use, and time to completion in a formal process modeled on NIST practice; the winning version immediately raised the true-positive rate by 30% and cut the false-negative rate by the same.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Created the design system for the company’s AI case-analysis application, setting common patterns for chat interaction, tool calls and citations, collaboration features, and navigation; Immigration and Customs Enforcement adopted it for its production adjudication platform.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Built evaluation into the company’s AI systems: citation checks that drop any finding whose quote does not match its source, LLM-as-judge review of generated plans, a synthetic case generator with an evaluation harness, and precision, recall, and F1 threshold sweeps that tuned fraud-ring detection against a ground-truth set.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Built an AI assistant for security-clearance adjudication that combines hybrid retrieval over a vector store with a Neo4j knowledge graph of policy and case, proposing issues, worksheets, and briefs in which every finding cites its source and a person makes the decision.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Built a graph-analytics platform for fraud and identity investigations on Neo4j that scores shared attributes between accounts, detects linked clusters, and explains each link to the investigator, with sensitive identifiers stored only as keyed hashes.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Built internal developer tooling that turns GitHub issues into pull requests using Claude Code agents in isolated worktrees, with secret scanning, protected branches, and no automatic merge.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Migrated the GSA Login.gov program’s CRM from Airtable to Salesforce: about 10,000 records, eight weeks from start to cut-over.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Mentored a machine learning engineer over a year until they took ownership of the company’s AI platforms, working to the organization’s new engineering standards.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Provided technical oversight and organizational leadership, including the management of artificial intelligence initiatives, for a $10B IT portfolio spanning 22 components and offices within the Department of Homeland Security. Led more than 150 people (100 federal employees and 50 contractors) with a $15M budget.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government: designed the organizational model, set and approved compensation, ran many of the interviews, and served as second-level supervisor.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Led development and enterprise deployment of a secure agentic generative AI chatbot, authorized at the FISMA and FedRAMP Moderate level, serving approximately 20,000 DHS personnel.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Developed and implemented department-wide AI governance policies, standards, and workforce training for responsible adoption of generative AI and facial recognition.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Chief Technology Officer and Chief AI Officer
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Negotiated a department-wide Login.gov enterprise agreement, generating more than $2.5 million in cost avoidance and establishing a unified authentication capability for external-facing services.
 
-## Professional Experience — Chief Technology and AI Officer
+## Professional Experience — Chief Technology Officer and Chief AI Officer
 
-Chief Technology and AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Directed enterprise platforms including secure DevSecOps toolchains, generative AI applications, and information-sharing solutions.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Led the engineering teams in that organization directly: the DHS AI Corps of 50 AI engineers and product owners, about 70% of them engineers, and about six engineers in the Chief Technology Officer’s organization.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Organized the office into seven divisions: AI governance, technology governance, the DHS AI Corps, enterprise architecture, engineering, emerging technologies, and business operations, led through two deputies and a director for each division.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Mentored and promoted leaders from within: a project manager who rose to branch chief and then Division Director of AI Governance, and two engineering branch chiefs who became Division Directors of Engineering and of Technology Governance.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Stood up a second side of the organization for AI governance, engineering, and the AI Corps: selected its leaders, led the reorganization and its communication, and resolved conflict and poor performance among existing leaders.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Ran the department’s enterprise DevOps and collaboration service (GitLab, the Atlassian suite, Nexus Repository) supporting CI/CD for more than 13,000 users and more than 300 applications, systems, and projects at multiple service levels; it ran at over 99% availability, with cloud automation managing its environments.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Led the 2024 response to a zero-day vulnerability in the department’s Atlassian Data Center platform, used by 12,000 people: confirmed exposure and every affected server, service, and endpoint with the vendor, tested the patch in non-production (build, smoke, and performance tests), and after a go/no-go decision rolled it out across the cluster with zero downtime.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Absorbed an unplanned 50% increase in charged-back cloud storage costs without raising prices to the platform’s customers: recovered 60% by renegotiating the memorandum of agreement with the peer office that supplied cloud services and used the platform without charge, and 40% by archiving unused projects with their owners and moving older projects to lower-cost storage tiers.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Set the DevOps platform’s pricing model for its customer components each year, charging back the cost of a service used across the department.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Managed the custom-built enterprise architecture platform used by thousands of architects and engineers across the department for the technical reference model, approved software, and the enterprise inventory of systems, products, and software.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Consolidated two support contracts into one, saving 20% by removing duplicate program management, operations, and help desk roles.
 
 ## Professional Experience — Lead Solution Engineer
 
@@ -100,6 +220,11 @@ Led internal Q&A sessions on federal laws, policies, standards, and best practic
 Lead Solution Engineer at Salesforce (2019 — 2021)
 Partnered with account executives, technical specialists, and systems integrators to translate customer challenges into practical solutions.
 
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
+Used human-centered design in pre-sales, working with prospective end users, technical leaders, and subject-matter experts to design application workflows on the Salesforce platform.
+
 ## Professional Experience — Chief Technology Officer (CTO)
 
 Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
@@ -113,7 +238,7 @@ Established a multi-cloud strategy leveraging AWS and Microsoft Azure.
 ## Professional Experience — Chief Technology Officer (CTO)
 
 Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
-Migrated 87 production systems and 133 environments to the cloud within six months, resulting in compute cost savings of up to 75%.
+Migrated 87 production systems and 133 environments to the cloud within six months as program manager, with 23 teams working in parallel under a change freeze and a status dashboard open to the whole organization, with minimal downtime; applications, middleware, databases, storage, and compute ran at up to 75% less than the amortized capital cost of the physical hardware they replaced.
 
 ## Professional Experience — Chief Technology Officer (CTO)
 
@@ -123,12 +248,47 @@ Establishment of an enterprise Application Platform as a Service capability enab
 ## Professional Experience — Chief Technology Officer (CTO)
 
 Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
-Led Agile engineering and DevSecOps initiatives that reduced resource provisioning lead times by 99%, doubled deployment frequency, and doubled Agile team maturity.
+Led Agile engineering and DevSecOps initiatives that reduced resource provisioning lead times by 99%, doubled deployment frequency, and doubled team maturity on a five-level maturity model the organization developed, from simple automation to fully auto-healing deployments with no user interaction.
 
 ## Professional Experience — Chief Technology Officer (CTO)
 
 Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Established an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration capabilities.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Led a newly formed technology strategy and architecture office of five senior technologists with a history of reassignment and conflict, and raised every member’s performance rating to four or higher of five through individual roadmaps, development plans, and direct coaching; two reached their five-year career goals, one by promotion.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Led a two-year organization-wide campaign to change how the IT organization delivered technology, with a theme, training, and quarterly public results; it cut rework and project delays by 25% and produced the agency’s first authorized cloud environment and four shared automation tools.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Formed a cloud broker team and brought in cloud specialists who trained the existing staff, then gave teams self-service provisioning tied to their technical maturity, starting projects two months sooner.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Replaced proprietary software with open-source standards after running the proofs of concept himself, reducing a $22 million software budget by more than $7 million.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Assessed every delivery team with embedded coaches, published a maturity dashboard for the whole organization, and met open opposition from project managers by adjusting targets where justified and writing the change into performance plans where not.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Cut data-model review lead time from almost two weeks to under a day by automating notification from the teams’ own project tools.
+
+## Professional Experience — Chief Technology Officer (CTO)
+
+Chief Technology Officer (CTO) at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Received the 2018 organizational excellence award for coaching and customer support, and contributed to a year-over-year rise in the organization’s employee satisfaction score.
 
 ## Professional Experience — Cloud Strategist
 
@@ -186,6 +346,30 @@ Technology Strategy & Governance: Enterprise architecture, IT modernization, tec
 
 Strategic Growth & Executive Leadership: Technical business development, federal capture support, solution engineering, opportunity shaping, customer engagement, technical proposals, oral presentations, workforce transformation, organizational leadership, and M&A technology due diligence.
 
+## Selected Projects
+
+The Warden: My first video game, in development since September 2026: a third-person, narrative-driven action adventure in Unreal Engine 5. Built so far in Blueprints: the player character and game mode, an attack that damages targets through a Blueprint interface, weapon durability that ends with the weapon breaking, and a combat enemy in the first arena; designed from a written game bible and a backlog of playable slices, with an AI assistant working in the editor through Unreal’s Model Context Protocol server.
+
+## Selected Projects
+
+NLP Playground: Public hands-on labs showing how language models read, compare, translate, and predict text, running on my own Kubernetes platform with per-visitor credits and a site-wide budget.
+
+## Selected Projects
+
+Mad Libs: A screen-share party game for a room of kids in which the story types itself out and an AI paints the result, with a kid-friendly prompt-injection challenge. Built for Take Your Child to Work Day 2026.
+
+## Selected Projects
+
+ELVIS: A “Game Master” learning platform with narrative challenges, where a model scores answers against a rubric and an event-sourced engine makes every decision.
+
+## Selected Projects
+
+AI Learning Catalog: A catalog of AI courses found by search, vetted by a model, and served through an advisor that recommends only from what it retrieved.
+
+## Selected Projects
+
+Homelab: A personal Kubernetes platform with its own model gateway, single sign-on, GitOps delivery, and local language models, where these projects run.
+
 ## Awards
 
 National Security 150 — 2026
@@ -195,6 +379,10 @@ DHS Under Secretary’s Award for Special Achievement — 2024
 WashingtonExec Pinnacle Award, Cloud Executive of the Year — 2024
 WashingtonExec Top Exec to Watch — 2024
 DHS Secretary’s Award for Champion of Equity — 2023
+
+## Education
+
+Bachelor of Arts, Salisbury University — 2005
 
 ## Award Nominations
 
@@ -235,7 +423,7 @@ Connect Technology to Outcomes: Complexity is never the objective. What matters 
 
 ## Beyond Work
 
-Technology has always been both my profession and my hobby. I’m a lifelong gamer, from classic RPGs and strategy games to first-person shooters and MMOs. I enjoy exploring game engines and how interactive experiences bring together technology, design, and storytelling. I also enjoy Dungeons & Dragons, 3D printing, home automation, electronics, and experimenting with development tools. Whether I’m building an AI application or a home project, I’m usually learning something new.
+Technology has always been both my profession and my hobby. Interactive games, whether video, board, or role-play, have always been an outlet for me to express creativity, think critically, and have fun. As a technologist and creator, I want to work with teams to create new stories, experiences, and challenges for people the way the games of my life have for me. I’m a lifelong gamer and a huge fan of role-playing and strategy games, from MMOs to turn-based and real-time strategy, and I’m building my first game in Unreal Engine 5. I also enjoy Dungeons & Dragons, 3D printing, home automation, electronics, and experimenting with development tools. Whether I’m building an AI application or a home project, I’m usually learning something new.
 
 ## Short Biography
 

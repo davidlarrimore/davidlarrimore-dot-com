@@ -56,6 +56,7 @@ export default function ResumePage() {
                 </div>
               </div>
               <div className="md:text-right" style={{ font: "13px var(--font-sans)", color: "var(--fg-secondary)" }}>
+                <div>{content.location}</div>
                 <div>davidlarrimore@gmail.com</div>
                 <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-hover)" }}>
                   {socialConfig.linkedin}
@@ -91,6 +92,16 @@ export default function ResumePage() {
               </ul>
             </div>
           </div>
+
+          {/* Education */}
+          <Eyebrow color="var(--fg-muted)">// education</Eyebrow>
+          <ul className="mb-12 space-y-2" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
+            {content.education.map((e) => (
+              <li key={e.degree + e.school}>
+                {e.degree}, {e.school} ({e.year})
+              </li>
+            ))}
+          </ul>
 
           {/* Awards */}
           <Eyebrow color="var(--fg-muted)">// awards & recognition</Eyebrow>
