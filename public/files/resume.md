@@ -250,6 +250,16 @@ Managed the custom-built enterprise architecture platform used by thousands of a
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Consolidated two support contracts into one, saving 20% by removing duplicate program management, operations, and help desk roles.
 
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+The Chief Technology Officer’s organization operationally ran the department’s AI program: the DHS AI Corps, AI policy and governance, DHS Chat, facial recognition technology testing, policy, and reporting, management of the DHS Chief AI Officer Council, and the DHS AI Governance Board.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Developed and implemented the department’s facial recognition technology policy, and led the effort to have every DHS facial recognition system formally tested and validated against NIST and IEC testing requirements, resolving all concerns and issues found; this made DHS one of the most mature organizations in the federal government for safe facial recognition in performance, testing, and governance and compliance.
+
 ## Professional Experience — Lead Solution Engineer
 
 Lead Solution Engineer at Salesforce (2019 — 2021)
