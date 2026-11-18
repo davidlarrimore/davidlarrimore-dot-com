@@ -2,13 +2,48 @@
 
 ## Profile
 
-Technology Executive | AI Engineering | Strategic Growth
-I’m a senior technology executive and hands-on engineer with nearly 20 years of experience building enterprise platforms, driving AI innovation, and leading technology transformation across government and industry. As a former DHS Chief Technology Officer and Chief AI Officer, I oversaw a $10 billion federal IT portfolio and delivered AI capabilities at enterprise scale. I combine engineering expertise with strategic growth, business development, and executive leadership to turn emerging technologies into measurable mission and business outcomes.
+Former Federal CTO | Engineering & AI Platforms | Technology Leadership
+Technology executive and hands-on engineering leader with nearly 20 years in cloud platforms, software development, and AI. Former Chief Technology Officer and Chief AI Officer of the Department of Homeland Security, leading more than 150 people, the 50-person AI Corps, and a $10 billion IT portfolio. Today builds and operates production AI platforms and develops the engineers who run them.
 I believe effective technology leadership requires understanding the entire lifecycle of innovation: identifying the problem, designing the solution, building the technology, earning organizational adoption, and delivering measurable value. My career has let me approach that lifecycle as a software engineer, enterprise architect, federal CTO, AI executive, commercial solution engineer, and senior leader in a growing government technology company.
 
 ## Contact
 
 David Larrimore: Northern Virginia; davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Lead solution engineering and all AI technology for a 200-person government technology company, combining hands-on engineering with technical strategy and growth.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Deployed and operate all of the company’s AI technology, from commercial platforms and internal chatbots to AI-assisted development tools and custom automation, at more than 1.5 billion tokens a month with no significant outage.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Architected and built, largely as the sole developer, a shared enterprise AI platform on Amazon EKS with centralized model access and governance controls, on a cluster averaging 190 deployments a month.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Hired, onboarded, and developed a team of 10 LLM, machine learning, data, and full-stack engineers, building each person’s career path in AI engineering, AI operations, or generative AI.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Led company-wide AI upskilling that engaged more than 40% of the workforce, and partnered with program delivery leaders to bring AI and automation to approximately 50% of active projects.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Architected and built an AI platform with multi-source ingestion and hybrid search that automated opportunity discovery, evaluation, and proposal workflows, cutting proposal development time by 60% as the business development pipeline grew 150%.
+
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Supported Amivero’s 2026 acquisition by Xpect Solutions, a NewSpring Holdings platform company, through executive management briefings and technology due diligence.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
@@ -123,12 +158,27 @@ Provided technical oversight and organizational leadership, including the manage
 ## Professional Experience — Chief Technology Officer and Chief AI Officer
 
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
-Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government: designed the organizational model, set and approved compensation, ran many of the interviews, and served as second-level supervisor.
+Helped establish the DHS Office of the Chief AI Officer and led the nationwide recruitment of 50 AI experts from industry, academia, and government, designing the organizational model and setting compensation.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Directly led the DHS AI Corps of 50 AI engineers and product owners and about six engineers in the Chief Technology Officer’s organization.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Developed leaders and talent from within, promoting a project manager and two engineering branch chiefs to Division Directors and creating learning pathways that certified about two dozen employees across the components.
 
 ## Professional Experience — Chief Technology Officer and Chief AI Officer
 
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Led development and enterprise deployment of a secure agentic generative AI chatbot, authorized at the FISMA and FedRAMP Moderate level, serving approximately 20,000 DHS personnel.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Ran the department’s enterprise DevOps and collaboration service for more than 13,000 users and more than 300 applications, systems, and projects at over 99% availability.
 
 ## Professional Experience — Chief Technology Officer and Chief AI Officer
 
@@ -139,6 +189,11 @@ Developed and implemented department-wide AI governance policies, standards, and
 
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Negotiated a department-wide Login.gov enterprise agreement, generating more than $2.5 million in cost avoidance and establishing a unified authentication capability for external-facing services.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government: designed the organizational model, set and approved compensation, ran many of the interviews, and served as second-level supervisor.
 
 ## Professional Experience — Chief Technology Officer and Chief AI Officer
 
@@ -208,12 +263,17 @@ Led solution engineering for the U.S. Department of Agriculture’s end-to-end r
 ## Professional Experience — Lead Solution Engineer
 
 Lead Solution Engineer at Salesforce (2019 — 2021)
+Provided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.
+
+## Professional Experience — Lead Solution Engineer
+
+Lead Solution Engineer at Salesforce (2019 — 2021)
 Rebuilt the HR demonstration from the ground up, and the product team adopted much of it when it turned the HR solution into a Salesforce Public Sector product.
 
 ## Professional Experience — Lead Solution Engineer
 
 Lead Solution Engineer at Salesforce (2019 — 2021)
-Provided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.
+Built reusable tools for the solution engineering team, including custom Lightning Web Components, automated demonstration environments, and an open-source package manager.
 
 ## Professional Experience — Lead Solution Engineer
 
@@ -269,6 +329,31 @@ Built a wildfire response demonstration for the USDA Forest Service: a real-time
 
 Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
 Led enterprise technology strategy, architecture, and modernization across a 400-person IT organization with approximately $500 million in annual technology spending, spanning enterprise and data architecture, cloud strategy, and vendor management.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Migrated 87 production systems and 133 environments to the cloud within six months, coordinating 23 teams under a change freeze with minimal downtime, at up to 75% less than the amortized capital cost of the hardware replaced.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Built an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration, reducing resource provisioning lead times by 99% and doubling deployment frequency.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Established a multi-cloud strategy on AWS and Microsoft Azure and an enterprise platform-as-a-service capability for no-code and low-code development.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Replaced proprietary software with open-source standards after running the proofs of concept, reducing a $22 million software budget by more than $7 million.
+
+## Professional Experience — Chief Technology Officer
+
+Chief Technology Officer at U.S. Immigration and Customs Enforcement (2016 — 2019)
+Led a newly formed technology strategy and architecture office of five senior technologists, raising every member’s performance rating to four or higher of five through individual roadmaps, development plans, and direct coaching.
 
 ## Professional Experience — Chief Technology Officer
 

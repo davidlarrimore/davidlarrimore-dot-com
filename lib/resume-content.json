@@ -1,6 +1,6 @@
 {
-  "tagline": "Technology Executive | AI Engineering | Strategic Growth",
-  "profile": "I’m a senior technology executive and hands-on engineer with nearly 20 years of experience building enterprise platforms, driving AI innovation, and leading technology transformation across government and industry. As a former DHS Chief Technology Officer and Chief AI Officer, I oversaw a $10 billion federal IT portfolio and delivered AI capabilities at enterprise scale. I combine engineering expertise with strategic growth, business development, and executive leadership to turn emerging technologies into measurable mission and business outcomes.",
+  "tagline": "Former Federal CTO | Engineering & AI Platforms | Technology Leadership",
+  "profile": "Technology executive and hands-on engineering leader with nearly 20 years in cloud platforms, software development, and AI. Former Chief Technology Officer and Chief AI Officer of the Department of Homeland Security, leading more than 150 people, the 50-person AI Corps, and a $10 billion IT portfolio. Today builds and operates production AI platforms and develops the engineers who run them.",
   "about": "I believe effective technology leadership requires understanding the entire lifecycle of innovation: identifying the problem, designing the solution, building the technology, earning organizational adoption, and delivering measurable value. My career has let me approach that lifecycle as a software engineer, enterprise architect, federal CTO, AI executive, commercial solution engineer, and senior leader in a growing government technology company.",
   "experience": [
     {
@@ -8,20 +8,27 @@
       "company": "Amivero",
       "location": "McLean, VA",
       "period": "2025 — Present",
-      "description": "Led technology innovation, solution engineering, and AI transformation initiatives, combining hands-on technical leadership with business development, organizational growth, and strategic planning.",
+      "description": "Lead solution engineering and all AI technology for a 200-person government technology company, combining hands-on engineering with technical strategy and growth.",
       "imageSrc": "/images/logos/amivero-xpect.webp",
       "imageAlt": "Amivero, an Xpect Solutions Company",
       "imageShape": "square",
       "achievements": [
+        "Deployed and operate all of the company’s AI technology, from commercial platforms and internal chatbots to AI-assisted development tools and custom automation, at more than 1.5 billion tokens a month with no significant outage.",
+        "Architected and built, largely as the sole developer, a shared enterprise AI platform on Amazon EKS with centralized model access and governance controls, on a cluster averaging 190 deployments a month.",
+        "Hired, onboarded, and developed a team of 10 LLM, machine learning, data, and full-stack engineers, building each person’s career path in AI engineering, AI operations, or generative AI.",
+        "Led company-wide AI upskilling that engaged more than 40% of the workforce, and partnered with program delivery leaders to bring AI and automation to approximately 50% of active projects.",
+        "Architected and built an AI platform with multi-source ingestion and hybrid search that automated opportunity discovery, evaluation, and proposal workflows, cutting proposal development time by 60% as the business development pipeline grew 150%.",
+        "Supported Amivero’s 2026 acquisition by Xpect Solutions, a NewSpring Holdings platform company, through executive management briefings and technology due diligence."
+      ],
+      "imageLayout": "wordmark",
+      "evidence": [
+        "Led technology innovation, solution engineering, and AI transformation initiatives, combining hands-on technical leadership with business development, organizational growth, and strategic planning.",
         "Architected and developed secure enterprise AI infrastructure, generative AI chatbots, and reusable data and AI platforms supporting internal operations and federal customer missions.",
         "Developed tailored innovation plans with program delivery leadership, implementing mission-driven AI and automation technologies across approximately 50% of active projects within existing contracts.",
         "Led company-wide AI literacy, upskilling, and reskilling initiatives, engaging more than 40% of the workforce through a gamified program of weekly spy-themed challenges with a leaderboard, and empowering employees to develop AI solutions that improved productivity and operational efficiency.",
         "Architected and developed a proprietary AI-powered growth intelligence platform that automated opportunity discovery, evaluation, and proposal workflows, increasing the business development pipeline by 150% and reducing proposal development time by 60%.",
         "Led technical growth and capture efforts that converted greenfield Data and AI opportunities into contract wins through customer engagement, technical demonstrations and challenges, proposal development, and oral presentations.",
-        "Supported Amivero’s successful acquisition by Xpect Solutions, a NewSpring Holdings platform company, in 2026 through executive management briefings and technology due diligence. Executed an AI strategy that strengthened the company’s capabilities and market differentiation."
-      ],
-      "imageLayout": "wordmark",
-      "evidence": [
+        "Supported Amivero’s successful acquisition by Xpect Solutions, a NewSpring Holdings platform company, in 2026 through executive management briefings and technology due diligence. Executed an AI strategy that strengthened the company’s capabilities and market differentiation.",
         "Deployed and operate all of the company’s AI technology for a 200-person company: commercial platforms, internal chatbots, AI-assisted development tools, and custom automation, at more than 1.5 billion tokens a month with no significant outage in the first year.",
         "Architected and built, largely as the sole developer, a shared enterprise AI platform on Amazon EKS with a single model gateway (LiteLLM to Anthropic Claude on Amazon Bedrock), so every product reaches models through one governed route; the cluster is managed with Argo CD and averages 190 deployments a month across patches, fixes, new features, backend improvements, and new services.",
         "Took two production AI systems in turn from idea to internal pilot in eight weeks and to full operation in three months each, building with AI coding agents (Claude Code), and ran the customer discovery, feedback, training, and intake that brought them into use.",
@@ -48,13 +55,17 @@
       "imageAlt": "Department of Homeland Security Logo",
       "imageShape": "square",
       "achievements": [
-        "Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government: designed the organizational model, set and approved compensation, ran many of the interviews, and served as second-level supervisor.",
+        "Helped establish the DHS Office of the Chief AI Officer and led the nationwide recruitment of 50 AI experts from industry, academia, and government, designing the organizational model and setting compensation.",
+        "Directly led the DHS AI Corps of 50 AI engineers and product owners and about six engineers in the Chief Technology Officer’s organization.",
+        "Developed leaders and talent from within, promoting a project manager and two engineering branch chiefs to Division Directors and creating learning pathways that certified about two dozen employees across the components.",
         "Led development and enterprise deployment of a secure agentic generative AI chatbot, authorized at the FISMA and FedRAMP Moderate level, serving approximately 20,000 DHS personnel.",
+        "Ran the department’s enterprise DevOps and collaboration service for more than 13,000 users and more than 300 applications, systems, and projects at over 99% availability.",
         "Developed and implemented department-wide AI governance policies, standards, and workforce training for responsible adoption of generative AI and facial recognition.",
-        "Negotiated a department-wide Login.gov enterprise agreement, generating more than $2.5 million in cost avoidance and establishing a unified authentication capability for external-facing services.",
-        "Directed enterprise platforms including secure DevSecOps toolchains, generative AI applications, and information-sharing solutions."
+        "Negotiated a department-wide Login.gov enterprise agreement, generating more than $2.5 million in cost avoidance and establishing a unified authentication capability for external-facing services."
       ],
       "evidence": [
+        "Helped establish the DHS Office of the Chief AI Officer and led a nationwide recruitment initiative that hired 50 AI experts from industry, academia, and government: designed the organizational model, set and approved compensation, ran many of the interviews, and served as second-level supervisor.",
+        "Directed enterprise platforms including secure DevSecOps toolchains, generative AI applications, and information-sharing solutions.",
         "Led the engineering teams in that organization directly: the DHS AI Corps of 50 AI engineers and product owners, about 70% of them engineers, and about six engineers in the Chief Technology Officer’s organization.",
         "Organized the office into seven divisions: AI governance, technology governance, the DHS AI Corps, enterprise architecture, engineering, emerging technologies, and business operations, led through two deputies and a director for each division.",
         "Mentored and promoted leaders from within: a project manager who rose to branch chief and then Division Director of AI Governance, and two engineering branch chiefs who became Division Directors of Engineering and of Technology Governance.",
@@ -78,13 +89,14 @@
       "imageShape": "square",
       "achievements": [
         "Led solution engineering for the U.S. Department of Agriculture’s end-to-end recruit-to-retire HR platform, later awarded, after leaving Salesforce, as a five-year, $100 million contract.",
-        "Rebuilt the HR demonstration from the ground up, and the product team adopted much of it when it turned the HR solution into a Salesforce Public Sector product.",
         "Provided technical leadership across 52 federal sales opportunities representing more than $10 million in revenue.",
-        "Developed tailored demonstrations and enterprise proofs of concept using human-centered design and DevSecOps practices.",
-        "Led internal Q&A sessions on federal laws, policies, standards, and best practices.",
-        "Partnered with account executives, technical specialists, and systems integrators to translate customer challenges into practical solutions."
+        "Rebuilt the HR demonstration from the ground up, and the product team adopted much of it when it turned the HR solution into a Salesforce Public Sector product.",
+        "Built reusable tools for the solution engineering team, including custom Lightning Web Components, automated demonstration environments, and an open-source package manager."
       ],
       "evidence": [
+        "Developed tailored demonstrations and enterprise proofs of concept using human-centered design and DevSecOps practices.",
+        "Led internal Q&A sessions on federal laws, policies, standards, and best practices.",
+        "Partnered with account executives, technical specialists, and systems integrators to translate customer challenges into practical solutions.",
         "Used human-centered design in pre-sales, working with prospective end users, technical leaders, and subject-matter experts to design application workflows on the Salesforce platform.",
         "Represented the core Salesforce platform on the Department of Homeland Security solution engineering team, and led the solutions that needed specialist resources.",
         "Wrote and deployed custom Lightning Web Components with Salesforce DX, and automated setting up, tearing down, and resetting demonstration environments.",
@@ -104,13 +116,18 @@
       "imageAlt": "ICE Logo",
       "imageShape": "square",
       "achievements": [
+        "Migrated 87 production systems and 133 environments to the cloud within six months, coordinating 23 teams under a change freeze with minimal downtime, at up to 75% less than the amortized capital cost of the hardware replaced.",
+        "Built an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration, reducing resource provisioning lead times by 99% and doubling deployment frequency.",
+        "Established a multi-cloud strategy on AWS and Microsoft Azure and an enterprise platform-as-a-service capability for no-code and low-code development.",
+        "Replaced proprietary software with open-source standards after running the proofs of concept, reducing a $22 million software budget by more than $7 million.",
+        "Led a newly formed technology strategy and architecture office of five senior technologists, raising every member’s performance rating to four or higher of five through individual roadmaps, development plans, and direct coaching."
+      ],
+      "evidence": [
         "Established a multi-cloud strategy leveraging AWS and Microsoft Azure.",
         "Migrated 87 production systems and 133 environments to the cloud within six months as program manager, with 23 teams working in parallel under a change freeze and a status dashboard open to the whole organization, with minimal downtime; applications, middleware, databases, storage, and compute ran at up to 75% less than the amortized capital cost of the physical hardware they replaced.",
         "Establishment of an enterprise Application Platform as a Service capability enabled no-code and low-code rapid application development.",
         "Led Agile engineering and DevSecOps initiatives that reduced resource provisioning lead times by 99%, doubled deployment frequency, and doubled team maturity on a five-level maturity model the organization developed, from simple automation to fully auto-healing deployments with no user interaction.",
-        "Established an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration capabilities."
-      ],
-      "evidence": [
+        "Established an enterprise DevSecOps toolchain with shared CI/CD, automated testing, and cloud orchestration capabilities.",
         "Led a newly formed technology strategy and architecture office of five senior technologists with a history of reassignment and conflict, and raised every member’s performance rating to four or higher of five through individual roadmaps, development plans, and direct coaching; two reached their five-year career goals, one by promotion.",
         "Led a two-year organization-wide campaign to change how the IT organization delivered technology, with a theme, training, and quarterly public results; it cut rework and project delays by 25% and produced the agency’s first authorized cloud environment and four shared automation tools.",
         "Formed a cloud broker team and brought in cloud specialists who trained the existing staff, then gave teams self-service provisioning tied to their technical maturity, starting projects two months sooner.",
@@ -233,24 +250,24 @@
   ],
   "impact": [
     {
-      "value": "150%",
-      "label": "Increase in business development pipeline through AI-powered growth intelligence at Amivero."
+      "value": "$10B",
+      "label": "Federal IT portfolio under technology oversight at DHS."
     },
     {
-      "value": "60%",
-      "label": "Reduction in proposal development time through intelligent automation at Amivero."
+      "value": "150+",
+      "label": "People led at DHS, including the 50-person AI Corps."
     },
     {
-      "value": "~50%",
-      "label": "Active Amivero projects implementing AI and automation through tailored innovation initiatives."
+      "value": "87",
+      "label": "Production systems moved to the cloud in six months at ICE."
     },
     {
       "value": "20,000",
       "label": "DHS personnel served by an enterprise generative AI chatbot."
     },
     {
-      "value": "$10B",
-      "label": "Federal IT portfolio under technology oversight at DHS."
+      "value": "1.5B+",
+      "label": "AI tokens a month across Amivero’s AI technology, with no significant outage."
     }
   ],
   "beyond": "Technology has always been both my profession and my hobby. Interactive games, whether video, board, or role-play, have always been an outlet for me to express creativity, think critically, and have fun. As a technologist and creator, I want to work with teams to create new stories, experiences, and challenges for people the way the games of my life have for me. I’m a lifelong gamer and a huge fan of role-playing and strategy games, from MMOs to turn-based and real-time strategy, and I’m building my first game in Unreal Engine 5. I also enjoy Dungeons & Dragons, 3D printing, home automation, electronics, and experimenting with development tools. Whether I’m building an AI application or a home project, I’m usually learning something new.",
