@@ -150,6 +150,11 @@ Migrated the GSA Login.gov program’s CRM from Airtable to Salesforce: about 10
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
 Mentored a machine learning engineer over a year until they took ownership of the company’s AI platforms, working to the organization’s new engineering standards.
 
+## Professional Experience — Senior Vice President, Solution Engineering
+
+Senior Vice President, Solution Engineering at Amivero (2025 — Present)
+Hired, onboarded, and developed a team of 10 LLM, machine learning, data, and full-stack engineers, building each person’s career path in AI engineering, AI operations, or generative AI from their own goals through on-the-job practice, formal training, demonstrated skills, and contributions back to the community.
+
 ## Professional Experience — Chief Technology Officer and Chief AI Officer
 
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
@@ -259,6 +264,11 @@ The Chief Technology Officer’s organization operationally ran the department�
 
 Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
 Developed and implemented the department’s facial recognition technology policy, and led the effort to have every DHS facial recognition system formally tested and validated against NIST and IEC testing requirements, resolving all concerns and issues found; this made DHS one of the most mature organizations in the federal government for safe facial recognition in performance, testing, and governance and compliance.
+
+## Professional Experience — Chief Technology Officer and Chief AI Officer
+
+Chief Technology Officer and Chief AI Officer at U.S. Department of Homeland Security (2021 — 2025)
+Created department-wide learning pathways in AI engineering, secure software development, and human-centered design, certifying about two dozen employees from across the components in multiple cohorts.
 
 ## Professional Experience — Lead Solution Engineer
 
@@ -490,19 +500,27 @@ Software Engineer at Aspex, Inc. (2008–2009). Built the software engineering f
 
 ## Technical Expertise
 
-Artificial Intelligence & Intelligent Automation: Generative AI, large language models, AI governance, responsible AI, enterprise AI platforms, AI-powered applications, intelligent automation, AI orchestration, and retrieval-augmented generation.
+Artificial Intelligence & Agentic Systems: Generative AI, large language models, retrieval-augmented generation (RAG), hybrid retrieval and reranking, graph RAG, agentic tool-calling, multi-agent orchestration, Model Context Protocol (MCP) servers and clients, structured output, LLM evaluation with ground-truth data, guardrails and human-in-the-loop design, AI governance, and responsible AI.
 
 ## Technical Expertise
 
-Software Engineering & Product Development: Application architecture, Python, JavaScript, Java, Node.js, API development, full-stack engineering, distributed systems, open-source technologies, and modern product development.
+AI Platform & Model Operations: Anthropic Claude on Amazon Bedrock, LiteLLM model gateways, OpenAI models, local models with Ollama, embeddings, token and cost management, Open WebUI, Claude Code and AI-assisted development.
 
 ## Technical Expertise
 
-Cloud & Platform Engineering: AWS, Microsoft Azure, multi-cloud architecture, Kubernetes, Docker, infrastructure as code, cloud security, DevSecOps, CI/CD automation, and enterprise platform engineering.
+Software Engineering & Product Development: Application architecture, Python, FastAPI, TypeScript, JavaScript, Next.js, React, Node.js, Java, Celery, API development, full-stack engineering, distributed systems, open-source technologies, and modern product development.
 
 ## Technical Expertise
 
-Data Architecture & Analytics: Enterprise data architecture, relational databases, data integration, data pipelines, business intelligence, and analytics platforms that make organizational data accessible and actionable.
+Cloud & Platform Engineering: AWS, Amazon EKS, Microsoft Azure, multi-cloud architecture, Kubernetes, Docker, Helm, Argo CD and GitOps, GitLab, infrastructure as code, cloud security, DevSecOps, CI/CD automation, and enterprise platform engineering.
+
+## Technical Expertise
+
+Data Architecture & Analytics: PostgreSQL, pgvector, Neo4j, OpenSearch, Redis, Amazon S3, enterprise data architecture, knowledge graphs, entity resolution, data pipelines, document extraction, business intelligence, and analytics platforms.
+
+## Technical Expertise
+
+Identity & Security: Microsoft Entra ID, OAuth 2.0 and OpenID Connect, delegated identity (On-Behalf-Of), secrets management, audit logging, FISMA and FedRAMP Moderate systems.
 
 ## Technical Expertise
 

@@ -42,7 +42,8 @@
         "Built a graph-analytics platform for fraud and identity investigations on Neo4j that scores shared attributes between accounts, detects linked clusters, and explains each link to the investigator, with sensitive identifiers stored only as keyed hashes.",
         "Built internal developer tooling that turns GitHub issues into pull requests using Claude Code agents in isolated worktrees, with secret scanning, protected branches, and no automatic merge.",
         "Migrated the GSA Login.gov program’s CRM from Airtable to Salesforce: about 10,000 records, eight weeks from start to cut-over.",
-        "Mentored a machine learning engineer over a year until they took ownership of the company’s AI platforms, working to the organization’s new engineering standards."
+        "Mentored a machine learning engineer over a year until they took ownership of the company’s AI platforms, working to the organization’s new engineering standards.",
+        "Hired, onboarded, and developed a team of 10 LLM, machine learning, data, and full-stack engineers, building each person’s career path in AI engineering, AI operations, or generative AI from their own goals through on-the-job practice, formal training, demonstrated skills, and contributions back to the community."
       ]
     },
     {
@@ -77,7 +78,8 @@
         "Managed the custom-built enterprise architecture platform used by thousands of architects and engineers across the department for the technical reference model, approved software, and the enterprise inventory of systems, products, and software.",
         "Consolidated two support contracts into one, saving 20% by removing duplicate program management, operations, and help desk roles.",
         "The Chief Technology Officer’s organization operationally ran the department’s AI program: the DHS AI Corps, AI policy and governance, DHS Chat, facial recognition technology testing, policy, and reporting, management of the DHS Chief AI Officer Council, and the DHS AI Governance Board.",
-        "Developed and implemented the department’s facial recognition technology policy, and led the effort to have every DHS facial recognition system formally tested and validated against NIST and IEC testing requirements, resolving all concerns and issues found; this made DHS one of the most mature organizations in the federal government for safe facial recognition in performance, testing, and governance and compliance."
+        "Developed and implemented the department’s facial recognition technology policy, and led the effort to have every DHS facial recognition system formally tested and validated against NIST and IEC testing requirements, resolving all concerns and issues found; this made DHS one of the most mature organizations in the federal government for safe facial recognition in performance, testing, and governance and compliance.",
+        "Created department-wide learning pathways in AI engineering, secure software development, and human-centered design, certifying about two dozen employees from across the components in multiple cohorts."
       ]
     },
     {
@@ -189,20 +191,28 @@
   ],
   "expertise": [
     {
-      "title": "Artificial Intelligence & Intelligent Automation",
-      "body": "Generative AI, large language models, AI governance, responsible AI, enterprise AI platforms, AI-powered applications, intelligent automation, AI orchestration, and retrieval-augmented generation."
+      "title": "Artificial Intelligence & Agentic Systems",
+      "body": "Generative AI, large language models, retrieval-augmented generation (RAG), hybrid retrieval and reranking, graph RAG, agentic tool-calling, multi-agent orchestration, Model Context Protocol (MCP) servers and clients, structured output, LLM evaluation with ground-truth data, guardrails and human-in-the-loop design, AI governance, and responsible AI."
+    },
+    {
+      "title": "AI Platform & Model Operations",
+      "body": "Anthropic Claude on Amazon Bedrock, LiteLLM model gateways, OpenAI models, local models with Ollama, embeddings, token and cost management, Open WebUI, Claude Code and AI-assisted development."
     },
     {
       "title": "Software Engineering & Product Development",
-      "body": "Application architecture, Python, JavaScript, Java, Node.js, API development, full-stack engineering, distributed systems, open-source technologies, and modern product development."
+      "body": "Application architecture, Python, FastAPI, TypeScript, JavaScript, Next.js, React, Node.js, Java, Celery, API development, full-stack engineering, distributed systems, open-source technologies, and modern product development."
     },
     {
       "title": "Cloud & Platform Engineering",
-      "body": "AWS, Microsoft Azure, multi-cloud architecture, Kubernetes, Docker, infrastructure as code, cloud security, DevSecOps, CI/CD automation, and enterprise platform engineering."
+      "body": "AWS, Amazon EKS, Microsoft Azure, multi-cloud architecture, Kubernetes, Docker, Helm, Argo CD and GitOps, GitLab, infrastructure as code, cloud security, DevSecOps, CI/CD automation, and enterprise platform engineering."
     },
     {
       "title": "Data Architecture & Analytics",
-      "body": "Enterprise data architecture, relational databases, data integration, data pipelines, business intelligence, and analytics platforms that make organizational data accessible and actionable."
+      "body": "PostgreSQL, pgvector, Neo4j, OpenSearch, Redis, Amazon S3, enterprise data architecture, knowledge graphs, entity resolution, data pipelines, document extraction, business intelligence, and analytics platforms."
+    },
+    {
+      "title": "Identity & Security",
+      "body": "Microsoft Entra ID, OAuth 2.0 and OpenID Connect, delegated identity (On-Behalf-Of), secrets management, audit logging, FISMA and FedRAMP Moderate systems."
     },
     {
       "title": "Technology Strategy & Governance",
@@ -293,6 +303,7 @@
   ],
   "shortBio": "Dave Larrimore is a technology executive, AI engineer, and former federal Chief Technology Officer with nearly 20 years of experience driving enterprise modernization, technology innovation, and business growth. He has served in senior leadership roles at DHS and ICE, overseeing large-scale technology portfolios and advancing enterprise cloud and AI capabilities. As Senior Vice President of Solution Engineering at Amivero, he combined hands-on AI engineering with technology strategy and business development. His work included enterprise AI platforms and proprietary automation that increased the business development pipeline by 150% and reduced proposal development time by 60%. He also supported executive management briefings and technology due diligence during Amivero’s acquisition by Xpect Solutions in 2026. Dave remains an active technologist, building software and exploring AI, product engineering, and organizational transformation.",
   "location": "Northern Virginia",
+  "contact": "David Larrimore: Northern Virginia; davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com",
   "education": [
     {
       "degree": "Bachelor of Arts",
