@@ -1,22 +1,27 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { buildMetadata, siteUrl, SITE_DESCRIPTION } from "@/lib/seo";
 import Analytics from "./components/Analytics";
 import PixelCompanion from "./components/ds/PixelCompanion";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// Fonts are served from app/fonts (latin subset, OFL; see app/fonts/LICENSE.txt) rather than
+// next/font/google, so builds never download from Google Fonts. Fetching them at build time
+// made Railway builds fail intermittently under Turbopack.
+const inter = localFont({
+  src: [{ path: "./fonts/inter-latin-variable.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-inter",
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const plexMono = localFont({
+  src: [
+    { path: "./fonts/ibm-plex-mono-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ibm-plex-mono-latin-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/ibm-plex-mono-latin-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-plex-mono",
   display: "swap",
 });
