@@ -113,12 +113,12 @@ Led the agentic case analysis for a security-clearance adjudication system at th
 ## Professional Experience — Senior Vice President, Solution Engineering
 
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
-Evaluated each version of that case analysis against ground-truth historical cases as champion and challenger, measuring true positives, false positives, false negatives, token use, and time to completion in a formal process modeled on NIST practice; the winning version immediately raised the true-positive rate by 30% and cut the false-negative rate by the same.
+Evaluated each version of that case analysis against ground-truth historical cases as champion and challenger, measuring true positives, false positives, false negatives, token use, and time to completion in a formal process modeled on NIST practice; the winning version immediately raised the true-positive rate by 30% and cut the false-negative rate by 30%, each relative to the prior version’s results.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
-Created the design system for the company’s AI case-analysis application, setting common patterns for chat interaction, tool calls and citations, collaboration features, and navigation; Immigration and Customs Enforcement adopted it for its production adjudication platform.
+Created the design system for the company’s AI case-analysis application, setting common patterns for chat interaction, tool calls and citations, collaboration features, and navigation; a DHS component adopted it for its production adjudication platform.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
