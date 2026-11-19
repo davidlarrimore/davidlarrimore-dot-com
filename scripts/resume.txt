@@ -4,7 +4,7 @@
 
 Former Federal CTO | Engineering & AI Platforms | Technology Leadership
 Technology executive and hands-on engineering leader with nearly 20 years in cloud platforms, software development, and AI. Former Chief Technology Officer and Chief AI Officer of the Department of Homeland Security, leading more than 150 people, the 50-person AI Corps, and a $10 billion IT portfolio. Today builds and operates production AI platforms and develops the engineers who run them.
-I believe effective technology leadership requires understanding the entire lifecycle of innovation: identifying the problem, designing the solution, building the technology, earning organizational adoption, and delivering measurable value. My career has let me approach that lifecycle as a software engineer, enterprise architect, federal CTO, AI executive, commercial solution engineer, and senior leader in a growing government technology company.
+I believe effective technology leadership requires understanding the entire lifecycle of innovation: identifying the problem, designing the solution, building the technology, earning organizational adoption, and delivering measurable value. My career has let me approach that lifecycle as a software engineer, enterprise architect, federal CTO, AI executive, commercial solution engineer, and senior leader in a growing tech-enabled services small business.
 
 ## Contact
 
@@ -13,7 +13,7 @@ David Larrimore: Northern Virginia; davidlarrimore@gmail.com; https://linkedin.c
 ## Professional Experience — Senior Vice President, Solution Engineering
 
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
-Lead solution engineering and all AI technology for a 200-person government technology company, combining hands-on engineering with technical strategy and growth.
+Lead solution engineering and all AI technology for a 200-person tech-enabled services small business, combining hands-on engineering with technical strategy and growth.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
