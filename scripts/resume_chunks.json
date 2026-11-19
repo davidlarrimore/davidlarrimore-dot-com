@@ -215,7 +215,7 @@
   },
   {
     "_id": "experience_0_evidence_13",
-    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nEvaluated each version of that case analysis against ground-truth historical cases as champion and challenger, measuring true positives, false positives, false negatives, token use, and time to completion in a formal process modeled on NIST practice; the winning version immediately raised the true-positive rate by 30% and cut the false-negative rate by the same.",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nEvaluated each version of that case analysis against ground-truth historical cases as champion and challenger, measuring true positives, false positives, false negatives, token use, and time to completion in a formal process modeled on NIST practice; the winning version immediately raised the true-positive rate by 30% and cut the false-negative rate by 30%, each relative to the prior version’s results.",
     "section": "Professional Experience",
     "category": "Evidence",
     "sequence": 23,
@@ -225,7 +225,7 @@
   },
   {
     "_id": "experience_0_evidence_14",
-    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nCreated the design system for the company’s AI case-analysis application, setting common patterns for chat interaction, tool calls and citations, collaboration features, and navigation; Immigration and Customs Enforcement adopted it for its production adjudication platform.",
+    "text": "Senior Vice President, Solution Engineering at Amivero (2025 — Present)\nCreated the design system for the company’s AI case-analysis application, setting common patterns for chat interaction, tool calls and citations, collaboration features, and navigation; a DHS component adopted it for its production adjudication platform.",
     "section": "Professional Experience",
     "category": "Evidence",
     "sequence": 24,
