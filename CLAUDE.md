@@ -185,12 +185,12 @@ updates the live chatbot at once. Career Scout picks up `main` by itself (at its
 
 ### Pinecone Setup
 
-`lib/resume-content.json` is the single source of truth. Pinecone holds one copy of it in the `resume` namespace of the `PINECONE_RESUME_INDEX_NAME` index, and that namespace is a disposable mirror that can be rebuilt from the repo at any time.
+`lib/resume-content.json` is the single source of truth. Pinecone holds one copy of it in the `resume` namespace of the `davidlarrimore-resume` index (both set in `lib/resume-index.json`; `PINECONE_RESUME_INDEX_NAME` overrides the index, and only `PINECONE_API_KEY` is required), and that namespace is a disposable mirror that can be rebuilt from the repo at any time.
 
 To update the chatbot's knowledge:
 1. Edit `lib/resume-content.json`.
 2. Run `npm run generate-resume` to regenerate `public/files/resume.md`, `scripts/resume.txt`, `scripts/resume_chunks.json` and `scripts/resume_chunks.csv`. Commit these with the JSON change.
-3. Merge to `main`. Every production container runs `scripts/start.sh` (the Dockerfile `CMD`), which runs `scripts/init-pinecone.js` before starting Next.js when `RAILWAY_ENVIRONMENT_NAME` is `production`. The sync upserts every chunk in `scripts/resume_chunks.json` by `_id` (the index embeds the text itself) and deletes any record whose `_id` is no longer in the file, so it is safe on every restart and never creates duplicates. A failed or slow sync (90 s limit) is logged and the server starts anyway; look for `Synced N records` in the Railway deploy logs.
+3. Merge to `main`. Every production container runs `scripts/start.sh` (the Dockerfile `CMD`), which runs `scripts/init-pinecone.js` before starting Next.js when `RAILWAY_ENVIRONMENT_NAME` is `production`. The sync upserts every chunk in `scripts/resume_chunks.json` by `_id` (the index embeds the text itself) and deletes any record whose `_id` is no longer in the file, so it is safe on every restart and never creates duplicates. A failed or slow sync (90 s limit) is logged and the server starts anyway, so a deploy can succeed without syncing: look for `Synced N records` in the Railway deploy logs (`Pinecone sync failed or timed out` means it did not).
 4. Optionally run `npm run check-pinecone` locally afterwards. It fails if any chunk is missing or out of date, if the namespace holds records that are not in the file, or if the sample semantic searches miss.
 
 To roll back, redeploy an earlier build in Railway: it syncs that build's content. `npm run init-pinecone` still works by hand (for example after the index is recreated), but it writes the checked-out content to the live namespace, so run it only from an up-to-date `main`. Locally, `npm start` and `docker compose` never sync. Do not create extra namespaces; the chat route reads only the one in `lib/resume-index.json`.

@@ -25,7 +25,7 @@ const getRelevantResumeChunks = async (query: string) => {
     const pinecone = await initPinecone();
     const namespace = pinecone
       .index(
-        process.env.PINECONE_RESUME_INDEX_NAME || "davidlarrimore-resume",
+        process.env.PINECONE_RESUME_INDEX_NAME || resumeIndex.index,
         process.env.PINECONE_RESUME_INDEX_HOST
       )
       .namespace(resumeIndex.namespace);

@@ -2,10 +2,9 @@ require('dotenv').config({ quiet: true });
 const assert = require('node:assert/strict');
 const { Pinecone } = require('@pinecone-database/pinecone');
 const chunks = require('./resume_chunks.json');
-const { namespace } = require('../lib/resume-index.json');
+const { index: defaultIndex, namespace } = require('../lib/resume-index.json');
 async function main() {
-  const name = process.env.PINECONE_RESUME_INDEX_NAME;
-  if (!name) throw new Error('PINECONE_RESUME_INDEX_NAME is required');
+  const name = process.env.PINECONE_RESUME_INDEX_NAME || defaultIndex;
   const index = new Pinecone().index(name, process.env.PINECONE_RESUME_INDEX_HOST).namespace(namespace);
   const result = await index.fetch({ ids: chunks.map(c => c._id) });
   for (const chunk of chunks) {

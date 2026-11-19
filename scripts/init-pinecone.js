@@ -1,7 +1,7 @@
 require('dotenv').config({ quiet: true });
 const { Pinecone } = require('@pinecone-database/pinecone');
 const chunks = require('./resume_chunks.json');
-const { namespace } = require('../lib/resume-index.json');
+const { index: defaultIndex, namespace } = require('../lib/resume-index.json');
 
 async function listIds(index) {
   const ids = [];
@@ -17,8 +17,8 @@ async function listIds(index) {
 // Makes the namespace an exact mirror of scripts/resume_chunks.json:
 // upserts every chunk, then deletes records whose ids are no longer in the file.
 async function main() {
-  const name = process.env.PINECONE_RESUME_INDEX_NAME;
-  if (!name || !process.env.PINECONE_API_KEY) throw new Error('PINECONE_RESUME_INDEX_NAME and PINECONE_API_KEY are required');
+  const name = process.env.PINECONE_RESUME_INDEX_NAME || defaultIndex;
+  if (!process.env.PINECONE_API_KEY) throw new Error('PINECONE_API_KEY is required');
   const pc = new Pinecone();
   const description = await pc.describeIndex(name);
   if (description.embed?.fieldMap?.text !== 'text') {
