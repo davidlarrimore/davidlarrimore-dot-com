@@ -1,6 +1,5 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const crypto = require('node:crypto');
 const Papa = require('papaparse');
 const root = path.resolve(__dirname, '..');
 const content = require('../lib/resume-content.json');
@@ -33,7 +32,4 @@ fs.writeFileSync(path.join(root, 'public/files/resume.md'), md);
 fs.writeFileSync(path.join(root, 'scripts/resume.txt'), md);
 fs.writeFileSync(path.join(root, 'scripts/resume_chunks.json'), JSON.stringify(chunks, null, 2) + '\n');
 fs.writeFileSync(path.join(root, 'scripts/resume_chunks.csv'), Papa.unparse(chunks, { newline: '\n', columns: ['_id', 'text', 'section', 'category', 'sequence', 'organization', 'role', 'years'] }) + '\n');
-// Each content revision gets an isolated namespace: upload before deploying code.
-const revision = crypto.createHash('sha256').update(JSON.stringify(chunks)).digest('hex').slice(0, 12);
-fs.writeFileSync(path.join(root, 'lib/resume-index.json'), JSON.stringify({ namespace: `resume-${revision}` }, null, 2) + '\n');
-console.log(`Generated ${chunks.length} resume chunks and full-context files (resume-${revision}).`);
+console.log(`Generated ${chunks.length} resume chunks and full-context files.`);

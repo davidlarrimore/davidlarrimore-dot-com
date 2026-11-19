@@ -82,7 +82,7 @@ Two modes of operation:
    - Each chunk includes metadata: section, organization, role, category, years
    - Retrieved chunks passed to Claude API as targeted context
    - Falls back to basic mode if Pinecone fails
-   - Uses the configured Pinecone integrated embedding model; content revisions use isolated namespaces.
+   - Uses the configured Pinecone integrated embedding model; all records live in one fixed namespace, `resume` (set in `lib/resume-index.json`).
 
 Both modes:
 - Use the Claude Haiku 4.5 model (`claude-haiku-4-5`) via raw `fetch()` calls to the Anthropic Messages API (no SDK)
@@ -149,11 +149,15 @@ Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat A
 
 ### Pinecone Setup
 
-The RAG mode requires Pinecone initialization:
-1. Update the shared content in `lib/resume-content.json`.
-2. Run `npm run generate-resume` to regenerate chatbot markdown, text, CSV, JSON, and the revision namespace.
-3. Run `npm run init-pinecone` to upload using the existing index’s integrated embeddings.
-4. Run `npm run check-pinecone` before deploying the matching code. Previous namespaces are retained for rollback.
+`lib/resume-content.json` is the single source of truth. Pinecone holds one copy of it in the `resume` namespace of the `PINECONE_RESUME_INDEX_NAME` index, and that namespace is a disposable mirror that can be rebuilt from the repo at any time.
+
+To update the chatbot's knowledge:
+1. Edit `lib/resume-content.json`.
+2. Run `npm run generate-resume` to regenerate `public/files/resume.md`, `scripts/resume.txt`, `scripts/resume_chunks.json` and `scripts/resume_chunks.csv`. Commit these with the JSON change.
+3. Run `npm run init-pinecone`. It syncs the namespace to `scripts/resume_chunks.json`: it upserts every chunk by `_id` (the index embeds the text itself), then deletes any record whose `_id` is no longer in the file. Re-running it is safe and never creates duplicates.
+4. Run `npm run check-pinecone`. It fails if any chunk is missing or out of date, if the namespace holds records that are not in the file, or if the sample semantic searches miss.
+
+The sync changes what the live chatbot retrieves right away, before any deploy. To roll back, check out the earlier `lib/resume-content.json` and repeat steps 2–4. Do not create extra namespaces; the chat route reads only the one in `lib/resume-index.json`.
 
 ### Resume Chat Guidelines
 
