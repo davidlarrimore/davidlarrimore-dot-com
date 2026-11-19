@@ -71,13 +71,13 @@ To set up the Pinecone vector database for the RAG feature:
 
 ```bash
 npm run generate-resume      # Generate markdown, text, CSV and JSON chunks from lib/resume-content.json
-npm run init-pinecone         # Sync the `resume` namespace to the chunks: upsert all, delete removed ones
+npm run init-pinecone         # Sync the `resume` namespace by hand (production deploys do this automatically)
 npm run check-pinecone        # Verify every record, no extra records, and sample semantic searches
 ```
 
 Resume content is maintained in `lib/resume-content.json`, shared by the homepage and resume page. The generator produces the full-context chatbot markdown and RAG records together. Replace `public/files/resume.pdf` with the supplied PDF when updating the downloadable resume.
 
-The Pinecone index must already exist with integrated embeddings and `fieldMap.text = "text"`; Pinecone embeds the text on upload, so no embedding model runs locally. All records live in a single namespace, `resume`, named in `lib/resume-index.json`. That namespace is a mirror of `lib/resume-content.json`, not a separate store: `init-pinecone` upserts every chunk by `_id` and deletes any record whose `_id` is gone, so re-running it never duplicates anything, and the namespace can always be rebuilt from the repo. The sync takes effect for the live chatbot immediately. To roll back, restore the earlier `lib/resume-content.json` and run the three commands again. The chat route falls back to the full resume when retrieval fails or returns no results.
+The Pinecone index must already exist with integrated embeddings and `fieldMap.text = "text"`; Pinecone embeds the text on upload, so no embedding model runs locally. All records live in a single namespace, `resume`, named in `lib/resume-index.json`. That namespace is a mirror of `lib/resume-content.json`, not a separate store: `init-pinecone` upserts every chunk by `_id` and deletes any record whose `_id` is gone, so re-running it never duplicates anything, and the namespace can always be rebuilt from the repo. You normally don't run the sync yourself: every production start runs `scripts/start.sh`, which syncs Pinecone to the deployed commit's chunks before starting the server (and starts anyway if the sync fails). So the workflow is: edit the JSON, run `generate-resume`, commit, merge. To roll back, redeploy an earlier build in Railway. A manual `init-pinecone` writes to the live namespace immediately, so run it only from an up-to-date `main`. The chat route falls back to the full resume when retrieval fails or returns no results.
 
 `csv-to-resume-chunks` remains available for legacy imports; normal updates should use `generate-resume` so all formats stay in sync.
 

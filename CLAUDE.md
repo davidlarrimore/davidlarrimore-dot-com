@@ -16,8 +16,8 @@ npm run start            # Start production server
 
 # Pinecone Setup (for RAG features)
 npm run csv-to-resume-chunks  # Convert CSV resume data to JSON format
-npm run init-pinecone         # Initialize Pinecone vector database with resume chunks
-npm run check-pinecone        # Verify Pinecone setup and connection
+npm run init-pinecone         # Sync the `resume` namespace by hand (production deploys do this automatically)
+npm run check-pinecone        # Verify every record, no extra records, and sample semantic searches
 
 # Asset Generation
 npm run generate-favicons     # Generate favicon files from SVG icon
@@ -178,9 +178,9 @@ a fact anywhere else: a correction is made here, once, and everything else follo
 - **Trying a change before it is live:** push it to a branch; Career Scout can import a branch
   (`POST /api/evidence/import` with `{"ref": "<branch>"}`) for a comparison before merge.
 
-After any change to the file: `npm run generate-resume` in the same PR, then the Pinecone steps
-below when the PR is ready to merge (the sync updates the live chatbot at once, so a branch that
-is only being tried in Career Scout should not be synced). Career Scout picks up `main` by itself (at its next start or weekly run, or at once with
+After any change to the file: `npm run generate-resume` in the same PR. Merging deploys it, and
+the deploy syncs Pinecone (see below); do not run `init-pinecone` from a branch, because the sync
+updates the live chatbot at once. Career Scout picks up `main` by itself (at its next start or weekly run, or at once with
 `python -m app.evidence.sync` there).
 
 ### Pinecone Setup
@@ -190,10 +190,10 @@ is only being tried in Career Scout should not be synced). Career Scout picks up
 To update the chatbot's knowledge:
 1. Edit `lib/resume-content.json`.
 2. Run `npm run generate-resume` to regenerate `public/files/resume.md`, `scripts/resume.txt`, `scripts/resume_chunks.json` and `scripts/resume_chunks.csv`. Commit these with the JSON change.
-3. Run `npm run init-pinecone`. It syncs the namespace to `scripts/resume_chunks.json`: it upserts every chunk by `_id` (the index embeds the text itself), then deletes any record whose `_id` is no longer in the file. Re-running it is safe and never creates duplicates.
-4. Run `npm run check-pinecone`. It fails if any chunk is missing or out of date, if the namespace holds records that are not in the file, or if the sample semantic searches miss.
+3. Merge to `main`. Every production container runs `scripts/start.sh` (the Dockerfile `CMD`), which runs `scripts/init-pinecone.js` before starting Next.js when `RAILWAY_ENVIRONMENT_NAME` is `production`. The sync upserts every chunk in `scripts/resume_chunks.json` by `_id` (the index embeds the text itself) and deletes any record whose `_id` is no longer in the file, so it is safe on every restart and never creates duplicates. A failed or slow sync (90 s limit) is logged and the server starts anyway; look for `Synced N records` in the Railway deploy logs.
+4. Optionally run `npm run check-pinecone` locally afterwards. It fails if any chunk is missing or out of date, if the namespace holds records that are not in the file, or if the sample semantic searches miss.
 
-The sync changes what the live chatbot retrieves right away, before any deploy. To roll back, check out the earlier `lib/resume-content.json` and repeat steps 2–4. Do not create extra namespaces; the chat route reads only the one in `lib/resume-index.json`.
+To roll back, redeploy an earlier build in Railway: it syncs that build's content. `npm run init-pinecone` still works by hand (for example after the index is recreated), but it writes the checked-out content to the live namespace, so run it only from an up-to-date `main`. Locally, `npm start` and `docker compose` never sync. Do not create extra namespaces; the chat route reads only the one in `lib/resume-index.json`.
 
 ### Resume Chat Guidelines
 
@@ -213,5 +213,6 @@ Google Analytics integrated via `app/components/Analytics.tsx`:
 ### Deployment
 
 - Primary deployment: Railway platform
-- CI/CD: GitHub Actions triggers Railway deployment on main branch merges
+- CI/CD: Railway's GitHub integration deploys every push to `main` (no GitHub Actions workflow); each production start syncs Pinecone first (`scripts/start.sh`)
+- `scripts/prune-merged-branches.sh` deletes branches whose PR has merged (it asks GitHub, so it handles squash merges)
 - Uses npm (not pnpm despite lockfile presence)
