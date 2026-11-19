@@ -33,6 +33,6 @@ async function main() {
   for (let i = 0; i < stale.length; i += 1000) {
     await index.deleteMany({ ids: stale.slice(i, i + 1000) });
   }
-  console.log(`Synced ${chunks.length} records to ${name}/${namespace} (removed ${stale.length} stale). Run npm run check-pinecone to verify.`);
+  console.log(`Synced ${chunks.length} records to ${name}/${namespace} (removed ${stale.length} stale). Verify with npm run check-pinecone.`);
 }
 if (require.main === module) main().catch(error => { console.error(error.message); process.exitCode = 1; });
