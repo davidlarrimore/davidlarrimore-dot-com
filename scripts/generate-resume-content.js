@@ -8,7 +8,7 @@ function add(id, text, section, metadata = {}) {
   chunks.push({ _id: id, text, section, category: section, sequence: chunks.length + 1, ...metadata });
 }
 add('profile', `${content.tagline}\n${content.profile}\n${content.about}`, 'Profile');
-add('contact', `David Larrimore: ${content.location}; davidlarrimore@gmail.com; https://linkedin.com/in/davidlarrimore; https://davidlarrimore.com`, 'Contact');
+add('contact', content.contact, 'Contact');
 content.experience.forEach((role, i) => {
   const metadata = { organization: role.company, role: role.title, years: role.period };
   const prefix = `${role.title} at ${role.company} (${role.period})`;
