@@ -70,14 +70,14 @@ Ask questions about my professional experience, skills, and background. The chat
 To set up the Pinecone vector database for the RAG feature:
 
 ```bash
-npm run generate-resume      # Generate markdown, text, CSV, JSON, and namespace from lib/resume-content.json
-npm run init-pinecone         # Upload text using the existing index’s integrated embedding model
-npm run check-pinecone        # Verify every record and representative semantic searches
+npm run generate-resume      # Generate markdown, text, CSV and JSON chunks from lib/resume-content.json
+npm run init-pinecone         # Sync the `resume` namespace to the chunks: upsert all, delete removed ones
+npm run check-pinecone        # Verify every record, no extra records, and sample semantic searches
 ```
 
 Resume content is maintained in `lib/resume-content.json`, shared by the homepage and resume page. The generator produces the full-context chatbot markdown and RAG records together. Replace `public/files/resume.pdf` with the supplied PDF when updating the downloadable resume.
 
-The Pinecone index must already exist with integrated embeddings and `fieldMap.text = "text"`. Ingestion uses `upsertRecords`, not random vectors. Each content revision has a deterministic namespace in `lib/resume-index.json`. Upload and verify it **before deploying** the matching application code. Prior namespaces remain intact for rollback. The chat route queries only its matching revision and falls back to the full resume when retrieval fails or returns no results.
+The Pinecone index must already exist with integrated embeddings and `fieldMap.text = "text"`; Pinecone embeds the text on upload, so no embedding model runs locally. All records live in a single namespace, `resume`, named in `lib/resume-index.json`. That namespace is a mirror of `lib/resume-content.json`, not a separate store: `init-pinecone` upserts every chunk by `_id` and deletes any record whose `_id` is gone, so re-running it never duplicates anything, and the namespace can always be rebuilt from the repo. The sync takes effect for the live chatbot immediately. To roll back, restore the earlier `lib/resume-content.json` and run the three commands again. The chat route falls back to the full resume when retrieval fails or returns no results.
 
 `csv-to-resume-chunks` remains available for legacy imports; normal updates should use `generate-resume` so all formats stay in sync.
 

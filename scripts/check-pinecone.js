@@ -11,6 +11,15 @@ async function main() {
   for (const chunk of chunks) {
     assert.equal(result.records[chunk._id]?.metadata?.text, chunk.text, `Missing or stale record: ${chunk._id}`);
   }
+  const extra = [];
+  let paginationToken;
+  do {
+    const page = await index.listPaginated({ paginationToken });
+    const ids = new Set(chunks.map(c => c._id));
+    extra.push(...(page.vectors || []).map(v => v.id).filter(id => !ids.has(id)));
+    paginationToken = page.pagination?.next;
+  } while (paginationToken);
+  assert.equal(extra.length, 0, `Records not in resume_chunks.json (run npm run init-pinecone): ${extra.join(', ')}`);
   for (const [query, expected] of [
     ['What results did Dave achieve with the growth intelligence platform at Amivero?', '150%'],
     ['How did Dave support the acquisition of Amivero by Xpect Solutions?', 'Xpect'],
