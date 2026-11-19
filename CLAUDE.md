@@ -147,6 +147,42 @@ Claude AI integration is not via the `@anthropic-ai/sdk` package — both chat A
 
 ## Important Implementation Details
 
+### `lib/resume-content.json` is the single source of Dave's career facts
+
+Every fact about Dave's work and life that anything may use lives in this one file: the resume
+page, the chatbot (through `npm run generate-resume` and Pinecone) and **Career Scout**, his
+job-search app (`davidlarrimore/job-hunt`), which reads this file from GitHub's `main` branch
+(`raw.githubusercontent.com/davidlarrimore/davidlarrimore-dot-com/main/lib/resume-content.json`)
+when it starts and every week, and builds its master resume from it. Nobody keeps a second copy of
+a fact anywhere else: a correction is made here, once, and everything else follows.
+
+- **This repository is public.** Everything in the file is published (the chatbot reads all of it).
+  A fact that must not be public goes nowhere near it; job-hunt keeps those in its private notes
+  (`docs/evidence/`), and neither app reads them.
+- **What Career Scout may put on a resume** is decided by section (`backend/app/sources/resume.py`
+  in job-hunt): every `experience` statement (description, achievements, evidence), `earlier`,
+  `expertise`, `awards`, `education`; the profile, `focus`, `approach`, `beyond` and `shortBio` as
+  background. A `projects` item only when it says `"resume": true`: personal projects (The Warden,
+  the homelab, the other apps) and hobbies are for the site and the chatbot, and stay off his
+  resumes unless he says otherwise. `journey` and `impact` are page-only. Add non-work things
+  freely (projects, 3D printing, games): they reach the chatbot, not a resume.
+- **Order is ranking.** Under each job: the description, then `achievements` (the page's bullets,
+  his strongest), then `evidence` (further facts for the chatbot and resumes). Career Scout takes
+  the first ones when it fits a resume without its writer.
+- **Wording.** Every number says what it measures; "led" means directly, "oversaw" through others.
+  Ask Dave before changing a fact's wording or making a new fact public.
+- **Resume-writing guidance is not here.** Headlines, summaries, how each kind of job is pitched
+  and which story each fact tells live in job-hunt's `backend/app/documents/playbook.md` (private).
+- **The shape is a contract.** Career Scout reads the field names above, `contact` included.
+  Renaming or removing a field breaks its import: change both repositories together.
+- **Trying a change before it is live:** push it to a branch; Career Scout can import a branch
+  (`POST /api/evidence/import` with `{"ref": "<branch>"}`) for a comparison before merge.
+
+After any change to the file: `npm run generate-resume` in the same PR, then the Pinecone steps
+below when the PR is ready to merge (the sync updates the live chatbot at once, so a branch that
+is only being tried in Career Scout should not be synced). Career Scout picks up `main` by itself (at its next start or weekly run, or at once with
+`python -m app.evidence.sync` there).
+
 ### Pinecone Setup
 
 `lib/resume-content.json` is the single source of truth. Pinecone holds one copy of it in the `resume` namespace of the `PINECONE_RESUME_INDEX_NAME` index, and that namespace is a disposable mirror that can be rebuilt from the repo at any time.
