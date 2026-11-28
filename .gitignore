@@ -158,3 +158,11 @@ $RECYCLE.BIN/
 ### 🔴 MUST HAVE (Security Critical)
 
 1. **Environment Variables** - Protects API keys
+# Agent skills (installed per machine with `npx skills`; skills-lock.json pins the version and is committed)
+/.agents/
+/.claude/skills/
+# Claude Code per-developer settings
+/.claude/settings.local.json
+# Impeccable per-developer overrides and caches (shared .impeccable/config.json is committed)
+/.impeccable/config.local.json
+/.impeccable/cache/

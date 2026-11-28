@@ -130,6 +130,11 @@ See `.env.example` for required environment variables.
 
 ### Styling
 
+**Before any visual or UX change, read `docs/DESIGN-CHARTER.md`**, the design charter: the redesign goal,
+the ten layout principles, which trends to adopt or avoid, the known problems, and the definition
+of done. Check the change against its checklist before calling it finished. If a change has to
+break a rule there, update the charter in the same PR.
+
 - Tailwind CSS v3.4 with dark mode support
 - Custom CSS in `app/globals.css` and page-specific CSS (e.g., `resume/resume.css`)
 - Dark mode: Uses CSS `dark:` prefix classes, automatic system detection
