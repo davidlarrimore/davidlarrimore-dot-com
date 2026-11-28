@@ -67,6 +67,8 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
   const [scrollOffset, setScrollOffset] = useState(0);
   const [showSmoke, setShowSmoke] = useState(false);
   const [smokeKey, setSmokeKey] = useState(0);
+  // Hidden until the first random spot is set, so it never flashes at the corner.
+  const [placed, setPlaced] = useState(false);
 
   const rootRef = useRef<HTMLDivElement>(null);
   const pokeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -91,9 +93,12 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
     homeRef.current = initial;
     posRef.current = initial;
     setPos(initial);
+    setPlaced(true);
 
     lastScrollY.current = window.scrollY;
     let alive = true;
+    // Reduced motion: the sprite stays put (no fleeing, no scroll bob); it still blinks and talks.
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let blinkTimer: ReturnType<typeof setTimeout>;
 
     function scheduleBlink() {
@@ -139,7 +144,7 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
         setMode("idle");
         setMsg("");
       }
-      if (isNear) {
+      if (isNear && !motionQuery.matches) {
         setLean(Math.max(-8, Math.min(8, (cx - e.clientX) / 6)));
         const now = performance.now();
         if (now - lastFleeTime.current > 70) {
@@ -169,11 +174,31 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
       }));
     }
 
+    let raf = 0;
+    let decaying = false;
+    // The settle-after-scroll loop runs only while there is an offset to settle, not forever.
+    function decay() {
+      offsetRef.current *= 0.88;
+      if (Math.abs(offsetRef.current) < 0.3) offsetRef.current = 0;
+      const r = Math.round(offsetRef.current * 10) / 10;
+      setScrollOffset((prev) => (r !== prev ? r : prev));
+      if (offsetRef.current === 0) {
+        decaying = false;
+        return;
+      }
+      raf = requestAnimationFrame(decay);
+    }
+
     function onScroll() {
+      if (motionQuery.matches) return;
       const y = window.scrollY;
       const delta = y - lastScrollY.current;
       lastScrollY.current = y;
       offsetRef.current = Math.max(-50, Math.min(50, offsetRef.current + delta * 0.45));
+      if (!decaying && offsetRef.current !== 0) {
+        decaying = true;
+        raf = requestAnimationFrame(decay);
+      }
       if (Math.abs(delta) > 12) {
         smokeKeyRef.current += 1;
         setSmokeKey(smokeKeyRef.current);
@@ -182,18 +207,6 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
         smokeTimeout.current = setTimeout(() => setShowSmoke(false), 650);
       }
     }
-
-    let raf = 0;
-    function decay() {
-      offsetRef.current *= 0.88;
-      if (Math.abs(offsetRef.current) < 0.3) offsetRef.current = 0;
-      setScrollOffset((prev) => {
-        const r = Math.round(offsetRef.current * 10) / 10;
-        return r !== prev ? r : prev;
-      });
-      raf = requestAnimationFrame(decay);
-    }
-    raf = requestAnimationFrame(decay);
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("resize", onResize);
@@ -232,17 +245,15 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
   }
 
   const grid = mode === "poked" ? SPRITE_POKED : mode === "near" ? SPRITE_ALERT : blink ? SPRITE_BLINK : SPRITE;
-  const cell = size / 10;
   function colorFor(c: string) {
-    return c === "B" ? "var(--accent)" : c === "P" ? "var(--accent2)" : c === "W" ? "#ffffff" : "transparent";
+    return c === "B" ? "var(--accent)" : c === "P" ? "var(--accent2)" : c === "W" ? "var(--white)" : "transparent";
   }
   const bubbleMsg = msg || pick(IDLE_MESSAGES);
   const bubbleOnLeft = typeof window !== "undefined" ? pos.left < window.innerWidth / 2 : true;
   const scaleVal = mode === "near" ? 0.95 : mode === "poked" ? 1.05 : 1;
   const translateX = mode === "near" ? lean : 0;
-  const posTransition = returning
-    ? "left 2.2s var(--ease-standard), top 2.2s var(--ease-standard)"
-    : "left 0.15s linear, top 0.15s linear";
+  // Position is animated with transform (compositor-only), never left/top.
+  const posTransition = returning ? "transform 2.2s var(--ease-standard)" : "transform 0.15s linear";
 
   const bubbleStyle: React.CSSProperties = { bottom: "calc(100% + 14px)" };
   bubbleStyle[bubbleOnLeft ? "left" : "right"] = 0;
@@ -251,11 +262,11 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
     <div
       ref={rootRef}
       className={`ds-companion ${className}`}
+      aria-hidden="true"
       style={{
-        left: pos.left,
-        top: pos.top,
-        transition: posTransition,
-        transform: `translateY(${-scrollOffset}px) translateX(${translateX}px) scale(${scaleVal})`,
+        transition: placed ? posTransition : "none",
+        visibility: placed ? "visible" : "hidden",
+        transform: `translate3d(${pos.left + translateX}px, ${pos.top - scrollOffset}px, 0) scale(${scaleVal})`,
       }}
       onMouseEnter={() => {
         if (mode === "idle") {
@@ -278,21 +289,14 @@ export default function PixelCompanion({ size = 56, className = "" }: PixelCompa
         </div>
       )}
       <div className={`ds-companion-sprite ${mode === "poked" ? "is-poked" : ""}`} style={{ width: size, height: size }}>
-        {grid.map((row, r) =>
-          row.split("").map((c, cIdx) => (
-            <div
-              key={`${r}-${cIdx}`}
-              style={{
-                position: "absolute",
-                left: cIdx * cell,
-                top: r * cell,
-                width: cell,
-                height: cell,
-                background: colorFor(c),
-              }}
-            />
-          ))
-        )}
+        {/* One SVG instead of 100 positioned divs. */}
+        <svg width={size} height={size} viewBox="0 0 10 10" focusable="false">
+          {grid.flatMap((row, r) =>
+            row.split("").map((c, cIdx) =>
+              c === "." ? null : <rect key={`${r}-${cIdx}`} x={cIdx} y={r} width={1} height={1} fill={colorFor(c)} />
+            )
+          )}
+        </svg>
       </div>
     </div>
   );

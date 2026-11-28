@@ -13,7 +13,7 @@ export default function ScavengerHuntPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "100vh" }}>
+      <main id="main" style={{ minHeight: "100vh" }}>
         <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <Eyebrow>// projects · ai scavenger hunt</Eyebrow>
           <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)", marginBottom: 16 }}>

@@ -33,14 +33,25 @@ export const metadata: Metadata = {
   ...buildMetadata({ title: siteConfig.name, description: SITE_DESCRIPTION }),
 };
 
+// Runs before first paint so the page never flashes the wrong theme. Order: a ?theme=light|dark
+// URL parameter (for previews and screenshots; not saved), then a saved choice, then the
+// visitor's system setting. Dark is the fallback.
+const THEME_SCRIPT = `(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search).get("theme");var t=q==="light"||q==="dark"?q:localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.dataset.theme=t}catch(e){d.dataset.theme="dark"}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth dark ${inter.variable} ${plexMono.variable}`}>
-      <body className="bg-[var(--bg)] text-[var(--fg)] antialiased">
+    <html lang="en" data-theme="dark" className={`${inter.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
+      <body className="antialiased">
+        <a href="#main" className="ds-skip-link">
+          Skip to content
+        </a>
         {children}
         <PixelCompanion />
         <Analytics />

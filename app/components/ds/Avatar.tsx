@@ -6,9 +6,18 @@ interface AvatarProps {
   size?: number;
   shape?: Shape;
   className?: string;
+  /** Lazy by default; pass "eager" for an image in the first viewport. */
+  loading?: "lazy" | "eager";
 }
 
-export default function Avatar({ src, alt = "", size = 64, shape = "circle", className = "" }: AvatarProps) {
+export default function Avatar({
+  src,
+  alt = "",
+  size = 64,
+  shape = "circle",
+  className = "",
+  loading = "lazy",
+}: AvatarProps) {
   if (!src) {
     return (
       <div
@@ -24,6 +33,10 @@ export default function Avatar({ src, alt = "", size = 64, shape = "circle", cla
     <img
       src={src}
       alt={alt}
+      width={size}
+      height={size}
+      loading={loading}
+      decoding="async"
       className={`ds-avatar ${shape === "square" ? "ds-avatar-square" : ""} ${className}`}
       style={{ width: size, height: size }}
     />
