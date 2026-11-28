@@ -135,8 +135,10 @@ only the shared components; the page sections move to classes when Phases 2 and 
    - remove the canvas, the gradient overlay, the hexagon frame and the `//` eyebrow
    - use a plain portrait and make the name the h1
    - lead with the credential from `lib/resume-content.json` (confirm the wording with Dave)
-2. AI front door (`onboard`): an "Ask about Dave's work" input in the hero with 2 or 3 starter
-   questions that open `/projects/resumeChat`.
+2. ~~AI front door in the hero~~ Dropped on 2026-11-28 (Dave's call). The hero stays out of the
+   chatbot: name, credential, "Read the résumé" and "Get in touch". The chatbot is an
+   always-available helper: the pixel sprite opens a chat panel in place on every page (it never
+   sends visitors to another page), and "Try it" in the projects list opens the same panel.
 3. AI projects module (`layout`), second on the page: Resume Chat and the Scavenger Hunt, each
    shown with a real screenshot or transcript snippet.
 4. Remove the bulk (`distill`, `quieter`):

@@ -159,14 +159,14 @@ export function ClosingSection() {
         <h2 id="closing-title" className="home-h2">
           Let&apos;s talk
         </h2>
-        <p>Ask the chatbot about my work, or reach out directly.</p>
+        <p>Reach out directly, or ask my AI about my work.</p>
         <div className="home-closing-actions">
-          <OpenChatButton className="ds-btn ds-btn-primary ds-btn-md" trackLabel="closing_open_chat">
-            Ask my AI about my work
-          </OpenChatButton>
-          <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-secondary ds-btn-md">
+          <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-primary ds-btn-md">
             Email me
           </a>
+          <OpenChatButton className="ds-btn ds-btn-secondary ds-btn-md" trackLabel="closing_open_chat">
+            Ask my AI about my work
+          </OpenChatButton>
           <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer" className="home-text-link">
             LinkedIn<span className="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">↗</span>
           </a>
