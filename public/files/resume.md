@@ -83,7 +83,7 @@ Supported Amivero’s successful acquisition by Xpect Solutions, a NewSpring Hol
 ## Professional Experience — Senior Vice President, Solution Engineering
 
 Senior Vice President, Solution Engineering at Amivero (2025 — Present)
-Deployed and operate all of the company’s AI technology for a 200-person company: commercial platforms, internal chatbots, AI-assisted development tools, and custom automation, at more than 1.5 billion tokens a month with no significant outage in the first year.
+Deployed and operate all of the company’s AI technology for a 200-person company: commercial platforms, internal chatbots, AI-assisted development tools, and custom automation, at more than 1.5 billion tokens a month with no significant outage.
 
 ## Professional Experience — Senior Vice President, Solution Engineering
 
