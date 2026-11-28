@@ -1,0 +1,212 @@
+/* Homepage (Phase 2 of docs/DESIGN-CHARTER.md). Tokens only: no raw colors or one-off sizes.
+   Rhythm: tight inside a group (--space-2..4), generous between sections (--space-8..9). */
+
+.home { --home-measure: 62ch; }
+
+/* Sections are sized to the content column (not padded), so the rules between them line up
+   with the text instead of running past it. */
+.home-hero,
+.home-section {
+  width: calc(100% - 2 * var(--space-5));
+  max-width: calc(var(--container-max) - 2 * var(--space-7));
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .home-hero, .home-section { width: calc(100% - 2 * var(--space-7)); }
+}
+
+/* ---------- Hero ---------- */
+.home-hero { padding-block: var(--space-8) var(--space-8); }
+@media (min-width: 768px) { .home-hero { padding-block: var(--space-9) var(--space-8); } }
+
+.home-hero-inner {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .home-hero-inner { grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-8); }
+}
+
+.home-portrait { order: -1; }
+.home-portrait img { display: block; width: 112px; height: 112px; object-fit: cover; border-radius: var(--radius-lg); background: var(--surface-raised); }
+@media (min-width: 900px) {
+  .home-portrait { order: 0; padding-top: var(--space-2); }
+  .home-portrait img { width: 320px; height: 320px; }
+}
+
+.home-name {
+  font: 800 clamp(2.75rem, 1.9rem + 3.6vw, 4.75rem)/1.02 var(--font-sans);
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+.home-credential {
+  margin-top: var(--space-4);
+  max-width: 34em;
+  font: 400 clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem)/1.5 var(--font-sans);
+  color: var(--fg-secondary);
+}
+
+.home-ask {
+  margin-top: var(--space-7);
+  max-width: 40rem;
+}
+.home-ask-label {
+  display: block;
+  font: 600 1rem/1.3 var(--font-sans);
+  color: var(--fg);
+  margin-bottom: var(--space-3);
+}
+.home-ask-row { display: flex; gap: var(--space-2); }
+.home-ask-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font: 400 1rem/1 var(--font-sans);
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+.home-ask-input::placeholder { color: var(--fg-muted); }
+.home-ask-input:hover { border-color: var(--fg-muted); }
+.home-ask-input:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-color: var(--accent); }
+.home-ask-note {
+  margin-top: var(--space-2);
+  font: var(--text-small);
+  color: var(--fg-muted);
+}
+.home-starters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.home-starter {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: var(--space-2) var(--space-3);
+  font: 400 0.875rem/1.3 var(--font-sans);
+  color: var(--fg-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  transition: border-color var(--duration-base) var(--ease-standard), color var(--duration-base) var(--ease-standard);
+}
+.home-starter:hover { color: var(--fg); border-color: var(--accent); }
+
+.home-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-6);
+  min-height: 44px;
+  font: 600 0.9375rem/1 var(--font-sans);
+  color: var(--accent-hover);
+  text-underline-offset: 4px;
+}
+.home-text-link:hover { text-decoration: underline; }
+.home-section-head .home-text-link,
+.home-closing-actions .home-text-link { margin-top: 0; }
+
+/* ---------- Shared section type ---------- */
+.home-section { padding-block: var(--space-8); }
+.home-section + .home-section { border-top: 1px solid var(--border); }
+.home-h2 {
+  font: 800 clamp(1.625rem, 1.4rem + 0.9vw, 2.125rem)/1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.home-h3 {
+  font: 700 1.0625rem/1.35 var(--font-sans);
+  color: var(--fg);
+}
+.home-section p:not(.home-career-period) { color: var(--fg-secondary); }
+.home-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.home-section > .home-h2 { margin-bottom: var(--space-6); }
+
+/* ---------- Proof band: three sentences, not tiles ---------- */
+.home-proof { padding-block: var(--space-6); border-top: 1px solid var(--border); }
+.home-proof-list {
+  display: grid;
+  gap: var(--space-4);
+  font: 400 1rem/1.55 var(--font-sans);
+  color: var(--fg-secondary);
+}
+@media (min-width: 768px) { .home-proof-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); } }
+.home-proof-list strong {
+  display: block;
+  font: 800 1.5rem/1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: var(--space-1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- What I'm building: a list, not a card grid ---------- */
+.home-built-item {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+.home-built-item:last-child { border-bottom: 1px solid var(--border); }
+@media (min-width: 768px) {
+  .home-built-item { grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: var(--space-5); }
+}
+.home-built-icon { width: 56px; height: 56px; object-fit: contain; }
+.home-built-text p { margin-top: var(--space-1); max-width: var(--home-measure); }
+.home-built-link {
+  grid-column: 2;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  font: 600 0.9375rem/1 var(--font-sans);
+  color: var(--accent-hover);
+  white-space: nowrap;
+  text-underline-offset: 4px;
+}
+.home-built-link:hover { text-decoration: underline; }
+@media (min-width: 768px) { .home-built-link { grid-column: 3; } }
+
+/* ---------- What I work on ---------- */
+.home-focus { display: grid; gap: var(--space-6); }
+@media (min-width: 768px) { .home-focus { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-8); } }
+.home-focus p { margin-top: var(--space-2); max-width: 46ch; }
+
+/* ---------- Career milestones ---------- */
+.home-career { display: grid; gap: var(--space-5); }
+.home-career li { padding-left: var(--space-4); border-left: 2px solid var(--border-strong); }
+@media (min-width: 900px) {
+  .home-career { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+  .home-career li { padding-left: 0; padding-top: var(--space-4); border-left: none; border-top: 2px solid var(--border-strong); }
+  .home-career li:first-child { border-top-color: var(--accent); }
+}
+.home-career-period {
+  font: 500 0.8125rem/1.4 var(--font-mono);
+  color: var(--fg-muted);
+  margin-bottom: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+.home-career-org { margin-top: var(--space-1); font: var(--text-small); }
+
+/* ---------- Closing ---------- */
+.home-closing { display: grid; gap: var(--space-7); padding-bottom: var(--space-9); }
+@media (min-width: 900px) { .home-closing { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-8); align-items: start; } }
+.home-closing-beyond p { margin-top: var(--space-3); max-width: var(--home-measure); font: var(--text-small); line-height: 1.65; }
+.home-closing-cta > p { margin-top: var(--space-3); font: var(--text-body-lg); }
+.home-closing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); margin-top: var(--space-5); }
+@media (min-width: 900px) { .home-closing-cta { order: -1; } }

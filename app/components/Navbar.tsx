@@ -46,7 +46,7 @@ export default function Navbar() {
           <ThemeToggle />
           {/* The wrapper carries the breakpoint: .ds-btn sets display and would override `hidden`. */}
           <span className="hidden md:inline-flex">
-            <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-primary ds-btn-sm">
+            <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-secondary ds-btn-sm">
               Contact Me
             </a>
           </span>
@@ -79,7 +79,7 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-primary ds-btn-md mt-2 w-full">
+          <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-secondary ds-btn-md mt-2 w-full">
             Contact Me
           </a>
         </nav>

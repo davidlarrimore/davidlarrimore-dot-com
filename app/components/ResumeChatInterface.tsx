@@ -52,6 +52,8 @@ export default function ResumeChatInterface() {
   const isInitialLoad = useRef(true);
 
   const [expandedChunks, setExpandedChunks] = useState<number[]>([]);
+  // A question handed over from another page (the homepage ask box) as ?q=.
+  const [pendingQuestion, setPendingQuestion] = useState<string | null>(null);
 
   useEffect(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY);
@@ -66,6 +68,16 @@ export default function ResumeChatInterface() {
       } catch (error) {
         console.error("Error parsing saved messages:", error);
       }
+    }
+
+    // Take a ?q= question once, then drop it from the URL so a reload doesn't ask again.
+    const params = new URLSearchParams(window.location.search);
+    const handedOver = params.get("q")?.trim().slice(0, 500);
+    if (handedOver) {
+      setPendingQuestion(handedOver);
+      params.delete("q");
+      const rest = params.toString();
+      window.history.replaceState(null, "", window.location.pathname + (rest ? `?${rest}` : "") + window.location.hash);
     }
 
     if (savedVersion) {
@@ -145,6 +157,14 @@ export default function ResumeChatInterface() {
       setIsLoading(false);
     }
   };
+
+  // Runs on the render after saved history has loaded, so the question joins that history.
+  useEffect(() => {
+    if (!pendingQuestion) return;
+    setPendingQuestion(null);
+    sendMessage(pendingQuestion);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingQuestion]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
