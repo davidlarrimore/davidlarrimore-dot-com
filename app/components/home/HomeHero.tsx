@@ -1,17 +1,16 @@
 import TrackedLink from "../ds/TrackedLink";
+import OpenChatButton from "../chat/OpenChatButton";
 
-// Starter questions open the resume chatbot with the question already asked.
+// Starter questions open the chat dock with the question already asked.
 const STARTERS = [
   "What did you do as DHS Chief AI Officer?",
   "What AI have you built at Amivero?",
   "How was the DHS AI Corps hired?",
 ];
 
-const askHref = (q: string) => `/projects/resumeChat?q=${encodeURIComponent(q)}`;
-
 /**
- * Homepage hero (Persuade surface). One focal action: ask the resume chatbot, the working proof
- * that Dave builds with AI. The form is a plain GET, so it works before JavaScript loads.
+ * Homepage hero (Persuade surface). One focal action: open the chat with Dave's résumé bot,
+ * the working proof that he builds with AI. It opens in place (the chat dock), never a new page.
  * Credential wording follows lib/resume-content.json `profile`; confirm changes with Dave.
  */
 export default function HomeHero() {
@@ -27,40 +26,26 @@ export default function HomeHero() {
             build and operate production AI platforms, and develop the engineers who run them.
           </p>
 
-          <form className="home-ask" action="/projects/resumeChat" method="get" role="search" aria-label="Ask my résumé">
-            <label htmlFor="home-ask-input" className="home-ask-label">
-              Ask my résumé a question
-            </label>
-            <div className="home-ask-row">
-              <input
-                id="home-ask-input"
-                name="q"
-                type="text"
-                required
-                maxLength={500}
-                autoComplete="off"
-                className="home-ask-input"
-                placeholder="What did you lead at DHS?"
-              />
-              <button type="submit" className="ds-btn ds-btn-primary ds-btn-md">
-                Ask
-              </button>
+          <div className="home-ask">
+            <div className="home-ask-actions">
+              <OpenChatButton className="ds-btn ds-btn-primary ds-btn-lg" trackLabel="hero_open_chat">
+                Ask my AI about my work
+              </OpenChatButton>
+              <TrackedLink href="/resume" trackLabel="hero_resume_link" className="home-text-link">
+                Read the résumé <span aria-hidden="true">→</span>
+              </TrackedLink>
             </div>
-            <p className="home-ask-note">Answered by a Claude chatbot I built, grounded in my résumé.</p>
+            <p className="home-ask-note">A Claude chatbot I built, grounded in my résumé. Or start with:</p>
             <ul className="home-starters" aria-label="Example questions">
               {STARTERS.map((q) => (
                 <li key={q}>
-                  <TrackedLink href={askHref(q)} trackLabel="hero_starter_question" className="home-starter">
+                  <OpenChatButton className="home-starter" question={q} trackLabel="hero_starter_question">
                     {q}
-                  </TrackedLink>
+                  </OpenChatButton>
                 </li>
               ))}
             </ul>
-          </form>
-
-          <TrackedLink href="/resume" trackLabel="hero_resume_link" className="home-text-link">
-            Read the full résumé <span aria-hidden="true">→</span>
-          </TrackedLink>
+          </div>
         </div>
 
         <div className="home-portrait">

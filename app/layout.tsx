@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/config";
 import { buildMetadata, siteUrl, SITE_DESCRIPTION } from "@/lib/seo";
 import Analytics from "./components/Analytics";
 import PixelCompanion from "./components/ds/PixelCompanion";
+import ChatDock from "./components/chat/ChatDock";
 
 // Fonts are served from app/fonts (latin subset, OFL; see app/fonts/LICENSE.txt) rather than
 // next/font/google, so builds never download from Google Fonts. Fetching them at build time
@@ -54,6 +55,7 @@ export default function RootLayout({
         </a>
         {children}
         <PixelCompanion />
+        <ChatDock />
         <Analytics />
       </body>
     </html>

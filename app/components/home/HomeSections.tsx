@@ -1,6 +1,7 @@
 import Link from "next/link";
 import content from "@/lib/resume-content.json";
 import { contactConfig, socialConfig } from "@/lib/config";
+import OpenChatButton from "../chat/OpenChatButton";
 
 /* All copy below comes from lib/resume-content.json (the single source of career facts),
    except the Resume Chatbot description, which matches app/projects/page.tsx. */
@@ -14,6 +15,7 @@ const BUILT = [
     href: "/projects/resumeChat",
     image: "/images/resume-chatbot-icon.svg",
     action: "Try it",
+    opensChat: true,
   },
   {
     name: "NLP Playground",
@@ -78,15 +80,23 @@ export function BuiltSection() {
                 <h3 className="home-h3">{p.name}</h3>
                 <p>{p.body}</p>
               </div>
-              <a
-                href={p.href}
-                className="home-built-link"
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                {p.action}
-                <span className="sr-only">: {p.name}{external ? " (opens in a new tab)" : ""}</span>
-                <span aria-hidden="true">{external ? "↗" : "→"}</span>
-              </a>
+              {"opensChat" in p && p.opensChat ? (
+                <OpenChatButton className="home-built-link" trackLabel="built_try_chatbot">
+                  {p.action}
+                  <span className="sr-only">: {p.name}</span>
+                  <span aria-hidden="true">→</span>
+                </OpenChatButton>
+              ) : (
+                <a
+                  href={p.href}
+                  className="home-built-link"
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {p.action}
+                  <span className="sr-only">: {p.name}{external ? " (opens in a new tab)" : ""}</span>
+                  <span aria-hidden="true">{external ? "↗" : "→"}</span>
+                </a>
+              )}
             </li>
           );
         })}
@@ -151,9 +161,9 @@ export function ClosingSection() {
         </h2>
         <p>Ask the chatbot about my work, or reach out directly.</p>
         <div className="home-closing-actions">
-          <Link href="/projects/resumeChat" className="ds-btn ds-btn-primary ds-btn-md">
-            Ask my résumé
-          </Link>
+          <OpenChatButton className="ds-btn ds-btn-primary ds-btn-md" trackLabel="closing_open_chat">
+            Ask my AI about my work
+          </OpenChatButton>
           <a href={`mailto:${contactConfig.email}`} className="ds-btn ds-btn-secondary ds-btn-md">
             Email me
           </a>
