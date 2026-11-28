@@ -8,6 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 import { contactConfig, socialConfig } from "@/lib/config";
 import ResumeIndex, { type ResumeSection } from "./ResumeIndex";
 import VisitorWelcome from "./VisitorWelcome";
+import PrintExpander from "./PrintExpander";
 import "./resume.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -42,6 +43,7 @@ export default function ResumePage() {
     <>
       <Navbar />
       <VisitorWelcome />
+      <PrintExpander />
       <main id="main" className="resume">
         <header className="resume-head">
           <h1 id="resume-title" tabIndex={-1} className="resume-title">
