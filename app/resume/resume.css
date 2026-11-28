@@ -179,6 +179,8 @@
   .no-print, .resume-index, .ds-companion, .ds-dock { display: none !important; }
   .resume-layout { display: block; }
   .resume-head { margin-left: 0; }
+  /* PrintExpander opens the folds; the "More from this role" toggle itself isn't useful on paper. */
+  .resume-role-more summary { display: none; }
 }
 
 /* Temporary referral welcome; uses the existing site palette. */

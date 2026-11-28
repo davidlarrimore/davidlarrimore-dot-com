@@ -256,9 +256,6 @@
 .ds-progress { height:6px; border-radius:var(--radius-sm); background:var(--surface-raised); overflow:hidden; border:1px solid var(--border); }
 .ds-progress-fill { height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:var(--radius-sm); transition:width 480ms var(--ease-standard); }
 
-.ds-avatar { border-radius:50%; object-fit:cover; background:var(--surface-raised); display:block; border:1px solid var(--border); }
-.ds-avatar-square { border-radius:var(--radius-md); }
-.ds-avatar-contain { object-fit:contain; background:#fff; padding:6px; box-sizing:border-box; }
 
 .ds-placeholder { background:repeating-linear-gradient(135deg, var(--surface-sunken) 0 10px, var(--surface) 10px 20px); border:1px dashed var(--border-strong); color:var(--fg-muted); font:var(--text-label); display:flex; align-items:center; justify-content:center; text-align:center; border-radius:var(--radius-md); padding:var(--space-3); }
 
