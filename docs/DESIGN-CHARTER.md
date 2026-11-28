@@ -114,8 +114,9 @@ homepage 14/24, resume 16/28, technical audit 11/20. The snapshots are in `.impe
 3. Contrast (`colorize`): the primary button fill moves to `--primary-600`, `--fg-muted` gets
    lighter on surfaces, and the page declares `color-scheme`.
 4. Tokens (`distill`):
-   - remove the shadcn HSL layer and point the Tailwind theme at the DS v2 variables, which fixes
-     the invalid default `border-color`
+   - remove the shadcn HSL layer and the Tailwind color theme (Tailwind keeps layout utilities
+     only; its one theme value is the default `border-color`, set to `var(--border)`), which
+     fixes the invalid default `border-color`
    - remove the unused Tailwind v4, `class-variance-authority` and `clsx` packages
    - delete the dead rules in `resume.css` and the mislabeled `.opacity-65`
 5. Performance (`optimize`):
