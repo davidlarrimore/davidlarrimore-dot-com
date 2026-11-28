@@ -11,7 +11,7 @@
 
 /* ---------- Header ---------- */
 .resume-head { max-width: 46rem; }
-@media (min-width: 1024px) { .resume-head { margin-left: calc(180px + var(--space-8)); } }
+@media (min-width: 1024px) { .resume-head { margin-left: calc(152px + var(--space-7)); } }
 .resume-title {
   font: 800 clamp(2.25rem, 1.8rem + 2vw, 3.25rem)/1.1 var(--font-sans);
   letter-spacing: -0.03em;
@@ -42,7 +42,7 @@
 /* ---------- Layout + index ---------- */
 .resume-layout { margin-top: var(--space-8); }
 @media (min-width: 1024px) {
-  .resume-layout { display: grid; grid-template-columns: 180px minmax(0, 46rem); gap: var(--space-8); align-items: start; }
+  .resume-layout { display: grid; grid-template-columns: 152px minmax(0, 46rem); gap: var(--space-7); align-items: start; }
 }
 .resume-index { display: none; }
 @media (min-width: 1024px) {
@@ -85,14 +85,11 @@
 .resume-lead { font: var(--text-body-lg); margin-bottom: var(--space-6); }
 
 /* ---------- Roles ---------- */
-/* Date rail: tenure reads straight down the page; the period lines up with the role title. */
-.resume-role {
-  display: grid;
-  gap: var(--space-1);
-  padding-bottom: var(--space-6);
-}
+/* Title row: role and company on the left, dates on the right (stacked on phones). */
+.resume-role { padding-bottom: var(--space-6); }
+.resume-role-head { display: flex; flex-direction: column; gap: var(--space-1); }
 @media (min-width: 640px) {
-  .resume-role { grid-template-columns: 8.5rem minmax(0, 1fr); gap: var(--space-5); }
+  .resume-role-head { flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-5); }
 }
 .resume-role + .resume-role { padding-top: var(--space-6); border-top: 1px solid var(--border); }
 .resume-role-title { font: 700 1.1875rem/1.3 var(--font-sans); letter-spacing: -0.01em; color: var(--fg); }
@@ -104,7 +101,7 @@
   color: var(--fg-muted);
   white-space: nowrap;
 }
-@media (min-width: 640px) { .resume-content .resume-role-period { padding-top: 0.25rem; } }
+
 .resume-role-desc { margin-top: var(--space-3); font: var(--text-body); }
 .resume-role-list {
   margin-top: var(--space-3);
@@ -143,11 +140,10 @@
 
 .resume-earlier { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--border); }
 .resume-earlier ul { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
-.resume-earlier li { display: grid; gap: var(--space-1); }
-@media (min-width: 640px) { .resume-earlier li { grid-template-columns: 8.5rem minmax(0, 1fr); column-gap: var(--space-5); } }
-.resume-earlier-line { display: contents; font: var(--text-body); }
-.resume-earlier-line > span:last-child { font: var(--text-body); }
-.resume-earlier-desc { grid-column: -2; }
+.resume-earlier-line { display: flex; flex-direction: column; gap: var(--space-1); font: var(--text-body); }
+@media (min-width: 640px) {
+  .resume-earlier-line { flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-5); }
+}
 .resume-earlier-period, .resume-year {
   font: 500 0.8125rem/1.6 var(--font-mono);
   font-variant-numeric: tabular-nums;

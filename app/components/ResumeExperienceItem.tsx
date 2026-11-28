@@ -11,9 +11,10 @@ interface ExperienceItemProps {
 const SHOWN = 3;
 
 /**
- * One role on the résumé (Read surface). Dates sit in a left rail so tenure scans down the page;
- * no company logos (Dave's call, 2026-11-28): names carry the recognition, and official seals
- * are not used as decoration. The JSON's image fields stay for other consumers.
+ * One role on the résumé (Read surface). Dates sit at the right of the title row (under it on
+ * phones), so tenure still scans down the page without spending a column. No company logos
+ * (Dave's call, 2026-11-28): names carry the recognition, and official seals are not used as
+ * decoration. The JSON's image fields stay for other consumers.
  */
 export default function ResumeExperienceItem({ title, company, location, period, description, achievements }: ExperienceItemProps) {
   const shown = achievements.slice(0, SHOWN);
@@ -21,16 +22,19 @@ export default function ResumeExperienceItem({ title, company, location, period,
 
   return (
     <article className="resume-role">
-      <p className="resume-role-period">{period}</p>
+      <div className="resume-role-head">
+        <div>
+          <h3 className="resume-role-title">{title}</h3>
+          <p className="resume-role-org">
+            <span className="resume-role-company">{company}</span>
+            <span aria-hidden="true"> · </span>
+            <span>{location}</span>
+          </p>
+        </div>
+        <p className="resume-role-period">{period}</p>
+      </div>
 
       <div className="resume-role-body">
-        <h3 className="resume-role-title">{title}</h3>
-        <p className="resume-role-org">
-          <span className="resume-role-company">{company}</span>
-          <span aria-hidden="true"> · </span>
-          <span>{location}</span>
-        </p>
-
         <p className="resume-role-desc">{description}</p>
 
         {shown.length > 0 && (

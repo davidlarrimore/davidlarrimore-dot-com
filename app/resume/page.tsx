@@ -88,10 +88,10 @@ export default function ResumePage() {
                   {content.earlier.map((role) => (
                     <li key={role.company + role.period}>
                       <p className="resume-earlier-line">
-                        <span className="resume-earlier-period">{role.period}</span>
                         <span>
                           <strong>{role.title}</strong>, {role.company}
                         </span>
+                        <span className="resume-earlier-period">{role.period}</span>
                       </p>
                       <p className="resume-earlier-desc">{role.description}</p>
                     </li>
