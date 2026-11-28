@@ -90,6 +90,87 @@ These come from a first pass over the code in November 2026. Remove items as the
   `@tailwindcss/vite`) packages are both installed. Pick one before a large restyle.
 - **AI projects sit too low.** The site's most distinctive feature is not on the first screen.
 
+## Redesign plan
+
+Decided on 2026-11-27 after the first Impeccable critique and audit. The baseline scores were:
+homepage 14/24, resume 16/28, technical audit 11/20. The snapshots are in `.impeccable/critique/`.
+
+**Decisions**
+
+- **Order:** the foundation first (accessibility, tokens, motion, performance), then the homepage,
+  then the resume.
+- **Tone:** executive first, with exactly one playful element. The pixel companion becomes the
+  resume-chat launcher, so the playful element is also the proof that Dave builds with AI. No
+  other mascots, jokes or arcade styling.
+- **Scope:** every P1 to P3 finding, one PR per phase. The owner merges each one.
+
+**Phase 1: Foundation** (no visual redesign, so the later work starts on clean ground)
+
+1. Accessibility (`harden`):
+   - a visible 2px `:focus-visible` outline, modelled on the welcome dialog
+   - a real heading tree: h1 for the name, h2 for sections, h3 for roles
+   - put the `ds-btn` classes on the `<a>` instead of nesting a `<button>` in it
+   - header, main and footer as siblings, plus a skip link
+2. Motion (`animate`): handle `prefers-reduced-motion` for the canvas, the companion, pulses, hover
+   lifts, fade-ins and smooth scroll. Give each one a real alternative, not a global kill.
+3. Contrast (`colorize`): the primary button fill moves to `--primary-600`, `--fg-muted` gets
+   lighter on surfaces, and the page declares `color-scheme`.
+4. Tokens (`distill`):
+   - remove the shadcn HSL layer and point the Tailwind theme at the DS v2 variables, which fixes
+     the invalid default `border-color`
+   - remove the unused Tailwind v4, `class-variance-authority` and `clsx` packages
+   - delete the dead rules in `resume.css` and the mislabeled `.opacity-65`
+5. Performance (`optimize`):
+   - pause animation loops when off-screen or the tab is hidden
+   - animate with `transform` instead of `left`/`top`
+   - right-size the logos and lazy-load them
+   - make the hero a server component with a small client island for the tracked links
+6. Inline styles (`polish`): move the inline `style={{}}` objects into `.ds-*` classes that use
+   the type and space tokens.
+7. Light mode (`colorize`): a light token set, a theme toggle that respects the system setting,
+   and checks of both themes.
+
+**Phase 2: Homepage** (Persuade surface, Z-pattern ending on a call to action)
+
+1. Hero (`distill`, `typeset`):
+   - remove the canvas, the gradient overlay, the hexagon frame and the `//` eyebrow
+   - use a plain portrait and make the name the h1
+   - lead with the credential from `lib/resume-content.json` (confirm the wording with Dave)
+2. AI front door (`onboard`): an "Ask about Dave's work" input in the hero with 2 or 3 starter
+   questions that open `/projects/resumeChat`.
+3. AI projects module (`layout`), second on the page: Resume Chat and the Scavenger Hunt, each
+   shown with a real screenshot or transcript snippet.
+4. Remove the bulk (`distill`, `quieter`):
+   - a borderless focus grid
+   - 3 inline stats instead of 5 boxed ones
+   - the journey as 3 or 4 dated milestones
+   - remove `SkillsSection` from home, since the resume has it
+   - alternate the module layouts
+5. Emphasis (`colorize`): one filled primary per screen, `--fg` for stats and headings, and blue
+   only for actions.
+6. Companion (`adapt`, `delight`): it becomes the chat launcher, docks out of the content and the
+   thumb zone on mobile, and respects reduced motion.
+7. Close on a call to action: try the AI, or get in touch.
+
+**Phase 3: Resume** (Read surface, F-pattern)
+
+1. Order (`layout`, `distill`): a positioning line, then Experience, Awards, Education, a condensed
+   Expertise and Approach. Drop the contact card and the closing bio, which repeats the opening.
+2. Roles (`typeset`, `clarify`): each role is an h3 with the company as a separate label and the
+   dates readable. Lead with the top 2 or 3 achievements and put the rest behind "More from this
+   role".
+3. Actions (`bolder`): "Ask my résumé a question" is the primary action, "Download PDF" is
+   secondary, and both are at least 44px tall.
+4. Awards (`typeset`): a plain list of award and year in sentence case, with nominations grouped
+   separately.
+5. Grid (`layout`): align the reading column to the 1,120px container and add a sticky section
+   index.
+
+**Phase 4: Lock it in**
+
+Run `document` to generate the root `DESIGN.md` from the shipped tokens, then a final `polish`.
+Re-run `critique` and `audit` and record the new scores here.
+
 ## Where design decisions live
 
 | File | What it holds | Who writes it |
