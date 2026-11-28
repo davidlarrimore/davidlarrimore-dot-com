@@ -8,7 +8,7 @@
   body { background: var(--bg); color: var(--fg); }
   ::selection { background: var(--accent-soft-strong); color: var(--fg); }
   h1, h2, h3, h4 { text-wrap: balance; }
-  p, li, blockquote { text-wrap: pretty; }
+  p, li, dd, blockquote { text-wrap: pretty; }
 
   /* One visible focus style for every interactive element (WCAG 2.4.7 / 1.4.11). */
   :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--radius-sm); }
@@ -116,9 +116,6 @@
   --ease-standard: cubic-bezier(0.2,0.8,0.2,1);
   --duration-base: 180ms;
 
-  /* Fixed backing for white wordmarks: stays dark in both themes. */
-  --wordmark-bg: var(--gray-900);
-  --wordmark-border: var(--gray-600);
   /* Behind the homepage cut-out portrait: a mid-tone, so the photo's fine hair edge never
      sits on the near-black page. */
   --portrait-backdrop: linear-gradient(180deg, var(--gray-700), var(--gray-800) 85%);
@@ -259,9 +256,6 @@
 .ds-progress { height:6px; border-radius:var(--radius-sm); background:var(--surface-raised); overflow:hidden; border:1px solid var(--border); }
 .ds-progress-fill { height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:var(--radius-sm); transition:width 480ms var(--ease-standard); }
 
-.ds-avatar { border-radius:50%; object-fit:cover; background:var(--surface-raised); display:block; border:1px solid var(--border); }
-.ds-avatar-square { border-radius:var(--radius-md); }
-.ds-avatar-contain { object-fit:contain; background:#fff; padding:6px; box-sizing:border-box; }
 
 .ds-placeholder { background:repeating-linear-gradient(135deg, var(--surface-sunken) 0 10px, var(--surface) 10px 20px); border:1px dashed var(--border-strong); color:var(--fg-muted); font:var(--text-label); display:flex; align-items:center; justify-content:center; text-align:center; border-radius:var(--radius-md); padding:var(--space-3); }
 

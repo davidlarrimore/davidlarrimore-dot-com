@@ -1,68 +1,62 @@
-import { ReactNode } from "react";
-import Avatar from "./ds/Avatar";
-
 interface ExperienceItemProps {
   title: string;
   company: string;
   location: string;
   period: string;
   description: string;
+  /** Ranked strongest first (lib/resume-content.json): the top ones show, the rest fold away. */
   achievements: string[];
-  icon?: ReactNode;
-  imageSrc?: string;
-  imageAlt?: string;
-  imageLayout?: string;
-  imageShape?: "circle" | "square";
 }
 
-export default function ResumeExperienceItem({
-  title,
-  company,
-  location,
-  period,
-  description,
-  achievements,
-  imageSrc,
-  imageAlt,
-  imageShape = "circle",
-  imageLayout,
-}: ExperienceItemProps) {
+const SHOWN = 3;
+
+/**
+ * One role on the résumé (Read surface). Dates sit at the right of the title row (under it on
+ * phones), so tenure still scans down the page without spending a column. No company logos
+ * (Dave's call, 2026-11-28): names carry the recognition, and official seals are not used as
+ * decoration. The JSON's image fields stay for other consumers.
+ */
+export default function ResumeExperienceItem({ title, company, location, period, description, achievements }: ExperienceItemProps) {
+  const shown = achievements.slice(0, SHOWN);
+  const more = achievements.slice(SHOWN);
+
   return (
-    <article className="flex gap-4 mb-8">
-      {imageSrc && imageLayout !== "wordmark" && (
-        <Avatar
-          src={imageSrc}
-          alt={imageAlt || `${company} logo`}
-          size={56}
-          shape={imageShape}
-          className={imageShape === "square" ? "ds-avatar-contain" : ""}
-        />
-      )}
-      {imageSrc && imageLayout === "wordmark" && (
-        <div className="resume-wordmark">
-          {/* Preserve the full acquisition lockup and its white lettering. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageSrc} alt={imageAlt || `${company} logo`} width={1204} height={320} />
+    <article className="resume-role">
+      <div className="resume-role-head">
+        <div>
+          <h3 className="resume-role-title">{title}</h3>
+          <p className="resume-role-org">
+            <span className="resume-role-company">{company}</span>
+            <span aria-hidden="true"> · </span>
+            <span>{location}</span>
+          </p>
         </div>
-      )}
-      <div className="flex-1 min-w-0 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
-          <div>
-            <h3 style={{ font: "700 16px var(--font-sans)", color: "var(--fg)" }}>
-              {title} at {company}
-            </h3>
-            <div style={{ font: "14px var(--font-sans)", color: "var(--fg-secondary)" }}>{location}</div>
-          </div>
-          <div style={{ font: "12px var(--font-mono)", color: "var(--fg-muted)", whiteSpace: "nowrap" }}>{period}</div>
-        </div>
-        <p className="mt-3" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-          {description}
-        </p>
-        <ul className="mt-3 space-y-2 list-disc pl-5" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-          {achievements.map((achievement, index) => (
-            <li key={index}>{achievement}</li>
-          ))}
-        </ul>
+        <p className="resume-role-period">{period}</p>
+      </div>
+
+      <div className="resume-role-body">
+        <p className="resume-role-desc">{description}</p>
+
+        {shown.length > 0 && (
+          <ul className="resume-role-list">
+            {shown.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
+        )}
+
+        {more.length > 0 && (
+          <details className="resume-role-more">
+            <summary>
+              More from this role <span className="resume-role-more-count">({more.length})</span>
+            </summary>
+            <ul className="resume-role-list">
+              {more.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </details>
+        )}
       </div>
     </article>
   );

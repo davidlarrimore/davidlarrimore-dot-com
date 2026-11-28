@@ -1,47 +1,188 @@
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Entrance only for visitors who have not asked for reduced motion. */
-  @media (prefers-reduced-motion: no-preference) {
-    .resume-section {
-      animation: fadeIn 0.5s ease-out forwards;
-      animation-fill-mode: both;
-    }
-  }
-  
-  .resume-section:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  
-  .resume-section:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .resume-section:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  
-  .resume-section:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  
-  .resume-section:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  
-  @media print {
-    .no-print {
-      display: none;
-    }
-  }
+/* Résumé (Phase 3 of docs/DESIGN-CHARTER.md): a Read surface. Tokens only; no inline styles.
+   One reading column (~72ch) aligned to the site container, with a sticky index in the margin. */
+
+.resume {
+  width: calc(100% - 2 * var(--space-5));
+  max-width: calc(var(--container-max) - 2 * var(--space-7));
+  margin-inline: auto;
+  padding-block: var(--space-8) var(--space-9);
+}
+@media (min-width: 768px) { .resume { width: calc(100% - 2 * var(--space-7)); padding-top: var(--space-9); } }
+
+/* ---------- Header ---------- */
+.resume-head { max-width: 46rem; }
+@media (min-width: 1024px) { .resume-head { margin-left: calc(152px + var(--space-7)); } }
+.resume-title {
+  font: 800 clamp(2.25rem, 1.8rem + 2vw, 3.25rem)/1.1 var(--font-sans);
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+.resume-title:focus { outline: none; }
+.resume-positioning {
+  margin-top: var(--space-4);
+  font: var(--text-body-lg);
+  color: var(--fg-secondary);
+}
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-top: var(--space-4);
+  font: var(--text-small);
+  color: var(--fg-muted);
+}
+.resume-contact a { color: var(--accent-hover); text-underline-offset: 3px; }
+.resume-contact a:hover { text-decoration: underline; }
+.resume-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+@media (max-width: 479px) {
+  .resume-actions { flex-direction: column; }
+  .resume-actions .ds-btn { width: 100%; }
+}
+
+/* ---------- Layout + index ---------- */
+.resume-layout { margin-top: var(--space-8); }
+@media (min-width: 1024px) {
+  .resume-layout { display: grid; grid-template-columns: 152px minmax(0, 46rem); gap: var(--space-7); align-items: start; }
+}
+.resume-index { display: none; }
+@media (min-width: 1024px) {
+  .resume-index { display: block; position: sticky; top: 112px; }
+}
+.resume-index-title {
+  font: 600 0.75rem/1.4 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg-muted);
+  margin-bottom: var(--space-3);
+}
+.resume-index ul { display: grid; gap: var(--space-1); border-left: 1px solid var(--border); }
+.resume-index a {
+  display: block;
+  margin-left: -1px;
+  padding: var(--space-1) var(--space-3);
+  border-left: 2px solid transparent;
+  font: 500 0.875rem/1.5 var(--font-sans);
+  color: var(--fg-secondary);
+  transition: color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard);
+}
+.resume-index a:hover { color: var(--fg); }
+.resume-index a[aria-current="location"] { color: var(--fg); border-left-color: var(--accent); }
+
+/* ---------- Sections ---------- */
+.resume-section { scroll-margin-top: 96px; }
+.resume-section + .resume-section { margin-top: var(--space-8); padding-top: var(--space-7); border-top: 1px solid var(--border); }
+.resume-h2 {
+  font: 800 clamp(1.5rem, 1.35rem + 0.6vw, 1.875rem)/1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: var(--space-6);
+}
+.resume-h3 { font: 700 1.0625rem/1.35 var(--font-sans); color: var(--fg); }
+.resume-content p, .resume-content li, .resume-content dd { color: var(--fg-secondary); }
+/* Reading measure: prose stays under ~70 characters a line. */
+.resume-role-desc, .resume-role-list, .resume-lead, .resume-approach p { max-width: 60ch; }
+.resume-content strong { color: var(--fg); font-weight: 600; }
+.resume-lead { font: var(--text-body-lg); margin-bottom: var(--space-6); }
+
+/* ---------- Roles ---------- */
+/* Title row: role and company on the left, dates on the right (stacked on phones). */
+.resume-role { padding-bottom: var(--space-6); }
+.resume-role-head { display: flex; flex-direction: column; gap: var(--space-1); }
+@media (min-width: 640px) {
+  .resume-role-head { flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-5); }
+}
+.resume-role + .resume-role { padding-top: var(--space-6); border-top: 1px solid var(--border); }
+.resume-role-title { font: 700 1.1875rem/1.3 var(--font-sans); letter-spacing: -0.01em; color: var(--fg); }
+.resume-role-org { margin-top: var(--space-1); font: 500 0.9375rem/1.4 var(--font-sans); }
+.resume-content .resume-role-company { color: var(--fg); }
+.resume-content .resume-role-period {
+  font: 500 0.8125rem/1.4 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.resume-role-desc { margin-top: var(--space-3); font: var(--text-body); }
+.resume-role-list {
+  margin-top: var(--space-3);
+  padding-left: 1.1em;
+  list-style: disc;
+  display: grid;
+  gap: var(--space-2);
+  font: var(--text-body);
+}
+.resume-role-list li::marker { color: var(--fg-muted); }
+.resume-role-more { margin-top: var(--space-3); }
+.resume-role-more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  cursor: pointer;
+  font: 600 0.9375rem/1 var(--font-sans);
+  color: var(--accent-hover);
+  list-style: none;
+}
+.resume-role-more summary::-webkit-details-marker { display: none; }
+.resume-role-more summary::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.resume-role-more[open] summary::before { transform: rotate(45deg); }
+.resume-role-more summary:hover { text-decoration: underline; text-underline-offset: 4px; }
+.resume-role-more-count { color: var(--fg-muted); font-weight: 500; }
+.resume-role-more .resume-role-list { margin-top: 0; }
+
+.resume-earlier { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--border); }
+.resume-earlier ul { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+.resume-earlier-line { display: flex; flex-direction: column; gap: var(--space-1); font: var(--text-body); }
+@media (min-width: 640px) {
+  .resume-earlier-line { flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-5); }
+}
+.resume-earlier-period, .resume-year {
+  font: 500 0.8125rem/1.6 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.resume-earlier-desc { margin-top: var(--space-1); font: var(--text-small); }
+
+/* ---------- Awards / education: name, then year ---------- */
+.resume-awards { display: grid; }
+.resume-awards li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  font: var(--text-body);
+}
+.resume-awards li:first-child { border-top: 1px solid var(--border); }
+.resume-content .resume-awards li > span:first-child { color: var(--fg); }
+.resume-nominations-title { margin-top: var(--space-6); margin-bottom: var(--space-3); }
+
+/* ---------- Expertise / approach ---------- */
+.resume-expertise { display: grid; gap: var(--space-5); }
+@media (min-width: 768px) { .resume-expertise { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-6); } }
+.resume-expertise dt { font: 700 0.9375rem/1.35 var(--font-sans); color: var(--fg); }
+.resume-expertise dd { margin-top: var(--space-1); font: var(--text-small); line-height: 1.6; }
+.resume-approach { display: grid; gap: var(--space-5); }
+.resume-approach p { margin-top: var(--space-1); font: var(--text-body); }
+
+@media print {
+  .no-print, .resume-index, .ds-companion, .ds-dock { display: none !important; }
+  .resume-layout { display: block; }
+  .resume-head { margin-left: 0; }
+  /* PrintExpander opens the folds; the "More from this role" toggle itself isn't useful on paper. */
+  .resume-role-more summary { display: none; }
+}
+
 /* Temporary referral welcome; uses the existing site palette. */
 .visitor-welcome {
   position: fixed;
@@ -88,23 +229,4 @@
 .visitor-welcome-login-logo img { display: block; width: 156px; height: auto; max-width: 100%; }
 .visitor-welcome-login > a:last-child { font: var(--text-small); }
 
-/* White wordmarks need a dark backing, including when the page is printed. */
-.resume-wordmark {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  background: var(--wordmark-bg);
-  border: 1px solid var(--wordmark-border);
-  border-radius: var(--radius-lg);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-.resume-wordmark img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
+
