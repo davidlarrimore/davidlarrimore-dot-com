@@ -1,5 +1,3 @@
-import Avatar from "./ds/Avatar";
-
 interface ExperienceItemProps {
   title: string;
   company: string;
@@ -8,43 +6,22 @@ interface ExperienceItemProps {
   description: string;
   /** Ranked strongest first (lib/resume-content.json): the top ones show, the rest fold away. */
   achievements: string[];
-  imageSrc?: string;
-  imageAlt?: string;
-  imageLayout?: string;
-  imageShape?: string;
 }
 
 const SHOWN = 3;
 
-/** One role on the résumé (Read surface): heading, company, dates, then the strongest results. */
-export default function ResumeExperienceItem({
-  title,
-  company,
-  location,
-  period,
-  description,
-  achievements,
-  imageSrc,
-  imageAlt,
-  imageLayout,
-}: ExperienceItemProps) {
+/**
+ * One role on the résumé (Read surface). Dates sit in a left rail so tenure scans down the page;
+ * no company logos (Dave's call, 2026-11-28): names carry the recognition, and official seals
+ * are not used as decoration. The JSON's image fields stay for other consumers.
+ */
+export default function ResumeExperienceItem({ title, company, location, period, description, achievements }: ExperienceItemProps) {
   const shown = achievements.slice(0, SHOWN);
   const more = achievements.slice(SHOWN);
-  const alt = imageAlt || `${company} logo`;
 
   return (
     <article className="resume-role">
-      <div className="resume-role-logo" aria-hidden={imageSrc ? undefined : true}>
-        {imageSrc && imageLayout === "wordmark" ? (
-          <div className="resume-wordmark">
-            {/* White lettering on a fixed dark backing; next/image adds nothing at 56px. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={imageSrc} alt={alt} width={1204} height={320} loading="lazy" decoding="async" />
-          </div>
-        ) : imageSrc ? (
-          <Avatar src={imageSrc} alt={alt} size={56} shape="square" className="ds-avatar-contain" />
-        ) : null}
-      </div>
+      <p className="resume-role-period">{period}</p>
 
       <div className="resume-role-body">
         <h3 className="resume-role-title">{title}</h3>
@@ -53,7 +30,6 @@ export default function ResumeExperienceItem({
           <span aria-hidden="true"> · </span>
           <span>{location}</span>
         </p>
-        <p className="resume-role-period">{period}</p>
 
         <p className="resume-role-desc">{description}</p>
 

@@ -34,6 +34,10 @@
 .resume-contact a { color: var(--accent-hover); text-underline-offset: 3px; }
 .resume-contact a:hover { text-decoration: underline; }
 .resume-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+@media (max-width: 479px) {
+  .resume-actions { flex-direction: column; }
+  .resume-actions .ds-btn { width: 100%; }
+}
 
 /* ---------- Layout + index ---------- */
 .resume-layout { margin-top: var(--space-8); }
@@ -81,21 +85,26 @@
 .resume-lead { font: var(--text-body-lg); margin-bottom: var(--space-6); }
 
 /* ---------- Roles ---------- */
+/* Date rail: tenure reads straight down the page; the period lines up with the role title. */
 .resume-role {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-1);
   padding-bottom: var(--space-6);
+}
+@media (min-width: 640px) {
+  .resume-role { grid-template-columns: 8.5rem minmax(0, 1fr); gap: var(--space-5); }
 }
 .resume-role + .resume-role { padding-top: var(--space-6); border-top: 1px solid var(--border); }
 .resume-role-title { font: 700 1.1875rem/1.3 var(--font-sans); letter-spacing: -0.01em; color: var(--fg); }
 .resume-role-org { margin-top: var(--space-1); font: 500 0.9375rem/1.4 var(--font-sans); }
 .resume-content .resume-role-company { color: var(--fg); }
-.resume-role-period {
-  margin-top: var(--space-1);
+.resume-content .resume-role-period {
   font: 500 0.8125rem/1.4 var(--font-mono);
   font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  white-space: nowrap;
 }
+@media (min-width: 640px) { .resume-content .resume-role-period { padding-top: 0.25rem; } }
 .resume-role-desc { margin-top: var(--space-3); font: var(--text-body); }
 .resume-role-list {
   margin-top: var(--space-3);
@@ -134,7 +143,11 @@
 
 .resume-earlier { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--border); }
 .resume-earlier ul { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
-.resume-earlier-line { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); font: var(--text-body); }
+.resume-earlier li { display: grid; gap: var(--space-1); }
+@media (min-width: 640px) { .resume-earlier li { grid-template-columns: 8.5rem minmax(0, 1fr); column-gap: var(--space-5); } }
+.resume-earlier-line { display: contents; font: var(--text-body); }
+.resume-earlier-line > span:last-child { font: var(--text-body); }
+.resume-earlier-desc { grid-column: -2; }
 .resume-earlier-period, .resume-year {
   font: 500 0.8125rem/1.6 var(--font-mono);
   font-variant-numeric: tabular-nums;
@@ -165,20 +178,6 @@
 .resume-expertise dd { margin-top: var(--space-1); font: var(--text-small); line-height: 1.6; }
 .resume-approach { display: grid; gap: var(--space-5); }
 .resume-approach p { margin-top: var(--space-1); font: var(--text-body); }
-
-/* ---------- Logos ---------- */
-.resume-role-logo { padding-top: 2px; }
-
-/* Phones: a smaller logo beside the title, and the description and bullets reclaim the full
-   width under it instead of running in a narrow column. */
-@media (max-width: 639px) {
-  .resume-role { grid-template-columns: 40px minmax(0, 1fr); gap: var(--space-3); }
-  .resume-role-logo .ds-avatar, .resume-role-logo .resume-wordmark { width: 40px !important; height: 40px !important; flex-basis: 40px; }
-  .resume-role-desc, .resume-role-list, .resume-role-more { margin-left: calc(-40px - var(--space-3)); }
-  .resume-role-more .resume-role-list { margin-left: 0; }
-  .resume-actions { flex-direction: column; }
-  .resume-actions .ds-btn { width: 100%; }
-}
 
 @media print {
   .no-print, .resume-index, .ds-companion, .ds-dock { display: none !important; }
@@ -232,23 +231,4 @@
 .visitor-welcome-login-logo img { display: block; width: 156px; height: auto; max-width: 100%; }
 .visitor-welcome-login > a:last-child { font: var(--text-small); }
 
-/* White wordmarks need a dark backing, including when the page is printed. */
-.resume-wordmark {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  background: var(--wordmark-bg);
-  border: 1px solid var(--wordmark-border);
-  border-radius: var(--radius-lg);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-.resume-wordmark img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
+

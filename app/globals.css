@@ -116,9 +116,6 @@
   --ease-standard: cubic-bezier(0.2,0.8,0.2,1);
   --duration-base: 180ms;
 
-  /* Fixed backing for white wordmarks: stays dark in both themes. */
-  --wordmark-bg: var(--gray-900);
-  --wordmark-border: var(--gray-600);
   /* Behind the homepage cut-out portrait: a mid-tone, so the photo's fine hair edge never
      sits on the near-black page. */
   --portrait-backdrop: linear-gradient(180deg, var(--gray-700), var(--gray-800) 85%);
