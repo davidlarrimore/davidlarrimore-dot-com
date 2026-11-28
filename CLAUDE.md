@@ -130,9 +130,22 @@ See `.env.example` for required environment variables.
 
 ### Styling
 
-- Tailwind CSS v3.4 with dark mode support
-- Custom CSS in `app/globals.css` and page-specific CSS (e.g., `resume/resume.css`)
-- Dark mode: Uses CSS `dark:` prefix classes, automatic system detection
+**Before any visual or UX change, read `docs/DESIGN-CHARTER.md`**, the design charter: the redesign goal,
+the ten layout principles, which trends to adopt or avoid, the known problems, and the definition
+of done. Check the change against its checklist before calling it finished. If a change has to
+break a rule there, update the charter in the same PR.
+
+- Design System v2 tokens (`--bg`, `--fg`, `--accent`, `--space-*`, `--text-*`…) and `.ds-*` classes in
+  `app/globals.css` are the only token system. Tailwind CSS v3.4 is used for layout utilities only;
+  its theme holds no colors.
+- Themes: dark is the default, and light swaps the semantic tokens under `:root[data-theme="light"]`.
+  A script in `app/layout.tsx` sets `data-theme` before paint (`?theme=` URL param, then the saved
+  choice, then the system setting), and `app/components/ds/ThemeToggle.tsx` flips it. Don't use
+  Tailwind's `dark:` variant.
+- Plain Tailwind utilities (`hidden`, `block`) lose to `.ds-*` classes in the compiled CSS, so put a
+  breakpoint utility on a wrapper rather than on an element that has a `.ds-*` class.
+- Motion must respect `prefers-reduced-motion` (CSS media query, or `motion-safe:` in Tailwind).
+- Page-specific CSS lives next to its page (e.g., `resume/resume.css`).
 
 ### Key Dependencies
 

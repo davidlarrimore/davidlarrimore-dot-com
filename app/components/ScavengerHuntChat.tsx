@@ -109,13 +109,13 @@ export default function AIChat({ messages, onNewMessage, questionContext }: AICh
         {isLoading && (
           <div className="ds-chat-bubble ds-chat-bubble-bot">
             <div className="flex space-x-2">
-              <div className="w-2 h-2 rounded-full animate-bounce" style={{ background: "var(--fg-muted)" }} />
+              <div className="w-2 h-2 rounded-full motion-safe:animate-bounce" style={{ background: "var(--fg-muted)" }} />
               <div
-                className="w-2 h-2 rounded-full animate-bounce"
+                className="w-2 h-2 rounded-full motion-safe:animate-bounce"
                 style={{ background: "var(--fg-muted)", animationDelay: "0.2s" }}
               />
               <div
-                className="w-2 h-2 rounded-full animate-bounce"
+                className="w-2 h-2 rounded-full motion-safe:animate-bounce"
                 style={{ background: "var(--fg-muted)", animationDelay: "0.4s" }}
               />
             </div>

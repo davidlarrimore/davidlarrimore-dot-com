@@ -15,12 +15,14 @@ export const metadata: Metadata = buildMetadata({
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
+      <main id="main">
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

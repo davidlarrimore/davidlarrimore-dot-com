@@ -54,7 +54,7 @@ function ProjectCard({ eyebrow, title, desc, tags, tagVariant, cta, ctaHref, cta
           </div>
         )}
       </div>
-      <Eyebrow color="var(--fg-muted)">{eyebrow}</Eyebrow>
+      <Eyebrow muted>{eyebrow}</Eyebrow>
       <div style={{ font: "var(--text-h3)", color: "var(--fg)", marginBottom: 10 }}>{title}</div>
       <div style={{ font: "14px/1.5 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 16 }}>{desc}</div>
       <div className="flex flex-wrap gap-1.5 mb-5">
@@ -91,7 +91,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "100vh" }}>
+      <main id="main" style={{ minHeight: "100vh" }}>
         <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <Eyebrow>// projects</Eyebrow>
           <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)", marginBottom: 12 }}>
