@@ -83,11 +83,9 @@ These come from a first pass over the code in November 2026. Remove items as the
 
 - **Overloaded hero.** `app/components/HeroSection.tsx` stacks an animated canvas, a gradient
   overlay, a hexagon-clipped avatar and a mono eyebrow. Pick one standout element.
-- **Two token systems in `app/globals.css`.** The leftover shadcn HSL variables (`--primary`,
-  `--muted` and others in `@layer base`) live next to the Design System v2 tokens (`--fg`,
-  `--surface`, `--accent`). Converge on the v2 tokens.
-- **Mixed Tailwind versions.** v3 (`tailwindcss`) and v4 (`@tailwindcss/postcss`,
-  `@tailwindcss/vite`) packages are both installed. Pick one before a large restyle.
+- **Inline styles in page sections.** Hero, About, Skills and the resume page still use inline
+  `style={{}}` objects. Phase 1 moved only the shared components (nav, footer, card, eyebrow) into
+  `.ds-*` classes, because Phases 2 and 3 rewrite these sections. Use classes when rewriting them.
 - **AI projects sit too low.** The site's most distinctive feature is not on the first screen.
 
 ## Redesign plan
@@ -129,6 +127,9 @@ homepage 14/24, resume 16/28, technical audit 11/20. The snapshots are in `.impe
    the type and space tokens.
 7. Light mode (`colorize`): a light token set, a theme toggle that respects the system setting,
    and checks of both themes.
+
+Phase 1 status: done in the `redesign/phase-1-foundation` PR, except item 6. That item covered
+only the shared components; the page sections move to classes when Phases 2 and 3 rewrite them.
 
 **Phase 2: Homepage** (Persuade surface, Z-pattern ending on a call to action)
 

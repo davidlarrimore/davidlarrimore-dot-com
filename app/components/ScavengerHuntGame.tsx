@@ -159,7 +159,7 @@ export default function ScavengerHuntGame({
       <div className="grid md:grid-cols-2 gap-6 p-6" style={{ background: "var(--bg)" }}>
         <div>
           <div className="flex justify-between items-center mb-5 flex-wrap gap-2">
-            <Eyebrow color="var(--fg-muted)">
+            <Eyebrow muted>
               // challenge {currentQuestionIndex + 1}/{questions.length}
             </Eyebrow>
             <div className="flex items-center gap-2">

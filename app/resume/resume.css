@@ -9,9 +9,12 @@
     }
   }
   
-  .resume-section {
-    animation: fadeIn 0.5s ease-out forwards;
-    animation-fill-mode: both;
+  /* Entrance only for visitors who have not asked for reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    .resume-section {
+      animation: fadeIn 0.5s ease-out forwards;
+      animation-fill-mode: both;
+    }
   }
   
   .resume-section:nth-child(1) {
@@ -32,28 +35,6 @@
   
   .resume-section:nth-child(5) {
     animation-delay: 0.5s;
-  }
-  
-  .experience-item {
-    position: relative;
-  }
-  
-  .experience-item::before {
-    content: '';
-    position: absolute;
-    left: -35px;
-    top: 15px;
-    height: calc(100% - 15px);
-    width: 2px;
-    background-color: #e5e7eb;
-  }
-  
-  .dark .experience-item::before {
-    background-color: #374151;
-  }
-  
-  .experience-item:last-child::before {
-    display: none;
   }
   
   @media print {
@@ -115,9 +96,9 @@
   display: flex;
   align-items: center;
   padding: 2px;
-  background: #0c0f1c;
-  border: 1px solid #30364a;
-  border-radius: 6px;
+  background: var(--wordmark-bg);
+  border: 1px solid var(--wordmark-border);
+  border-radius: var(--radius-lg);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }

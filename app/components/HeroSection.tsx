@@ -1,17 +1,12 @@
-"use client";
-
-import Link from "next/link";
 import { FaFileAlt } from "react-icons/fa";
-import { event } from "@/lib/gtag";
 import Avatar from "./ds/Avatar";
 import Eyebrow from "./ds/Eyebrow";
 import HeroCanvas from "./ds/HeroCanvas";
+import TrackedLink from "./ds/TrackedLink";
 
+// Server component: only HeroCanvas and the tracked links run on the client.
+// Phase 2 of the redesign replaces this hero (docs/DESIGN-CHARTER.md).
 export default function HeroSection() {
-  const trackEvent = (action: string, label: string) => {
-    event({ action, category: "engagement", label });
-  };
-
   return (
     <section
       className="relative overflow-hidden flex items-center"
@@ -22,7 +17,7 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(120deg, rgba(12,15,28,0.85) 35%, rgba(12,15,28,0.4) 70%, rgba(61,110,242,0.12))",
+            "linear-gradient(120deg, color-mix(in srgb, var(--bg) 85%, transparent) 35%, color-mix(in srgb, var(--bg) 40%, transparent) 70%, var(--accent-soft))",
         }}
       />
       <div
@@ -48,13 +43,13 @@ export default function HeroSection() {
               background: "var(--surface)",
             }}
           >
-            <Avatar src="/images/profile.webp" alt="Dave Larrimore" size={162} shape="square" />
+            <Avatar src="/images/profile.webp" alt="Dave Larrimore" size={162} shape="square" loading="eager" />
           </div>
         </div>
 
         <div className="text-center md:text-left">
           <Eyebrow>// technologist · executive · builder</Eyebrow>
-          <div
+          <h1
             style={{
               font: "var(--text-display)",
               letterSpacing: "var(--tracking-tight)",
@@ -63,7 +58,7 @@ export default function HeroSection() {
             }}
           >
             Hey, I&apos;m Dave Larrimore
-          </div>
+          </h1>
           <div
             className="mx-auto md:mx-0"
             style={{ font: "var(--text-body-lg)", color: "var(--fg-secondary)", marginBottom: 32, maxWidth: 520 }}
@@ -71,20 +66,12 @@ export default function HeroSection() {
             I build technology, lead teams, and turn complex challenges into practical solutions.
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-            <Link
-              href="/projects"
-              onClick={() => trackEvent("click", "hero_projects_button")}
-              className="ds-btn ds-btn-primary ds-btn-md"
-            >
+            <TrackedLink href="/projects" trackLabel="hero_projects_button" className="ds-btn ds-btn-primary ds-btn-md">
               View Projects
-            </Link>
-            <Link
-              href="/resume"
-              onClick={() => trackEvent("click", "hero_resume_button")}
-              className="ds-btn ds-btn-secondary ds-btn-md"
-            >
-              <FaFileAlt /> View Resume
-            </Link>
+            </TrackedLink>
+            <TrackedLink href="/resume" trackLabel="hero_resume_button" className="ds-btn ds-btn-secondary ds-btn-md">
+              <FaFileAlt aria-hidden="true" /> View Resume
+            </TrackedLink>
           </div>
         </div>
       </div>

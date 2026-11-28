@@ -21,7 +21,7 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "100vh" }}>
+      <main id="main" style={{ minHeight: "100vh" }}>
         <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: 760, margin: "0 auto" }}>
           <Eyebrow>// blog</Eyebrow>
           <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)", marginBottom: 8 }}>

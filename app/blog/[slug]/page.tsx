@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "100vh" }}>
+      <main id="main" style={{ minHeight: "100vh" }}>
         <article className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: 760, margin: "0 auto" }}>
           <Link
             href="/blog"

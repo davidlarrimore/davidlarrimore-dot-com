@@ -18,7 +18,7 @@ export default function ChatPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "100vh" }}>
+      <main id="main" style={{ minHeight: "100vh" }}>
         <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <Eyebrow>// projects · resume chatbot</Eyebrow>
           <div style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)", marginBottom: 16 }}>
@@ -37,7 +37,7 @@ export default function ChatPage() {
           <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start mb-16">
             <ResumeChatInterface />
             <Card>
-              <Eyebrow color="var(--fg-muted)">// how it works</Eyebrow>
+              <Eyebrow muted>// how it works</Eyebrow>
               <div style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 20 }}>
                 Claude is grounded in my résumé content, so it answers in my voice — roles, skills, awards, and the
                 occasional hobby detail. Basic mode sends the whole résumé as context; RAG mode retrieves only the

@@ -28,7 +28,7 @@ export default function ResumeExperienceItem({
   imageLayout,
 }: ExperienceItemProps) {
   return (
-    <div className="flex gap-4 mb-8">
+    <article className="flex gap-4 mb-8">
       {imageSrc && imageLayout !== "wordmark" && (
         <Avatar
           src={imageSrc}
@@ -48,9 +48,9 @@ export default function ResumeExperienceItem({
       <div className="flex-1 min-w-0 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
           <div>
-            <div style={{ font: "700 16px var(--font-sans)", color: "var(--fg)" }}>
+            <h3 style={{ font: "700 16px var(--font-sans)", color: "var(--fg)" }}>
               {title} at {company}
-            </div>
+            </h3>
             <div style={{ font: "14px var(--font-sans)", color: "var(--fg-secondary)" }}>{location}</div>
           </div>
           <div style={{ font: "12px var(--font-mono)", color: "var(--fg-muted)", whiteSpace: "nowrap" }}>{period}</div>
@@ -64,6 +64,6 @@ export default function ResumeExperienceItem({
           ))}
         </ul>
       </div>
-    </div>
+    </article>
   );
 }
