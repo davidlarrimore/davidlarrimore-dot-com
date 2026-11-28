@@ -29,9 +29,10 @@ export default function HomeHero() {
           </div>
         </div>
 
+        {/* Cut-out portrait standing on the hero's baseline, inside an arch it overlaps. */}
         <div className="home-portrait">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/profile.webp" alt="Dave Larrimore" width={320} height={320} fetchPriority="high" />
+          <img src="/images/profile-cutout.webp" alt="Dave Larrimore" width={740} height={768} fetchPriority="high" />
         </div>
       </div>
     </section>
