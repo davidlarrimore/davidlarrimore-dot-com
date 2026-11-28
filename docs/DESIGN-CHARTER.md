@@ -81,12 +81,9 @@ credibility here.
 
 These come from a first pass over the code in November 2026. Remove items as they get fixed.
 
-- **Overloaded hero.** `app/components/HeroSection.tsx` stacks an animated canvas, a gradient
-  overlay, a hexagon-clipped avatar and a mono eyebrow. Pick one standout element.
-- **Inline styles in page sections.** Hero, About, Skills and the resume page still use inline
+- **Inline styles on the resume page.** The resume page still uses inline
   `style={{}}` objects. Phase 1 moved only the shared components (nav, footer, card, eyebrow) into
   `.ds-*` classes, because Phases 2 and 3 rewrite these sections. Use classes when rewriting them.
-- **AI projects sit too low.** The site's most distinctive feature is not on the first screen.
 
 ## Redesign plan
 
@@ -138,8 +135,10 @@ only the shared components; the page sections move to classes when Phases 2 and 
    - remove the canvas, the gradient overlay, the hexagon frame and the `//` eyebrow
    - use a plain portrait and make the name the h1
    - lead with the credential from `lib/resume-content.json` (confirm the wording with Dave)
-2. AI front door (`onboard`): an "Ask about Dave's work" input in the hero with 2 or 3 starter
-   questions that open `/projects/resumeChat`.
+2. ~~AI front door in the hero~~ Dropped on 2026-11-28 (Dave's call). The hero stays out of the
+   chatbot: name, credential, "Read the résumé" and "Get in touch". The chatbot is an
+   always-available helper: the pixel sprite opens a chat panel in place on every page (it never
+   sends visitors to another page), and "Try it" in the projects list opens the same panel.
 3. AI projects module (`layout`), second on the page: Resume Chat and the Scavenger Hunt, each
    shown with a real screenshot or transcript snippet.
 4. Remove the bulk (`distill`, `quieter`):
@@ -153,6 +152,16 @@ only the shared components; the page sections move to classes when Phases 2 and 
 6. Companion (`adapt`, `delight`): it becomes the chat launcher, docks out of the content and the
    thumb zone on mobile, and respects reduced motion.
 7. Close on a call to action: try the AI, or get in touch.
+
+Phase 2 status: done in the `redesign/phase-2-homepage` PR. Two deviations from the plan:
+- The projects module shows each project's logo, not a screenshot or transcript.
+- The focus grid shows the first sentence of each `focus` body, not the whole body.
+- On phones the pixel sprite stays visible, docked bottom-right, because it is the only way to
+  open the chat panel (step 6 said it would dock out of the thumb zone). It is small (48px), sits
+  in the corner where people expect a chat launcher, and the panel opens as a full-height sheet
+  with its own close button.
+
+The homepage styles live in `app/home.css` and use no inline styles.
 
 **Phase 3: Resume** (Read surface, F-pattern)
 

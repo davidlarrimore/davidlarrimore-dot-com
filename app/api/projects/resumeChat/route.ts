@@ -113,11 +113,21 @@ const loadResumeContent = (): string => {
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 
-// Function to extract the last N messages from the conversation
-// for context without exceeding token limits
-const getConversationContext = (messages: any[], maxMessages = 10) => {
-  // Get the most recent messages, limited by maxMessages
-  return messages.slice(-maxMessages);
+// The last N well-formed messages, for context without exceeding token limits. The window
+// always starts on a user turn: clients send their whole history (the full page also opens with
+// an assistant greeting), and an odd-length history sliced to N would otherwise start with
+// "assistant", which the Messages API does not accept as a first message.
+const MAX_MESSAGE_CHARS = 4000;
+const getConversationContext = (messages: unknown, maxMessages = 10) => {
+  if (!Array.isArray(messages)) return [];
+  const valid = messages
+    .filter(
+      (m: any) => (m?.role === "user" || m?.role === "assistant") && typeof m?.content === "string" && m.content.trim()
+    )
+    .map((m: any) => ({ role: m.role as "user" | "assistant", content: m.content.slice(0, MAX_MESSAGE_CHARS) }));
+  const context = valid.slice(-maxMessages);
+  while (context.length && context[0].role !== "user") context.shift();
+  return context;
 };
 
 export async function POST(request: NextRequest) {
