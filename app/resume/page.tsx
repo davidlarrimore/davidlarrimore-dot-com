@@ -2,15 +2,13 @@ import content from "@/lib/resume-content.json";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ResumeExperienceItem from "../components/ResumeExperienceItem";
-import Link from "next/link";
+import OpenChatButton from "../components/chat/OpenChatButton";
 import { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { contactConfig, socialConfig } from "@/lib/config";
-import Card from "../components/ds/Card";
-import Eyebrow from "../components/ds/Eyebrow";
-import Tag from "../components/ds/Tag";
-import "./resume.css";
+import ResumeIndex, { type ResumeSection } from "./ResumeIndex";
 import VisitorWelcome from "./VisitorWelcome";
+import "./resume.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "David Larrimore | Resume",
@@ -19,106 +17,164 @@ export const metadata: Metadata = buildMetadata({
   path: "/resume",
 });
 
+const SECTIONS: ResumeSection[] = [
+  { id: "experience", label: "Experience" },
+  { id: "awards", label: "Awards" },
+  { id: "education", label: "Education" },
+  { id: "expertise", label: "Expertise" },
+  { id: "approach", label: "Approach" },
+];
+
+/** "DHS Secretary’s Silver Medal — 2025" → { name, year }. Nominations keep their "(Nominated)" out. */
+function splitAward(entry: string) {
+  const [name, rest = ""] = entry.split(" — ");
+  return { name: name.trim(), year: rest.replace(/\(Nominated\)/i, "").trim() };
+}
+
+const linkedinLabel = socialConfig.linkedin.replace(/^https?:\/\/(www\.)?/, "");
+
+/**
+ * Résumé (Read surface, F-pattern): positioning, then Experience first, then the supporting
+ * sections. Every fact comes from lib/resume-content.json; this page only arranges it.
+ */
 export default function ResumePage() {
   return (
     <>
       <Navbar />
       <VisitorWelcome />
-      <main id="main" style={{ minHeight: "100vh" }}>
-        <div className="px-5 md:px-10 py-16 md:py-20" style={{ maxWidth: 760, margin: "0 auto" }}>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 mb-3">
-            <div>
-              <Eyebrow>// resume</Eyebrow>
-              <h1 id="resume-title" tabIndex={-1} style={{ font: "var(--text-h1)", letterSpacing: "var(--tracking-tight)", color: "var(--fg)" }}>
-                My Resume
-              </h1>
-            </div>
-            <div className="flex flex-wrap gap-2.5 no-print">
-              <Link href="/projects/resumeChat" className="ds-btn ds-btn-ghost ds-btn-sm">
-                Chat with my Résumé
-              </Link>
-              <a href="/api/download-resume" download="David_Larrimore_Resume.pdf" className="ds-btn ds-btn-secondary ds-btn-md">
-                Download PDF
-              </a>
-            </div>
+      <main id="main" className="resume">
+        <header className="resume-head">
+          <h1 id="resume-title" tabIndex={-1} className="resume-title">
+            Résumé
+          </h1>
+          <p className="resume-positioning">{content.profile}</p>
+          <p className="resume-contact">
+            <span>{content.location}</span>
+            <span aria-hidden="true">·</span>
+            <a href={`mailto:${contactConfig.email}`}>{contactConfig.email}</a>
+            <span aria-hidden="true">·</span>
+            <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer">
+              {linkedinLabel}
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </p>
+          <div className="resume-actions no-print">
+            <OpenChatButton className="ds-btn ds-btn-primary ds-btn-md" trackLabel="resume_open_chat">
+              Ask my résumé a question
+            </OpenChatButton>
+            <a href="/api/download-resume" download="David_Larrimore_Resume.pdf" className="ds-btn ds-btn-secondary ds-btn-md">
+              Download PDF
+            </a>
           </div>
-          <div style={{ font: "15px/1.6 var(--font-sans)", color: "var(--fg-secondary)", marginBottom: 48, maxWidth: 640 }}>
-            {content.profile}<p className="mt-4">{content.about}</p>
-          </div>
+        </header>
 
-          {/* Contact */}
-          <Card className="resume-section mb-8">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
-              <div>
-                <h2 style={{ font: "700 20px var(--font-sans)", color: "var(--fg)" }}>DAVID LARRIMORE</h2>
-                <div style={{ font: "14px var(--font-sans)", color: "var(--fg-secondary)" }}>
-                  {content.tagline}
-                </div>
+        <div className="resume-layout">
+          <ResumeIndex sections={SECTIONS} />
+
+          <div className="resume-content">
+            <section id="experience" className="resume-section" aria-labelledby="experience-title">
+              <h2 id="experience-title" className="resume-h2">
+                Experience
+              </h2>
+              {content.experience.map((role) => (
+                <ResumeExperienceItem key={role.company} {...role} />
+              ))}
+
+              <div className="resume-earlier">
+                <h3 className="resume-h3">Earlier roles</h3>
+                <ul>
+                  {content.earlier.map((role) => (
+                    <li key={role.company + role.period}>
+                      <p className="resume-earlier-line">
+                        <span className="resume-earlier-period">{role.period}</span>
+                        <span>
+                          <strong>{role.title}</strong>, {role.company}
+                        </span>
+                      </p>
+                      <p className="resume-earlier-desc">{role.description}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="md:text-right" style={{ font: "13px var(--font-sans)", color: "var(--fg-secondary)" }}>
-                <div>{content.location}</div>
-                <div>{contactConfig.email}</div>
-                <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-hover)" }}>
-                  {socialConfig.linkedin}
-                </a>
-              </div>
-            </div>
-          </Card>
+            </section>
 
-          {/* Technical Expertise */}
-          <Eyebrow as="h2" muted>// technical expertise</Eyebrow>
-          <div className="grid md:grid-cols-2 gap-5 mb-12">
-            {content.expertise.map((t) => (
-              <div key={t.title}>
-                <h3 style={{ font: "600 14px var(--font-sans)", color: "var(--accent-hover)", marginBottom: 6 }}>
-                  {t.title}
-                </h3>
-                <p style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>{t.body}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Experience */}
-          <Eyebrow as="h2" muted>// experience</Eyebrow>
-          <div className="mb-12">
-            {content.experience.map((role) => (
-              <ResumeExperienceItem key={role.company} {...role} imageShape="square" />
-            ))}
-
-            <div>
-              <Eyebrow as="h3" muted>// previous positions</Eyebrow>
-              <ul className="list-disc pl-5 space-y-2" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-                {content.earlier.map((role) => <li key={role.company}>{role.period}: {role.title} at {role.company}. {role.description}</li>)}
+            <section id="awards" className="resume-section" aria-labelledby="awards-title">
+              <h2 id="awards-title" className="resume-h2">
+                Awards
+              </h2>
+              <ul className="resume-awards">
+                {content.awards.map((a) => {
+                  const { name, year } = splitAward(a);
+                  return (
+                    <li key={a}>
+                      <span>{name}</span>
+                      <span className="resume-year">{year}</span>
+                    </li>
+                  );
+                })}
               </ul>
-            </div>
-          </div>
+              {content.nominations.length > 0 && (
+                <>
+                  <h3 className="resume-h3 resume-nominations-title">Nominations</h3>
+                  <ul className="resume-awards">
+                    {content.nominations.map((a) => {
+                      const { name, year } = splitAward(a);
+                      return (
+                        <li key={a}>
+                          <span>{name}</span>
+                          <span className="resume-year">{year}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              )}
+            </section>
 
-          {/* Education */}
-          <Eyebrow as="h2" muted>// education</Eyebrow>
-          <ul className="mb-12 space-y-2" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-            {content.education.map((e) => (
-              <li key={e.degree + e.school}>
-                {e.degree}, {e.school} ({e.year})
-              </li>
-            ))}
-          </ul>
+            <section id="education" className="resume-section" aria-labelledby="education-title">
+              <h2 id="education-title" className="resume-h2">
+                Education
+              </h2>
+              <ul className="resume-awards">
+                {content.education.map((e) => (
+                  <li key={e.degree + e.school}>
+                    <span>
+                      <strong>{e.degree}</strong>, {e.school}
+                    </span>
+                    <span className="resume-year">{e.year}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-          {/* Awards */}
-          <Eyebrow as="h2" muted>// awards & recognition</Eyebrow>
-          <div className="flex flex-wrap gap-2">
-            {[...content.awards, ...content.nominations].map((a) => (
-              <Tag key={a} variant="blue">
-                {a}
-              </Tag>
-            ))}
-          </div>
-          <div className="mt-12 space-y-6">
-            <Eyebrow as="h2">// my approach to technology leadership</Eyebrow>
-            {content.approach.map((item) => <section key={item.title}>
-              <h3 style={{ color: "var(--fg)", font: "600 18px var(--font-sans)" }}>{item.title}</h3>
-              <p className="mt-2" style={{ color: "var(--fg-secondary)", lineHeight: 1.7 }}>{item.body}</p>
-            </section>)}
-            <section><Eyebrow as="h2">// short professional biography</Eyebrow><p style={{ color: "var(--fg-secondary)", lineHeight: 1.7 }}>{content.shortBio}</p></section>
+            <section id="expertise" className="resume-section" aria-labelledby="expertise-title">
+              <h2 id="expertise-title" className="resume-h2">
+                Expertise
+              </h2>
+              <dl className="resume-expertise">
+                {content.expertise.map((t) => (
+                  <div key={t.title}>
+                    <dt>{t.title}</dt>
+                    <dd>{t.body}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
+            <section id="approach" className="resume-section" aria-labelledby="approach-title">
+              <h2 id="approach-title" className="resume-h2">
+                Approach
+              </h2>
+              <p className="resume-lead">{content.about}</p>
+              <div className="resume-approach">
+                {content.approach.map((item) => (
+                  <div key={item.title}>
+                    <h3 className="resume-h3">{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
         </div>
       </main>

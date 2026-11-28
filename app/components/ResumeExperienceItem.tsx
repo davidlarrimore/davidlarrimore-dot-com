@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import Avatar from "./ds/Avatar";
 
 interface ExperienceItemProps {
@@ -7,14 +6,17 @@ interface ExperienceItemProps {
   location: string;
   period: string;
   description: string;
+  /** Ranked strongest first (lib/resume-content.json): the top ones show, the rest fold away. */
   achievements: string[];
-  icon?: ReactNode;
   imageSrc?: string;
   imageAlt?: string;
   imageLayout?: string;
-  imageShape?: "circle" | "square";
+  imageShape?: string;
 }
 
+const SHOWN = 3;
+
+/** One role on the résumé (Read surface): heading, company, dates, then the strongest results. */
 export default function ResumeExperienceItem({
   title,
   company,
@@ -24,45 +26,57 @@ export default function ResumeExperienceItem({
   achievements,
   imageSrc,
   imageAlt,
-  imageShape = "circle",
   imageLayout,
 }: ExperienceItemProps) {
+  const shown = achievements.slice(0, SHOWN);
+  const more = achievements.slice(SHOWN);
+  const alt = imageAlt || `${company} logo`;
+
   return (
-    <article className="flex gap-4 mb-8">
-      {imageSrc && imageLayout !== "wordmark" && (
-        <Avatar
-          src={imageSrc}
-          alt={imageAlt || `${company} logo`}
-          size={56}
-          shape={imageShape}
-          className={imageShape === "square" ? "ds-avatar-contain" : ""}
-        />
-      )}
-      {imageSrc && imageLayout === "wordmark" && (
-        <div className="resume-wordmark">
-          {/* Preserve the full acquisition lockup and its white lettering. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageSrc} alt={imageAlt || `${company} logo`} width={1204} height={320} />
-        </div>
-      )}
-      <div className="flex-1 min-w-0 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
-          <div>
-            <h3 style={{ font: "700 16px var(--font-sans)", color: "var(--fg)" }}>
-              {title} at {company}
-            </h3>
-            <div style={{ font: "14px var(--font-sans)", color: "var(--fg-secondary)" }}>{location}</div>
+    <article className="resume-role">
+      <div className="resume-role-logo" aria-hidden={imageSrc ? undefined : true}>
+        {imageSrc && imageLayout === "wordmark" ? (
+          <div className="resume-wordmark">
+            {/* White lettering on a fixed dark backing; next/image adds nothing at 56px. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={imageSrc} alt={alt} width={1204} height={320} loading="lazy" decoding="async" />
           </div>
-          <div style={{ font: "12px var(--font-mono)", color: "var(--fg-muted)", whiteSpace: "nowrap" }}>{period}</div>
-        </div>
-        <p className="mt-3" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-          {description}
+        ) : imageSrc ? (
+          <Avatar src={imageSrc} alt={alt} size={56} shape="square" className="ds-avatar-contain" />
+        ) : null}
+      </div>
+
+      <div className="resume-role-body">
+        <h3 className="resume-role-title">{title}</h3>
+        <p className="resume-role-org">
+          <span className="resume-role-company">{company}</span>
+          <span aria-hidden="true"> · </span>
+          <span>{location}</span>
         </p>
-        <ul className="mt-3 space-y-2 list-disc pl-5" style={{ font: "14px/1.6 var(--font-sans)", color: "var(--fg-secondary)" }}>
-          {achievements.map((achievement, index) => (
-            <li key={index}>{achievement}</li>
-          ))}
-        </ul>
+        <p className="resume-role-period">{period}</p>
+
+        <p className="resume-role-desc">{description}</p>
+
+        {shown.length > 0 && (
+          <ul className="resume-role-list">
+            {shown.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
+        )}
+
+        {more.length > 0 && (
+          <details className="resume-role-more">
+            <summary>
+              More from this role <span className="resume-role-more-count">({more.length})</span>
+            </summary>
+            <ul className="resume-role-list">
+              {more.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </details>
+        )}
       </div>
     </article>
   );

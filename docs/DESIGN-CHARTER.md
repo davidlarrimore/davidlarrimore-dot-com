@@ -81,9 +81,7 @@ credibility here.
 
 These come from a first pass over the code in November 2026. Remove items as they get fixed.
 
-- **Inline styles on the resume page.** The resume page still uses inline
-  `style={{}}` objects. Phase 1 moved only the shared components (nav, footer, card, eyebrow) into
-  `.ds-*` classes, because Phases 2 and 3 rewrite these sections. Use classes when rewriting them.
+None open. Add new ones here as they are found.
 
 ## Redesign plan
 
@@ -176,6 +174,11 @@ The homepage styles live in `app/home.css` and use no inline styles.
    separately.
 5. Grid (`layout`): align the reading column to the 1,120px container and add a sticky section
    index.
+
+Phase 3 status: done in the `redesign/phase-3-resume` PR. Three choices beyond the plan:
+- "Ask my résumé a question" opens the chat panel in place, like everywhere else.
+- The section index shows on desktop only; phones rely on the headings.
+- The `about` paragraph now opens Approach, and the closing short bio is gone.
 
 **Phase 4: Lock it in**
 

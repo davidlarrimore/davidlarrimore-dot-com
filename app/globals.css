@@ -8,7 +8,7 @@
   body { background: var(--bg); color: var(--fg); }
   ::selection { background: var(--accent-soft-strong); color: var(--fg); }
   h1, h2, h3, h4 { text-wrap: balance; }
-  p, li, blockquote { text-wrap: pretty; }
+  p, li, dd, blockquote { text-wrap: pretty; }
 
   /* One visible focus style for every interactive element (WCAG 2.4.7 / 1.4.11). */
   :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--radius-sm); }
