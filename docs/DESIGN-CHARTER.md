@@ -156,6 +156,10 @@ only the shared components; the page sections move to classes when Phases 2 and 
 Phase 2 status: done in the `redesign/phase-2-homepage` PR. Two deviations from the plan:
 - The projects module shows each project's logo, not a screenshot or transcript.
 - The focus grid shows the first sentence of each `focus` body, not the whole body.
+- On phones the pixel sprite stays visible, docked bottom-right, because it is the only way to
+  open the chat panel (step 6 said it would dock out of the thumb zone). It is small (48px), sits
+  in the corner where people expect a chat launcher, and the panel opens as a full-height sheet
+  with its own close button.
 
 The homepage styles live in `app/home.css` and use no inline styles.
 

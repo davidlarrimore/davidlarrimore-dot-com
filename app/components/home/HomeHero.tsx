@@ -31,6 +31,7 @@ export default function HomeHero() {
 
         {/* Cut-out portrait standing on the hero's baseline, inside an arch it overlaps. */}
         <div className="home-portrait">
+          {/* Static WebP with alpha, served as is and sized by CSS; next/image adds nothing here. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/profile-cutout.webp" alt="Dave Larrimore" width={740} height={768} fetchPriority="high" />
         </div>

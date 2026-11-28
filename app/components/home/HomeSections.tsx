@@ -74,6 +74,7 @@ export function BuiltSection() {
           const external = p.href.startsWith("http");
           return (
             <li key={p.name} className="home-built-item">
+              {/* 112px thumbnails already sized for 2x; next/image adds nothing here. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={p.image} alt="" width={56} height={56} loading="lazy" decoding="async" className="home-built-icon" />
               <div className="home-built-text">

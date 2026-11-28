@@ -135,7 +135,8 @@ export default function ChatPanel({ open, onClose, ask, onAskHandled }: ChatPane
           <h2 id="chat-dock-title">Ask about Dave&apos;s work</h2>
           <p>Claude, grounded in Dave&apos;s résumé. It can make mistakes.</p>
         </div>
-        {messages.length > 0 && (
+        {/* Hidden while an answer is on its way, so a late reply can't land alone in a new chat. */}
+        {messages.length > 0 && !loading && (
           <button type="button" className="ds-icon-btn" onClick={() => setMessages([])} aria-label="Start a new chat" title="Start a new chat">
             <FiRotateCcw aria-hidden="true" size={16} />
           </button>
